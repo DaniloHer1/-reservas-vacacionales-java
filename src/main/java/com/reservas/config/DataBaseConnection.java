@@ -47,10 +47,10 @@ public class DataBaseConnection {
 
             if (connection == null || connection.isClosed()) {
                 connection = DriverManager.getConnection(url, user, password);
-                System.out.println("✓ Conexión establecida exitosamente");
+                System.out.println(" Conexión establecida exitosamente");
             }
         } catch (SQLException e) {
-            System.err.println("✗ Error al conectar a la base de datos: " + e.getMessage());
+            System.err.println(" Error al conectar a la base de datos: " + e.getMessage());
             e.printStackTrace();
             return null;
         }
