@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="466.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.MainController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="466.0" prefWidth="685.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="198.0">
+               <children>
+                  <Label layoutX="63.0" layoutY="14.0" prefHeight="35.0" prefWidth="83.0" text="Menú">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnClientes" layoutX="39.0" layoutY="81.0" mnemonicParsing="false" onAction="#abrirVistaClientes" prefHeight="59.0" prefWidth="131.0" text="Clientes" />
+                  <Button fx:id="btnPropiedades" layoutX="39.0" layoutY="157.0" mnemonicParsing="false" onAction="#abrirVistaPropiedades" prefHeight="59.0" prefWidth="131.0" text="Propiedades" />
+                  <Button fx:id="btnReservas" layoutX="39.0" layoutY="231.0" mnemonicParsing="false" onAction="#abrirVistaReservas" prefHeight="59.0" prefWidth="131.0" text="Reservas" />
+                  <Button fx:id="btnPagos" layoutX="39.0" layoutY="303.0" mnemonicParsing="false" onAction="#abrirVistaPagos" prefHeight="59.0" prefWidth="131.0" text="Pagos" />
+                  <Button fx:id="btnValoraciones" layoutX="39.0" layoutY="377.0" mnemonicParsing="false" onAction="#abrirVistaValoraciones" prefHeight="59.0" prefWidth="131.0" text="Valoracion" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="453.0" prefWidth="527.0">
+               <children>
+                  <Label blendMode="MULTIPLY" layoutX="92.0" layoutY="14.0" prefHeight="155.0" prefWidth="344.0" text="Bienvenido al Sistema De Reservas vacacionales" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="83.0" layoutY="187.0" prefHeight="70.0" prefWidth="363.0" text="Seleccione una opción del menu para comenzar" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
 </AnchorPane>
