@@ -92,15 +92,39 @@ public class PagoDAO {
             return false;
         }
     }
+    public boolean actualizarPago(Pago pago){
+        String sql= """
+                UPDATE pagos
+                SET metodo_pago = ?,
+                    estado_pago = ?
+                    WHERE id_pago=?;
+                """;
+        try(PreparedStatement preparedStatement =conexion.prepareStatement(sql)){
+
+
+            preparedStatement.setString(1,pago.getMetodoPago().name().toLowerCase());
+            preparedStatement.setString(2,pago.getEstadoPago().name().toLowerCase());
+            preparedStatement.setInt(3,pago.getId());
+
+            int filasAfectadas = preparedStatement.executeUpdate();
+
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+
+    }
     public void mostrarTodosPagos(){
         PagosDisponibles.clear();
 
-            try {
-                Statement stm = conexion.createStatement();
+            try(  Statement statement = conexion.createStatement();) {
+
 
                 String sql = "SELECT * from pagos";
 
-                ResultSet result = stm.executeQuery(sql);
+                ResultSet result = statement.executeQuery(sql);
 
                 while (result.next()) {
 
@@ -119,13 +143,32 @@ public class PagoDAO {
                     }
 
 
-                stm.close();
+                statement.close();
 
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
         }
     }
 
+    public boolean borrarPago(Pago pago){
+        String sql= """               
+                DELETE FROM pagos
+                WHERE id_pago=?;
+                """;
+        try(PreparedStatement preparedStatement =conexion.prepareStatement(sql)){
+
+
+            preparedStatement.setInt(1,pago.getId());
+
+
+            int filasAfectadas = preparedStatement.executeUpdate();
+
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public List<Integer> getListaReservasID() {
         return listaReservasID;

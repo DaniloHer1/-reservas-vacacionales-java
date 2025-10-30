@@ -46,6 +46,8 @@ public class PagoFormController {
 
     private PagoDAO pagoDAO;
 
+    private Pago pagoAEditar = null;
+    private boolean modoEdicion = false;
 
 
     @FXML
@@ -110,11 +112,23 @@ public class PagoFormController {
         if (!validarCampos()){
             return;
         }
-        Pago pago=new Pago();
 
-        pago.setReserva(Integer.parseInt(cbReserva.getValue()));
-        pago.setMonto(Double.parseDouble(txtMonto.getText().trim().replace(",",".")));
-        pago.setFechaPago(LocalDateTime.now());
+        Pago pago;
+        boolean insertado;
+        String mensaje="";
+        if (modoEdicion){
+
+            pago=pagoAEditar;
+            mensaje="Pago actualizado correctamente";
+
+        }else {
+            pago = new Pago();
+
+            pago.setReserva(Integer.parseInt(cbReserva.getValue()));
+            pago.setMonto(Double.parseDouble(txtMonto.getText().trim().replace(",", ".")));
+            pago.setFechaPago(LocalDateTime.now());
+            mensaje="Pago insertado correctamente";
+        }
 
         if (rbEfectivo.isSelected()){
             pago.setMetodoPago(Pago.MetodoPago.EFECTIVO);
@@ -129,17 +143,43 @@ public class PagoFormController {
         String estado=cbEstado.getValue();
         pago.setEstadoPago(Pago.EstadoPago.valueOf(estado));
 
-        boolean insertado=pagoDAO.insertarPago(pago);
+        if (modoEdicion){
+            insertado=pagoDAO.actualizarPago(pago);
+        }else{
+            insertado=pagoDAO.insertarPago(pago);
+        }
+
         if (insertado) {
-            mostrarAlerta("Éxito", "Pago guardado correctamente", Alert.AlertType.INFORMATION);
+            mostrarAlerta("Éxito", mensaje, Alert.AlertType.INFORMATION);
             cancelar() ;
         } else {
             mostrarAlerta("Error", "No se pudo guardar el pago", Alert.AlertType.ERROR);
         }
+    }
 
+    public void guardarPago(Pago pago){
+        modoEdicion=true;
+        pagoAEditar=pago;
 
+        cbReserva.setValue(String.valueOf(pago.getReserva()));
+        cbReserva.setDisable(true);
+
+        txtMonto.setText(String.valueOf(pago.getMonto()));
+        txtMonto.setEditable(false);
+
+        switch (pago.getMetodoPago()){
+            case TARJETA -> rbTarjeta.setSelected(true);
+            case EFECTIVO -> rbEfectivo.setSelected(true);
+            case TRANSFERENCIA -> rbTransferencia.setSelected(true);
+        }
+
+        cbEstado.setValue(pago.getEstadoPago().name());
+
+        btnGuardar.setText("Actualizar");
 
     }
+
+
     @FXML
     public void cancelar() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
@@ -153,4 +193,6 @@ public class PagoFormController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+
 }

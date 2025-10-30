@@ -14,6 +14,7 @@ module com.example.reservavacaciones {
     requires java.sql;
     requires javafx.graphics;
 //    requires com.example.reservavacaciones;
+//    requires com.example.reservavacaciones;
 
 
     opens com.reservas.controller to javafx.fxml;
