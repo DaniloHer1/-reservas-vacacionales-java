@@ -17,8 +17,7 @@ public class PagoDAO {
     private List<Integer> listaReservasID=new ArrayList<>();
 
 
-
-    public PagoDAO( Connection conexion){
+    public PagoDAO(Connection conexion){
         this.conexion=conexion;
     }
 
@@ -65,7 +64,7 @@ public class PagoDAO {
 
         String sql= """
                 insert into pagos(id_reserva, fecha_pago, monto, metodo_pago, estado_pago)
-                values(?,?,?,?,?)
+                values(?,?,?,?,?,?)
                 """;
 
         // el return generated keys nos permite recuperar el valor autoincremantal de la base de datos
@@ -76,6 +75,7 @@ public class PagoDAO {
                 preparedStatement.setDouble(3,pago.getMonto());
                 preparedStatement.setString(4,pago.getMetodoPago().name().toLowerCase());
                 preparedStatement.setString(5,pago.getEstadoPago().name().toLowerCase());
+            preparedStatement.setString(6, pago.getReferenciaTransaccion());
 
                 int filasAfectadas=preparedStatement.executeUpdate();
 
@@ -93,22 +93,25 @@ public class PagoDAO {
         }
     }
     public boolean actualizarPago(Pago pago){
-        String sql= """
-                UPDATE pagos
-                SET metodo_pago = ?,
-                    estado_pago = ?
-                    WHERE id_pago=?;
-                """;
-        try(PreparedStatement preparedStatement =conexion.prepareStatement(sql)){
+        String sql = """
+        UPDATE pagos
+        SET metodo_pago = ?,
+            estado_pago = ?,
+            referencia_transaccion = ?
+        WHERE id_pago=?;
+        """;
 
+        try(PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+            preparedStatement.setString(1, pago.getMetodoPago().name().toLowerCase());
+            preparedStatement.setString(2, pago.getEstadoPago().name().toLowerCase());
+            preparedStatement.setString(3, pago.getReferenciaTransaccion());  // ← AÑADIR
+            preparedStatement.setInt(4, pago.getId());
 
-            preparedStatement.setString(1,pago.getMetodoPago().name().toLowerCase());
-            preparedStatement.setString(2,pago.getEstadoPago().name().toLowerCase());
-            preparedStatement.setInt(3,pago.getId());
 
             int filasAfectadas = preparedStatement.executeUpdate();
 
             return filasAfectadas > 0;
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -168,6 +171,37 @@ public class PagoDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public String generarSiguienteReferencia() {
+        try {
+            String sql = """
+            SELECT referencia_transaccion 
+            FROM pagos 
+            ORDER BY id_pago DESC LIMIT 1
+            """;
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                String ultimaReferencia = rs.getString("referencia_transaccion");
+
+                String numeroStr = ultimaReferencia.replace("TXN", "");
+                int numero = Integer.parseInt(numeroStr);
+
+                numero++;
+
+                return String.format("TXN%03d", numero);
+            }
+        } catch (SQLException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        return "TXN001";
+    }
+
+    public void ejecutarProcedure(){
+
     }
 
     public List<Integer> getListaReservasID() {

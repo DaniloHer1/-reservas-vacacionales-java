@@ -10,6 +10,7 @@ public class Pago {
     private double monto;
     private MetodoPago metodoPago;
     private EstadoPago estadoPago;
+    private String referenciaTransaccion;
 
     // ENUMS
     public enum MetodoPago{
@@ -53,13 +54,14 @@ public class Pago {
         this.fechaPago =LocalDateTime.now();
     }
     public Pago(int id, int reservaId, LocalDateTime fechaPago, double monto,
-                MetodoPago metodoPago, EstadoPago estadoPago) {
+                MetodoPago metodoPago, EstadoPago estadoPago, String referenciaTransaccion) {
         this.id = id;
         this.reserva = reservaId;
         this.fechaPago = fechaPago;
         this.monto = monto;
         this.metodoPago = metodoPago;
         this.estadoPago = estadoPago;
+        this.referenciaTransaccion = referenciaTransaccion;
     }
     public Pago(int reserva,double monto,MetodoPago metodoPago) {
         this.reserva = reserva;
@@ -69,6 +71,13 @@ public class Pago {
         this.estadoPago =EstadoPago.PENDIENTE;
     }
 
+    public String getReferenciaTransaccion() {
+        return referenciaTransaccion;
+    }
+
+    public void setReferenciaTransaccion(String referenciaTransaccion) {
+        this.referenciaTransaccion = referenciaTransaccion;
+    }
 
     public String getMetodoPagoTexto() {
         return metodoPago.getDescripcion();

@@ -30,6 +30,13 @@ public class PagoFormController {
     private RadioButton rbTransferencia;
 
     @FXML
+    private RadioButton rbPaypal;
+
+    @FXML
+    private RadioButton rbStripe;
+
+
+    @FXML
     private ToggleGroup grupoMetodo;
 
     @FXML
@@ -44,6 +51,9 @@ public class PagoFormController {
     @FXML
     private Button btnCancelar;
 
+    @FXML
+    private TextField txtReferencia;
+
     private PagoDAO pagoDAO;
 
     private Pago pagoAEditar = null;
@@ -52,15 +62,13 @@ public class PagoFormController {
 
     @FXML
     public void initialize() {
-
         Connection connection = DataBaseConnection.getInstance().conectarBD();
-        pagoDAO=new PagoDAO(connection);
+        pagoDAO = new PagoDAO(connection);
         pagoDAO.mostrarTodosPagos();
         pagoDAO.mostrarTodosIdReservas();
 
         cbEstado.getItems().addAll("COMPLETADO","PENDIENTE","RECHAZADO");
         cbEstado.setValue("PENDIENTE");
-
 
         pagoDAO.getListaReservasID().forEach((reserva -> {
             cbReserva.getItems().add(String.valueOf(reserva));
@@ -68,18 +76,20 @@ public class PagoFormController {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         txtFecha.setText(LocalDateTime.now().format(formatter));
+        txtReferencia.setEditable(false);
+        if (!modoEdicion) {
+            String referencia = pagoDAO.generarSiguienteReferencia();
+            txtReferencia.setText(referencia);
+        }
 
         cbReserva.setOnAction(event -> {
-            Integer reservaid= Integer.valueOf(cbReserva.getValue());
-            if (reservaid!=null){
-                pagoDAO.cargarMontoDeReserva(reservaid,txtMonto);
+            Integer reservaid = Integer.valueOf(cbReserva.getValue());
+            if (reservaid != null){
+                pagoDAO.cargarMontoDeReserva(reservaid, txtMonto);
             }
         });
-
-
-
-
     }
+
 
     private boolean validarCampos(){
 
@@ -109,27 +119,30 @@ public class PagoFormController {
 
     @FXML
     public void guardarPagoEnBD() {
-        if (!validarCampos()){
+
+        if (!validarCampos()) {
             return;
         }
-
         Pago pago;
         boolean insertado;
-        String mensaje="";
-        if (modoEdicion){
+        String mensaje = "";
 
-            pago=pagoAEditar;
-            mensaje="Pago actualizado correctamente";
-
-        }else {
+        if (modoEdicion) {
+            pago = pagoAEditar;
+            mensaje = "Pago actualizado correctamente";
+        } else {
             pago = new Pago();
-
             pago.setReserva(Integer.parseInt(cbReserva.getValue()));
             pago.setMonto(Double.parseDouble(txtMonto.getText().trim().replace(",", ".")));
             pago.setFechaPago(LocalDateTime.now());
-            mensaje="Pago insertado correctamente";
-        }
 
+
+            String referencia = pagoDAO.generarSiguienteReferencia();
+            pago.setReferenciaTransaccion(referencia);
+            txtReferencia.setText(referencia);
+
+            mensaje = "Pago insertado correctamente";
+        }
         if (rbEfectivo.isSelected()){
             pago.setMetodoPago(Pago.MetodoPago.EFECTIVO);
         }
@@ -138,6 +151,12 @@ public class PagoFormController {
         }
         if (rbTransferencia.isSelected()){
             pago.setMetodoPago(Pago.MetodoPago.TRANSFERENCIA);
+        }
+        if (rbPaypal.isSelected()){
+            pago.setMetodoPago(Pago.MetodoPago.PAYPAL);
+        }
+        if (rbStripe.isSelected()){
+            pago.setMetodoPago(Pago.MetodoPago.STRIPE);
         }
 
         String estado=cbEstado.getValue();
@@ -155,11 +174,13 @@ public class PagoFormController {
         } else {
             mostrarAlerta("Error", "No se pudo guardar el pago", Alert.AlertType.ERROR);
         }
+
     }
 
+
     public void guardarPago(Pago pago){
-        modoEdicion=true;
-        pagoAEditar=pago;
+        modoEdicion = true;
+        pagoAEditar = pago;
 
         cbReserva.setValue(String.valueOf(pago.getReserva()));
         cbReserva.setDisable(true);
@@ -167,18 +188,21 @@ public class PagoFormController {
         txtMonto.setText(String.valueOf(pago.getMonto()));
         txtMonto.setEditable(false);
 
+
+        txtReferencia.setText(pago.getReferenciaTransaccion());
+        txtReferencia.setDisable(true);
+
         switch (pago.getMetodoPago()){
             case TARJETA -> rbTarjeta.setSelected(true);
             case EFECTIVO -> rbEfectivo.setSelected(true);
             case TRANSFERENCIA -> rbTransferencia.setSelected(true);
+            case PAYPAL -> rbPaypal.setSelected(true);
+            case STRIPE -> rbStripe.setSelected(true);
         }
 
         cbEstado.setValue(pago.getEstadoPago().name());
-
         btnGuardar.setText("Actualizar");
-
     }
-
 
     @FXML
     public void cancelar() {
