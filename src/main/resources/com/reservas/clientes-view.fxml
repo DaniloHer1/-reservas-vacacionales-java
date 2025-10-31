@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="674.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+   <children>
+      <TableView layoutX="31.0" layoutY="116.0" prefHeight="399.0" prefWidth="788.0" AnchorPane.topAnchor="116.0">
+        <columns>
+          <TableColumn editable="false" prefWidth="75.0" text="ID" />
+          <TableColumn editable="false" prefWidth="75.0" text="Nombre" />
+            <TableColumn editable="false" prefWidth="75.0" text="Apellidos" />
+            <TableColumn prefWidth="75.0" text="Email" />
+            <TableColumn editable="false" prefWidth="75.0" text="Teléfono" />
+            <TableColumn editable="false" prefWidth="75.0" text="País" />
+            <TableColumn prefWidth="75.0" text="Fecha Registro" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button layoutX="127.0" layoutY="564.0" mnemonicParsing="false" text="Añadir" />
+      <Button layoutX="261.0" layoutY="564.0" mnemonicParsing="false" text="Modificar" />
+      <Button layoutX="418.0" layoutY="564.0" mnemonicParsing="false" text="Eliminar" />
+      <Button layoutX="791.0" layoutY="75.0" mnemonicParsing="false" text="🔁" />
+      <TextField layoutX="583.0" layoutY="564.0" />
+      <Button layoutX="742.0" layoutY="564.0" mnemonicParsing="false" text="🔍" />
+      <Label layoutX="583.0" layoutY="531.0" text="Búsqueda por email:" />
+      <Label layoutX="323.0" layoutY="40.0" text="Gestión de Clientes">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+   </children>
 </AnchorPane>
