@@ -15,7 +15,9 @@ public class Pago {
     public enum MetodoPago{
         TARJETA("Tarjeta"),
         EFECTIVO("Efectivo"),
-        TRANSFERENCIA("Transferencia");
+        TRANSFERENCIA("Transferencia"),
+        PAYPAL("Paypal"),
+        STRIPE("Stripe");
 
         private final String descripcion;
 
