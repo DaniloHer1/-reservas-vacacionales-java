@@ -16,14 +16,14 @@
             <TableColumn fx:id="colEstado" prefWidth="119.0" text="Estado" />
         </columns>
       </TableView>
-      <Button fx:id="btnAñadir" layoutX="58.0" layoutY="363.0" mnemonicParsing="false" onAction="#añadirPago" text="Añadir" />
-      <Button fx:id="btnEliminar" layoutX="341.0" layoutY="363.0" mnemonicParsing="false" onAction="#borrarPago" text="Eliminar" />
-      <Button fx:id="btnActualizar" layoutX="458.0" layoutY="363.0" mnemonicParsing="false" onAction="#actualizarTabla" text="Actualizar tabla" />
+      <Button fx:id="btnAñadir" layoutX="58.0" layoutY="363.0" mnemonicParsing="false" onAction="#abrirFormularioNuevoPago" text="Añadir" />
+      <Button fx:id="btnEliminar" layoutX="341.0" layoutY="363.0" mnemonicParsing="false" onAction="#eliminarPagoSeleccionado" text="Eliminar" />
+      <Button fx:id="btnActualizar" layoutX="458.0" layoutY="363.0" mnemonicParsing="false" onAction="#actualizarTablaPagos" text="Actualizar tabla" />
       <Label layoutX="14.0" layoutY="14.0" text="Gestión de Pagos">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="btnModificar" layoutX="192.0" layoutY="363.0" mnemonicParsing="false" onAction="#editarPago" text="Modificar" />
+      <Button fx:id="btnModificar" layoutX="192.0" layoutY="363.0" mnemonicParsing="false" onAction="#abrirFormularioEditarPago" text="Modificar" />
    </children>
 </AnchorPane>
