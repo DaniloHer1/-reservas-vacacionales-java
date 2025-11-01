@@ -29,7 +29,7 @@ public class MainController {
     public void abrirVistaValoraciones() {
         cargarVista("valoraciones-view.fxml", "Valoraciones");
     }
-    protected void cargarVista(String ruta, String titulo) {
+    protected static void cargarVista(String ruta, String titulo) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(ruta));
         Scene scene;
         try {
