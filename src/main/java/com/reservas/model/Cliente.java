@@ -1,6 +1,6 @@
 package com.reservas.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 /**
  * Clase que representa un cliente del sistema.
@@ -17,20 +17,23 @@ public class Cliente {
     private String apellido;
     private String email;
     private String telefono;
-    private Timestamp fechaRegistro;
+    private String pais;
+    private LocalDate fechaRegistro;
 
-    public Cliente(String nombre, String apellido, String email, String telefono) {
+    public Cliente(String nombre, String apellido, String email, String telefono, String pais) {
 
         setNombre(nombre);
         setApellido(apellido);
         setEmail(email);
         setTelefono(telefono);
+        setPais(pais);
 
     }
 
     public int getIdCliente() {
         return idCliente;
     }
+    public void setIdCliente(int idCliente) {this.idCliente = idCliente;}
 
     public String getNombre() {
         return nombre;
@@ -109,7 +112,7 @@ public class Cliente {
 
     public void setTelefono(String telefono) {
 
-        String regexTelefono = "^[0-9]{9}$";
+        String regexTelefono = "^\\+[1-9]\\d{6,14}$";
 
         if (!telefono.matches(regexTelefono)) {
 
@@ -121,9 +124,19 @@ public class Cliente {
 
     }
 
-    public Timestamp getFechaRegistro() {
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {this.fechaRegistro = fechaRegistro;}
 
     @Override
     public String toString() {

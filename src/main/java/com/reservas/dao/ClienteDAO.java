@@ -2,6 +2,7 @@ package com.reservas.dao;
 
 import com.reservas.config.DataBaseConnection;
 import com.reservas.model.Cliente;
+import com.reservas.model.Reserva;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,18 +26,17 @@ public class ClienteDAO {
     public boolean agregarCliente(Cliente cliente) {
 
         String query = """
-                       INSERT INTO clientes(nombre, apellidos, email, telefono)
-                       VALUES (?, ?, ?, ?);
+                       INSERT INTO clientes(nombre, apellidos, email, telefono, pais)
+                       VALUES (?, ?, ?, ?, ?);
                        """;
 
-        Connection con = DataBaseConnection.getInstance().conectarBD();
-
-        try(PreparedStatement ps =  con.prepareStatement(query)) {
+        try(Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps =  con.prepareStatement(query)) {
 
             ps.setString(1, cliente.getNombre());
             ps.setString(2, cliente.getApellido());
             ps.setString(3, cliente.getEmail());
             ps.setString(4, cliente.getTelefono());
+            ps.setString(5, cliente.getPais());
 
             ps.executeUpdate();
 
@@ -62,21 +62,31 @@ public class ClienteDAO {
         List<Cliente> clientes = new ArrayList<>();
 
         String query = """
-                       SELECT nombre, apellidos, email, telefono FROM clientes;
+                       SELECT id_cliente, nombre, apellidos, email, telefono, pais, fecha_registro FROM clientes;
                        """;
 
-        Connection con = DataBaseConnection.getInstance().conectarBD();
-
-        try(Statement st = con.createStatement(); ResultSet rs = st.executeQuery(query)) {
+        try(Connection con = DataBaseConnection.getInstance().conectarBD(); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
 
+                int id_cliente = rs.getInt("id_cliente");
                 String nombre = rs.getString("nombre");
                 String apellido = rs.getString("apellidos");
                 String email = rs.getString("email");
                 String telefono = rs.getString("telefono");
+                String pais = rs.getString("pais");
 
-                var cliente = new Cliente(nombre, apellido, email, telefono);
+                var cliente = new Cliente(nombre, apellido, email, telefono, pais);
+
+                cliente.setIdCliente(id_cliente);
+
+                Date fechaRegistro = rs.getDate("fecha_registro");
+
+                if (fechaRegistro != null) {
+
+                    cliente.setFechaRegistro(fechaRegistro.toLocalDate());
+
+                }
 
                 clientes.add(cliente);
 
@@ -103,11 +113,9 @@ public class ClienteDAO {
 
         String query = """
                        UPDATE clientes
-                       SET nombre = ?, apellidos = ?, email = ?, telefono = ?
+                       SET nombre = ?, apellidos = ?, email = ?, telefono = ?, pais = ?
                        WHERE id_cliente = ?;
                        """;
-
-        Connection con = DataBaseConnection.getInstance().conectarBD();
 
         int idCliente =buscarClientePorEmail(cliente.getEmail());
 
@@ -119,13 +127,14 @@ public class ClienteDAO {
 
         }
 
-        try(PreparedStatement ps = con.prepareStatement(query)) {
+        try(Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(query)) {
 
             ps.setString(1, cliente.getNombre());
             ps.setString(2, cliente.getApellido());
             ps.setString(3, cliente.getEmail());
             ps.setString(4, cliente.getTelefono());
-            ps.setInt(5, idCliente);
+            ps.setString(5, cliente.getPais());
+            ps.setInt(6, idCliente);
 
             int filas = ps.executeUpdate();
 
@@ -161,8 +170,6 @@ public class ClienteDAO {
                        DELETE FROM clientes WHERE id_cliente = ?;
                        """;
 
-        Connection con = DataBaseConnection.getInstance().conectarBD();
-
         int idCliente = buscarClientePorEmail(cliente.getEmail());
 
         if (idCliente == -1) {
@@ -172,7 +179,7 @@ public class ClienteDAO {
 
         }
 
-        try (PreparedStatement ps = con.prepareStatement(query)) {
+        try (Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(query)) {
 
             ps.setInt(1, idCliente);
             int filas = ps.executeUpdate();
@@ -207,9 +214,7 @@ public class ClienteDAO {
                        SELECT id_cliente FROM clientes WHERE email = ?;
                        """;
 
-        Connection con = DataBaseConnection.getInstance().conectarBD();
-
-        try (PreparedStatement ps = con.prepareStatement(query)) {
+        try (Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(query)) {
 
             ps.setString(1, email);
 
@@ -232,4 +237,45 @@ public class ClienteDAO {
 
     }
 
+    public boolean modificarClientePorId(Cliente cliente) {
+
+        String query = """
+                    UPDATE clientes
+                       SET nombre = ?, apellidos = ?, email = ?, telefono = ?, pais = ?
+                     WHERE id_cliente = ?;
+                    """;
+
+        try (Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(query)) {
+
+            ps.setString(1, cliente.getNombre());
+            ps.setString(2, cliente.getApellido());
+            ps.setString(3, cliente.getEmail());
+            ps.setString(4, cliente.getTelefono());
+            ps.setString(5, cliente.getPais());
+            ps.setInt(6, cliente.getIdCliente());
+
+            int filas = ps.executeUpdate();
+            return filas > 0;
+
+        } catch (SQLException e) {
+
+            System.err.println("Error al modificar el cliente: " + e.getMessage());
+            throw new RuntimeException(e);
+
+        }
+
+    }
+    public ArrayList<Integer> getIDClientes(){
+        ArrayList<Integer> ids = new ArrayList<>();
+        try (Connection con = DataBaseConnection.getInstance().conectarBD(); Statement st = con.createStatement()) {
+            st.execute("select id_cliente from clientes;");
+            ResultSet rs = st.getResultSet();
+            while (rs.next()){
+               ids.add(rs.getInt("id_cliente"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ids;
+    }
 }

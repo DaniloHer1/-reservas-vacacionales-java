@@ -88,7 +88,7 @@ public class Pago {
     }
 
     public String getFechaTexto() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return fechaPago.format(formatter);
     }
 
@@ -116,8 +116,8 @@ public class Pago {
         this.metodoPago = metodoPago;
     }
 
-    public double getMonto() {
-        return monto;
+    public String getMonto() {
+        return monto+" €";
     }
 
     public void setMonto(double monto) {

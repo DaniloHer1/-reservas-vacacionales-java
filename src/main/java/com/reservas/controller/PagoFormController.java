@@ -3,6 +3,7 @@ package com.reservas.controller;
 import com.reservas.config.DataBaseConnection;
 import com.reservas.dao.PagoDAO;
 import com.reservas.model.Pago;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -198,7 +199,7 @@ public class PagoFormController {
      * Carga los datos de un pago existente para editarlos.
      * @param pago Pago a editar.
      */
-    public void cargarPagoParaEditar(Pago pago) {
+    public void cargarPagoParaEditar(Pago pago, ActionEvent event) {
         modoEdicion = true;
         pagoAEditar = pago;
 

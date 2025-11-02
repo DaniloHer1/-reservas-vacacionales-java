@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="487.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.PagoFormController">
     <children>
-        <Label fx:id="txtTitulo" layoutX="110.0" layoutY="14.0" text="Nuevo Pago">
+        <Label fx:id="txtTitulo" layoutX="29.0" layoutY="14.0" text="Nuevo Pago">
             <font>
                 <Font size="26.0" />
             </font>
@@ -20,14 +20,14 @@
 
         <Label layoutX="52.0" layoutY="153.0" text="Método Pago:" AnchorPane.leftAnchor="55.0" />
         <RadioButton fx:id="rbTarjeta" layoutX="134.0" layoutY="183.0" mnemonicParsing="false" text="Tarjeta" AnchorPane.leftAnchor="130.0">
-         <toggleGroup>
-            <ToggleGroup fx:id="grupoMetodo" />
-         </toggleGroup>
+            <toggleGroup>
+                <ToggleGroup fx:id="grupoMetodo" />
+            </toggleGroup>
         </RadioButton>
         <RadioButton fx:id="rbEfectivo" layoutX="134.0" layoutY="209.0" mnemonicParsing="false" text="Efectivo" toggleGroup="$grupoMetodo" AnchorPane.leftAnchor="130.0" />
         <RadioButton fx:id="rbTransferencia" layoutX="134.0" layoutY="235.0" mnemonicParsing="false" text="Transferencia" toggleGroup="$grupoMetodo" AnchorPane.leftAnchor="130.0" />
-      <RadioButton fx:id="rbPaypal" layoutX="135.0" layoutY="284.0" mnemonicParsing="false" text="PayPal" toggleGroup="$grupoMetodo" AnchorPane.leftAnchor="130.0" />
-      <RadioButton fx:id="rbStripe" layoutX="134.0" layoutY="260.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="Stripe" toggleGroup="$grupoMetodo" AnchorPane.leftAnchor="130.0" />
+        <RadioButton fx:id="rbPaypal" layoutX="135.0" layoutY="284.0" mnemonicParsing="false" text="PayPal" toggleGroup="$grupoMetodo" AnchorPane.leftAnchor="130.0" />
+        <RadioButton fx:id="rbStripe" layoutX="134.0" layoutY="260.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="Stripe" toggleGroup="$grupoMetodo" AnchorPane.leftAnchor="130.0" />
 
         <Label layoutX="57.0" layoutY="325.0" text="Estado:" AnchorPane.leftAnchor="55.0" />
         <ComboBox fx:id="cbEstado" layoutX="122.0" layoutY="319.0" prefWidth="150.0" />
@@ -37,7 +37,7 @@
 
         <Button fx:id="btnGuardar" layoutX="99.0" layoutY="444.0" mnemonicParsing="false" onAction="#guardarPago" text="Guardar" />
         <Button fx:id="btnCancelar" layoutX="191.0" layoutY="444.0" mnemonicParsing="false" onAction="#cerrarVentana" text="Cancelar" />
-      <Label layoutX="52.0" layoutY="402.0" prefHeight="17.0" prefWidth="59.0" text="Referencia:" AnchorPane.leftAnchor="55.0" />
-      <TextField fx:id="txtReferencia" layoutX="124.0" layoutY="398.0" />
+        <Label layoutX="52.0" layoutY="402.0" prefHeight="17.0" prefWidth="59.0" text="Referencia:" AnchorPane.leftAnchor="55.0" />
+        <TextField fx:id="txtReferencia" layoutX="124.0" layoutY="398.0" />
     </children>
 </AnchorPane>
