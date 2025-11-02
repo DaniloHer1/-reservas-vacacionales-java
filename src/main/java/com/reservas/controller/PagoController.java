@@ -3,24 +3,24 @@ package com.reservas.controller;
 import com.reservas.Main;
 import com.reservas.config.DataBaseConnection;
 import com.reservas.dao.PagoDAO;
+import com.reservas.model.Cliente;
 import com.reservas.model.Pago;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import static com.reservas.controller.MainController.cargarVista;
 
 public class PagoController {
 
@@ -37,8 +37,7 @@ public class PagoController {
     private TableColumn<Pago, String> colFecha;
 
     @FXML
-    private TableColumn<Pago, Double> colMonto;
-
+    private TableColumn<Pago, String> colMonto;
 
     @FXML
     private TableColumn<Pago, Pago.MetodoPago> colMetodo;
@@ -46,106 +45,124 @@ public class PagoController {
     @FXML
     private TableColumn<Pago, Pago.EstadoPago> colEstado;
 
+    @FXML
+    private TextField txtBusquedaId;
 
 
-    private PagoDAO sacarDatos;
+    private PagoDAO pagoDAO;
 
     @FXML
     public void initialize() {
+        // Conecto con la base de datos y preparo el DAO
         Connection connection = DataBaseConnection.getInstance().conectarBD();
-        sacarDatos=new PagoDAO(connection);
-        configurarColumnas();
-        cargarPagos();
+        pagoDAO = new PagoDAO(connection);
+
+        // Configuro las columnas y cargo los pagos en la tabla
+        configurarColumnasTabla();
+        cargarListaPagos();
+        configurarDobleClickFila();
+        mostrarTodosPagos();
     }
 
-    private void configurarColumnas() {
-
+    /**
+     * Configura las columnas de la tabla de pagos.
+     */
+    private void configurarColumnasTabla() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colReserva.setCellValueFactory(new PropertyValueFactory<>("reserva"));
         colFecha.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getFechaTexto())
         );
-        colMonto.setCellValueFactory(new PropertyValueFactory<>("monto"));
+        colMonto.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getMonto())
+        );
+
         colMetodo.setCellValueFactory(new PropertyValueFactory<>("metodoPago"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estadoPago"));
     }
-    public void cargarPagos(){
 
-        sacarDatos.mostrarTodosPagos();
+    /**
+     * Carga los pagos desde la base de datos y los muestra en la tabla.
+     */
+    public void cargarListaPagos() {
+        pagoDAO.mostrarTodosPagos();
         ObservableList<Pago> listaPagos = FXCollections.observableArrayList(
-                sacarDatos.getPagosDisponibles()
+                pagoDAO.getPagosDisponibles()
         );
         table.setItems(listaPagos);
-
-
     }
+
+    /**
+     * Abre el formulario para añadir un nuevo pago.
+     */
     @FXML
-    public void añadirPago() {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("pagos-form-view.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load());
-        } catch (IOException e) {
-            e.getStackTrace();
-        }
-
-        Stage stage =new Stage();
-
-        stage.setTitle("Añadir Pago");
-        stage.setScene(scene);
-        stage.show();
-
-    }
-    @FXML
-    public void editarPago() {
-
-        Pago pago=table.getSelectionModel().getSelectedItem();
-
-        if (pago==null){
-            mostrarAlerta("Error","Debe selecionar un pago si quiere actualizarlo", Alert.AlertType.ERROR);
-            return;
-        }
+    public void abrirFormularioNuevoPago() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("pagos-form-view.fxml"));
-            Scene scene =  new Scene(fxmlLoader.load());
+            Scene scene = new Scene(fxmlLoader.load());
 
-            PagoFormController pagoController=fxmlLoader.getController();
-
-            pagoController.guardarPago(pago);
-            Stage stage =new Stage();
-
+            Stage stage = new Stage();
             stage.setTitle("Añadir Pago");
             stage.setScene(scene);
             stage.show();
-            cargarPagos();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public void borrarPago(){
-        Pago pago=table.getSelectionModel().getSelectedItem();
-        if (pago==null){
-            mostrarAlerta("Error","Debe selecionar un pago si quiere eliminarlo", Alert.AlertType.ERROR);
+
+    /**
+     * Abre el formulario de edición con los datos del pago seleccionado.
+     */
+    @FXML
+    public void abrirFormularioEditarPago() {
+        Pago pagoSeleccionado = table.getSelectionModel().getSelectedItem();
+
+        if (pagoSeleccionado == null) {
+            mostrarAlerta("Error", "Debes seleccionar un pago para poder editarlo.", Alert.AlertType.ERROR);
             return;
         }
-        boolean confirmacion= mostrarAlertaBorrar("Confirmacion","Seguro que quieres borrar el pago "+pago.getId());
-        if (confirmacion){
-            boolean eliminado = sacarDatos.borrarPago(pago);
-            cargarPagos();
-            if (eliminado){
-                mostrarAlerta("Exito","Pago "+ pago.getId() + " Borrado", Alert.AlertType.INFORMATION);
-            }else {
-                mostrarAlerta("Error","No se puede eliminar el pago", Alert.AlertType.ERROR);
-            }
+
+        abrirFormularioEdicion(pagoSeleccionado);
+    }
+
+    /**
+     * Elimina el pago seleccionado después de confirmar la acción.
+     */
+    @FXML
+    public void eliminarPagoSeleccionado() {
+        Pago pagoSeleccionado = table.getSelectionModel().getSelectedItem();
+
+        if (pagoSeleccionado == null) {
+            mostrarAlerta("Error", "Debes seleccionar un pago para eliminarlo.", Alert.AlertType.ERROR);
+            return;
         }
 
+        boolean confirmacion = mostrarConfirmacionBorrado("Confirmación", "¿Seguro que deseas eliminar el pago " + pagoSeleccionado.getId() + "?");
+
+        if (confirmacion) {
+            boolean eliminado = pagoDAO.borrarPago(pagoSeleccionado);
+            cargarListaPagos();
+
+            if (eliminado) {
+                mostrarAlerta("Éxito", "El pago " + pagoSeleccionado.getId() + " fue eliminado correctamente.", Alert.AlertType.INFORMATION);
+            } else {
+                mostrarAlerta("Error", "No se pudo eliminar el pago.", Alert.AlertType.ERROR);
+            }
+        }
     }
 
+    /**
+     * Refresca los datos de la tabla de pagos.
+     */
     @FXML
-    private void actualizarTabla(){
-      cargarPagos();
+    private void actualizarTablaPagos() {
+        cargarListaPagos();
     }
+
+    /**
+     * Muestra un mensaje de alerta genérico.
+     */
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
@@ -154,12 +171,100 @@ public class PagoController {
         alert.showAndWait();
     }
 
-    private boolean mostrarAlertaBorrar(String titulo, String mensaje) {
+    /**
+     * Muestra un diálogo de confirmación para eliminar un pago.
+     * @return true si el usuario confirma, false en caso contrario.
+     */
+    private boolean mostrarConfirmacionBorrado(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
-        return  alert.showAndWait().filter(respuesta -> respuesta == ButtonType.OK).isPresent();
+        return alert.showAndWait().filter(respuesta -> respuesta == ButtonType.OK).isPresent();
+    }
+
+    private void configurarDobleClickFila() {
+        table.setRowFactory(tv -> {
+            TableRow<Pago> row = new TableRow<>();
+
+            row.setOnMouseClicked(event -> {
+                if (event.getButton() == MouseButton.PRIMARY &&
+                        event.getClickCount() == 2 &&
+                        !row.isEmpty()) {
+
+                    Pago pagoSeleccionado = row.getItem();
+                    abrirFormularioEdicion(pagoSeleccionado);
+
+                }
+            });
+
+            return row;
+        });
+    }
+    /**
+     * Abre el formulario de edición para un pago específico
+     */
+    private void abrirFormularioEdicion(Pago pago) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("pagos-form-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            PagoFormController pagoFormController = fxmlLoader.getController();
+            pagoFormController.cargarPagoParaEditar(pago, null);
+
+            Stage stage = new Stage();
+            stage.setTitle("Editar Pago");
+            stage.setScene(scene);
+            stage.show();
+
+            // Opcional: recargar la tabla cuando se cierre la ventana
+            stage.setOnHidden(e -> cargarListaPagos());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se pudo abrir el formulario de edición", Alert.AlertType.ERROR);
+        }
+    }
+
+    /**
+     * Busca un pago por ID y muestra solo ese resultado en la tabla
+     */
+    @FXML
+    public void buscarPorID(){
+
+        String idTexto=txtBusquedaId.getText();
+
+        if (idTexto.isEmpty()) {
+            mostrarAlerta("Validación", "Debes ingresar un ID para buscar", Alert.AlertType.WARNING);
+            return;
+        }
+
+        try {
+
+            int id = Integer.parseInt(idTexto);
+
+            Pago pagoEncontrado= pagoDAO.buscarPagoPorId(id);
+
+            if (pagoEncontrado!=null){
+                ObservableList<Pago> resultado=FXCollections.observableArrayList(pagoEncontrado);
+                table.setItems(resultado);
+            }else{
+                mostrarAlerta("Sin Resultado","No se encontro ningun pago con el Id:  " +idTexto, Alert.AlertType.INFORMATION);
+                table.setItems(FXCollections.observableArrayList());
+            }
+
+        }catch (Exception e){
+            mostrarAlerta("ERROR","El Id debe ser un numero", Alert.AlertType.ERROR);
+        }
+
+    }
+    /**
+     * Muestra todos los pagos en la tabla
+     */
+    @FXML
+    public void mostrarTodosPagos() {
+        txtBusquedaId.clear();
+        cargarListaPagos();
     }
 
 }
