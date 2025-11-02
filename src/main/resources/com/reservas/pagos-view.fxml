@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="431.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.PagoController">
+   <children>
+      <TableView fx:id="table" layoutX="16.0" layoutY="132.0" prefHeight="213.0" prefWidth="642.0">
+        <columns>
+            <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="colReserva" prefWidth="75.0" text="Id Reserva" />
+            <TableColumn fx:id="colFecha" prefWidth="117.0" text="Fecha" />
+            <TableColumn fx:id="colMonto" prefWidth="97.0" text="Monto" />
+            <TableColumn fx:id="colMetodo" prefWidth="124.0" text="Método" />
+            <TableColumn fx:id="colEstado" prefWidth="148.0" text="Estado" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAñadir" layoutX="69.0" layoutY="389.0" mnemonicParsing="false" onAction="#abrirFormularioNuevoPago" prefHeight="27.0" prefWidth="61.0" text="Añadir" AnchorPane.bottomAnchor="63.0" AnchorPane.topAnchor="389.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnEliminar" layoutX="184.0" layoutY="389.0" mnemonicParsing="false" onAction="#eliminarPagoSeleccionado" prefHeight="27.0" prefWidth="61.0" text="Eliminar" AnchorPane.bottomAnchor="63.0" AnchorPane.topAnchor="389.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnActualizar" layoutX="16.0" layoutY="97.0" mnemonicParsing="false" onAction="#actualizarTablaPagos" text="🔁" />
+      <Label layoutX="14.0" layoutY="14.0" text="Gestión de Pagos">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnModificar" layoutX="307.0" layoutY="389.0" mnemonicParsing="false" onAction="#abrirFormularioEditarPago" text="Modificar" AnchorPane.bottomAnchor="63.0" AnchorPane.topAnchor="389.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="434.0" layoutY="361.0" prefHeight="11.0" prefWidth="92.0" text="Búsqueda por ID:" />
+      <TextField fx:id="txtBusquedaId" layoutX="434.0" layoutY="391.0" />
+      <Button layoutX="592.0" layoutY="391.0" mnemonicParsing="false" onAction="#buscarPorID" text="🔍" />
+   </children>
+</AnchorPane>
