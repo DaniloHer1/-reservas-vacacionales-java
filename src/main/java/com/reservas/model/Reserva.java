@@ -45,6 +45,17 @@ public class Reserva {
         this.precio_total = precio_total;
         this.motivo_cancelacion = motivo_cancelacion;
     }
+    public Reserva(int id_cliente, int id_propiedad, Date fecha_inicio,
+                   Date fecha_fin, int num_personas, EstadoReserva estadoReserva, double precio_total, String motivo_cancelacion) {
+        this.id_cliente = id_cliente;
+        this.id_propiedad = id_propiedad;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.num_personas = num_personas;
+        this.estadoReserva = estadoReserva;
+        this.precio_total = precio_total;
+        this.motivo_cancelacion = motivo_cancelacion;
+    }
     public Reserva(){
     }
     public String getFechaIniString(){

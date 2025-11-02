@@ -40,7 +40,6 @@ public class ReservaControler {
         configurarColumnas();
         tableView.setItems(reservas);
     }
-
     private void configurarColumnas() {
         colID.setCellValueFactory(new PropertyValueFactory<>("id_reserva"));
         colID_cliente.setCellValueFactory(new PropertyValueFactory<>("id_cliente"));
@@ -54,7 +53,8 @@ public class ReservaControler {
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio_total"));
         colMotivo.setCellValueFactory(new PropertyValueFactory<>("motivo_cancelacion"));
     }
-    public void aniadirReserva(){
-
+    public void aniadirReservaForm(){
+        MainController.cargarVista("reservas-form-view.fxml", "Añadir reserva");
     }
+
 }
