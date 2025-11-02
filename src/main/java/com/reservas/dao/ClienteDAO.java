@@ -2,6 +2,7 @@ package com.reservas.dao;
 
 import com.reservas.config.DataBaseConnection;
 import com.reservas.model.Cliente;
+import com.reservas.model.Reserva;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -264,5 +265,17 @@ public class ClienteDAO {
         }
 
     }
-
+    public ArrayList<Integer> getIDClientes(){
+        ArrayList<Integer> ids = new ArrayList<>();
+        try (Connection con = DataBaseConnection.getInstance().conectarBD(); Statement st = con.createStatement()) {
+            st.execute("select id_cliente from clientes;");
+            ResultSet rs = st.getResultSet();
+            while (rs.next()){
+               ids.add(rs.getInt("id_cliente"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ids;
+    }
 }
