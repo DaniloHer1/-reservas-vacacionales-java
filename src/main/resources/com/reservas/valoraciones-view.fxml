@@ -7,14 +7,14 @@
 
 <AnchorPane prefHeight="467.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
    <children>
-      <TableView fx:id="tablaValoracion" layoutX="28.0" layoutY="134.0" prefHeight="200.0" prefWidth="610.0">
+      <TableView fx:id="tablaValoracion" layoutX="28.0" layoutY="123.0" prefHeight="246.0" prefWidth="610.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="123.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="75.0" text="ID RESERVA" />
-            <TableColumn prefWidth="75.0" text="PUNTUACIÓN" />
-            <TableColumn prefWidth="75.0" text="COMENTARIO" />
-            <TableColumn prefWidth="75.0" text="ANONIMATO" />
-            <TableColumn prefWidth="75.0" text="FECHA" />
+          <TableColumn fx:id="colIdVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID" />
+          <TableColumn fx:id="colReservaVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID RESERVA" />
+            <TableColumn fx:id="colPuntuacionVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="PUNTUACIÓN" />
+            <TableColumn fx:id="colCmetarioVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="COMENTARIO" />
+            <TableColumn fx:id="colAnonimatoVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ANONIMATO" />
+            <TableColumn fx:id="colFechaVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="FECHA" />
         </columns>
          <opaqueInsets>
             <Insets />
@@ -23,13 +23,32 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="139.0" layoutY="59.0" text="GESTIÓN DE VALORACIONES">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="45.0" prefWidth="657.0" text="GESTIÓN DE VALORACIONES" textFill="#85b6d4" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
          <font>
-            <Font size="30.0" />
+            <Font name="JetBrains Mono ExtraBold" size="30.0" />
          </font></Label>
-      <Button fx:id="btnAñadir" layoutX="98.0" layoutY="378.0" mnemonicParsing="false" text="Añadir" />
-      <Button fx:id="btnModificar" layoutX="194.0" layoutY="378.0" mnemonicParsing="false" text="Modificar" />
-      <Button fx:id="btnAñadir11" layoutX="314.0" layoutY="378.0" mnemonicParsing="false" text="Eliminar" />
-      <Button fx:id="btnActualizar" layoutX="435.0" layoutY="378.0" mnemonicParsing="false" text="Actualizar" />
+      <Button fx:id="btnAñadirVal" layoutX="28.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="551.0" AnchorPane.topAnchor="403.0">
+         <font>
+            <Font name="JetBrains Mono ExtraBold" size="11.0" />
+         </font></Button>
+      <Button fx:id="btnModificarVal" layoutX="136.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="MODIFICAR ✔" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="434.0" AnchorPane.topAnchor="403.0">
+         <font>
+            <Font name="JetBrains Mono ExtraBold" size="11.0" />
+         </font></Button>
+      <Button fx:id="btnEliminarVal" layoutX="255.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="403.0">
+         <font>
+            <Font name="JetBrains Mono ExtraBold" size="11.0" />
+         </font></Button>
+      <Button fx:id="btnActualizarVal" layoutX="525.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="ACTUALIZAR 🔁" textAlignment="CENTER" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="525.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="403.0">
+         <font>
+            <Font name="JetBrains Mono ExtraBold" size="11.0" />
+         </font></Button>
+      <Label layoutX="295.0" layoutY="89.0" prefHeight="17.0" prefWidth="150.0" text="Buscar por ID de reserva: " AnchorPane.bottomAnchor="366.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="89.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtBuscarVal" layoutX="445.0" layoutY="85.0" AnchorPane.bottomAnchor="362.0" AnchorPane.leftAnchor="445.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="85.0" />
+      <Button fx:id="btnBuscarVal" layoutX="608.0" layoutY="85.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="🔍" AnchorPane.bottomAnchor="362.0" AnchorPane.leftAnchor="608.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="85.0" />
    </children>
 </AnchorPane>

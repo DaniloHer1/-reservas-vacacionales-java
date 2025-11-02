@@ -1,43 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="466.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.MainController">
+<AnchorPane prefHeight="525.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.MainController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="466.0" prefWidth="685.0">
+      <SplitPane dividerPositions="0.5" layoutX="199.0" layoutY="141.0" orientation="VERTICAL" prefHeight="466.0" prefWidth="684.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="198.0">
+          <AnchorPane maxHeight="50.0" minHeight="0.0" minWidth="0.0" prefHeight="50.0" prefWidth="682.0">
                <children>
-                  <Label layoutX="63.0" layoutY="14.0" prefHeight="35.0" prefWidth="83.0" text="Menú">
+                  <Label fx:id="lblTitulo" alignment="CENTER" contentDisplay="CENTER" layoutX="320.0" layoutY="17.0" prefHeight="50.0" prefWidth="682.0" style="-fx-background-color: #85b6d4;" text="SISTEMA DE GESTIÓN DE RESERVAS" textAlignment="CENTER" textFill="#e1e1e1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnClientes" layoutX="39.0" layoutY="81.0" mnemonicParsing="false" onAction="#abrirVistaClientes" prefHeight="59.0" prefWidth="131.0" text="Clientes" />
-                  <Button fx:id="btnPropiedades" layoutX="39.0" layoutY="157.0" mnemonicParsing="false" onAction="#abrirVistaPropiedades" prefHeight="59.0" prefWidth="131.0" text="Propiedades" />
-                  <Button fx:id="btnReservas" layoutX="39.0" layoutY="231.0" mnemonicParsing="false" onAction="#abrirVistaReservas" prefHeight="59.0" prefWidth="131.0" text="Reservas" />
-                  <Button fx:id="btnPagos" layoutX="39.0" layoutY="303.0" mnemonicParsing="false" onAction="#abrirVistaPagos" prefHeight="59.0" prefWidth="131.0" text="Pagos" />
-                  <Button fx:id="btnValoraciones" layoutX="39.0" layoutY="377.0" mnemonicParsing="false" onAction="#abrirVistaValoraciones" prefHeight="59.0" prefWidth="131.0" text="Valoracion" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="453.0" prefWidth="527.0">
-               <children>
-                  <Label blendMode="MULTIPLY" layoutX="92.0" layoutY="14.0" prefHeight="155.0" prefWidth="344.0" text="Bienvenido al Sistema De Reservas vacacionales" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="83.0" layoutY="187.0" prefHeight="70.0" prefWidth="363.0" text="Seleccione una opción del menu para comenzar" wrapText="true">
-                     <font>
-                        <Font size="16.0" />
+                        <Font name="JetBrains Mono ExtraBold" size="24.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.43502051983584133" layoutX="127.0" layoutY="94.0" prefHeight="467.0" prefWidth="733.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="TOP" layoutX="72.0" layoutY="51.0" prefHeight="25.0" prefWidth="171.0" text="BIENVENIDO ☀" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="51.0">
+                                 <font>
+                                    <Font name="JetBrains Mono ExtraBold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextArea editable="false" layoutX="29.0" layoutY="108.0" prefHeight="283.0" prefWidth="258.0" style="-fx-wrap-text: true;" text="Bienvenido al panel de administración del Sistema de Gestión de Reservas Vacacionales. Desde esta vista podrás supervisar y controlar todos los aspectos del negocio:&#10;&#10;- Gestionar reservas&#10;- Administrar propiedades&#10;- Registrar y consultar clientes&#10;- Procesar pagos&#10;- Revisar valoraciones de los huéspedes.&#10;&#10;Este entorno centralizado ofrece una visión completa y actualizada de la operación,permitiendo optimizar la gestión y mejorar la experiencia tanto del administrador como de los clientes." AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="108.0">
+                                 <font>
+                                    <Font name="Corbel" size="12.0" />
+                                 </font>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
+                              </TextArea>
+                           </children></AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Accordion layoutX="61.0" layoutY="158.0" prefHeight="465.0" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <panes>
+                                    <TitledPane text="CLIENTES">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <AnchorPane layoutX="23.0" layoutY="21.0" prefHeight="339.0" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" contentDisplay="TOP" layoutX="42.0" layoutY="30.0" prefHeight="25.0" prefWidth="300.0" text="Area Clientes 👥" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.bottomAnchor="264.79999999999995" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="30.0">
+                                                         <font>
+                                                            <Font name="JetBrains Mono ExtraBold" size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="89.0" prefHeight="86.0" prefWidth="350.0" style="-fx-wrap-text: true;" text="Contiene el registro de todos los huéspedes y propietarios. Puedes agregar nuevos clientes, editar datos, revisar y consultar su historial de reservas y valoraciones. " textAlignment="CENTER" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="100.0" />
+                                                      <Button fx:id="btnClientes" layoutX="139.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="CLIENTES ➤" textFill="#85b6d4" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="139.0" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="243.0">
+                                                         <font>
+                                                            <Font name="JetBrains Mono ExtraBold" size="12.0" />
+                                                         </font></Button>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </TitledPane>
+                                  <TitledPane text="PROPIEDADES">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <AnchorPane layoutX="36.0" layoutY="51.0" prefHeight="339.0" prefWidth="408.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" layoutX="87.0" layoutY="51.0" prefHeight="25.0" prefWidth="220.0" text="Area Propiedades ☗" textAlignment="CENTER" textFill="#85b6d4">
+                                                         <font>
+                                                            <Font name="JetBrains Mono ExtraBold" size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="89.0" prefHeight="86.0" prefWidth="350.0" style="-fx-wrap-text: true;" text="Administra la información de las propiedades disponibles para alquilar. Aquí se configuran los datos de ubicación, capacidad, tarifas y estado de disponibilidad." textAlignment="CENTER" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="100.0" />
+                                                       <Button fx:id="btnPropiedades" layoutX="134.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="PROPIEDADES ➤" textFill="#85b6d4" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="133.79999999999995" AnchorPane.topAnchor="245.0">
+                                                           <font>
+                                                               <Font name="JetBrains Mono ExtraBold" size="12.0" />
+                                                           </font></Button>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children></AnchorPane>
+                                    </content>
+                                  </TitledPane>
+                                  <TitledPane text="RESERVAS">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <children>
+                                              <AnchorPane layoutX="36.0" layoutY="51.0" prefHeight="339.0" prefWidth="408.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <children>
+                                                      <Label layoutX="107.0" layoutY="51.0" prefHeight="25.0" prefWidth="174.0" text="Area Reservas 📄" textFill="#85b6d4">
+                                                          <font>
+                                                              <Font name="JetBrains Mono ExtraBold" size="18.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="89.0" prefHeight="86.0" prefWidth="350.0" style="-fx-wrap-text: true;" text="Gestiona todas las reservas realizadas por los clientes. Permite crear, modificar, cancelar o consultar reservas activas, pasadas y futuras." textAlignment="CENTER" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="100.0" />
+                                                      <Button fx:id="btnReservas" layoutX="139.0" layoutY="242.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="RESERVAS ➤" textFill="#85b6d4" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="139.0" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="242.0">
+                                                          <font>
+                                                              <Font name="JetBrains Mono ExtraBold" size="12.0" />
+                                                          </font></Button>
+                                                  </children>
+                                              </AnchorPane>
+                                          </children></AnchorPane>
+                                    </content>
+                                  </TitledPane>
+                                  <TitledPane text="PAGOS">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <children>
+                                              <AnchorPane layoutX="36.0" layoutY="51.0" prefHeight="339.0" prefWidth="408.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <children>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="51.0" prefHeight="20.0" prefWidth="164.0" text="Area Pagos €" textAlignment="CENTER" textFill="#85b6d4">
+                                                          <font>
+                                                              <Font name="JetBrains Mono ExtraBold" size="18.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="89.0" prefHeight="86.0" prefWidth="350.0" style="-fx-wrap-text: true;" text="Sección destinada al control de los cobros. Muestra el estado de los pagos y los métodos utilizados" textAlignment="CENTER" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="100.0" />
+                                                      <Button fx:id="btnPagos" layoutX="139.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="PAGOS ➤" textFill="#85b6d4" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="139.0" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="243.0">
+                                                          <font>
+                                                              <Font name="JetBrains Mono ExtraBold" size="12.0" />
+                                                          </font></Button>
+                                                  </children>
+                                              </AnchorPane>
+                                          </children></AnchorPane>
+                                    </content>
+                                  </TitledPane>
+                                    <TitledPane text="VALORACIONES">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <AnchorPane layoutX="36.0" layoutY="51.0" prefHeight="339.0" prefWidth="408.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <children>
+                                                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="50.0" prefHeight="25.0" prefWidth="222.0" text="Area Valoraciones ★" textAlignment="CENTER" textFill="#85b6d4">
+                                                            <font>
+                                                                <Font name="JetBrains Mono ExtraBold" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="89.0" prefHeight="86.0" prefWidth="350.0" style="-fx-wrap-text: true;" text="Espacio donde los clientes pueden dejar opiniones sobre su estancia. Permite consultar valoraciones por propiedad." textAlignment="CENTER" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="100.0" />
+                                                        <Button fx:id="btnValoraciones" layoutX="130.0" layoutY="241.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="VALORACIONES ➤" textFill="#85b6d4" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="241.0">
+                                                            <font>
+                                                                <Font name="JetBrains Mono ExtraBold" size="12.0" />
+                                                            </font></Button>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children></AnchorPane>
+                                      </content>
+                                    </TitledPane>
+                                </panes>
+                              </Accordion>
+                           </children>
+                      </AnchorPane>
+                    </items>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </SplitPane>
+               </children>
+          </AnchorPane>
         </items>
       </SplitPane>
    </children>
