@@ -24,7 +24,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="TOP" layoutX="72.0" layoutY="51.0" prefHeight="25.0" prefWidth="171.0" text="BIENVENIDO ☀" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="51.0">
+                              <Label alignment="CENTER" contentDisplay="TOP" layoutX="72.0" layoutY="51.0" prefHeight="25.0" prefWidth="171.0" text="BIENVENIDO" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="51.0">
                                  <font>
                                     <Font name="JetBrains Mono ExtraBold" size="18.0" />
                                  </font>
