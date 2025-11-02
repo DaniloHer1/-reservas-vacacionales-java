@@ -30,11 +30,11 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Button fx:id="btnGuardarValF" layoutX="93.0" layoutY="441.0" mnemonicParsing="false" text="GUARDAR ✔" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="441.0">
+      <Button fx:id="btnGuardarValF" layoutX="93.0" layoutY="441.0" mnemonicParsing="false" text="GUARDAR ✔" textFill="#000001" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="441.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
          </font></Button>
-      <Button fx:id="btnCancelarValF" layoutX="196.0" layoutY="441.0" mnemonicParsing="false" text="CANCELAR ✖" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="441.0">
+      <Button fx:id="btnCancelarValF" layoutX="196.0" layoutY="441.0" mnemonicParsing="false" text="CANCELAR ✖" textFill="#000001" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="441.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
          </font></Button>

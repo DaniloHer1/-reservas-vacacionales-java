@@ -43,7 +43,7 @@
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
          </font></Button>
-      <Label layoutX="282.0" layoutY="89.0" prefHeight="17.0" prefWidth="150.0" text="Buscar por ID de reserva: " AnchorPane.bottomAnchor="366.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="233.0" AnchorPane.topAnchor="89.0">
+      <Label layoutX="295.0" layoutY="89.0" prefHeight="17.0" prefWidth="150.0" text="Buscar por ID de reserva: " AnchorPane.bottomAnchor="366.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="89.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

@@ -16,7 +16,7 @@ public class Valoracion {
     private boolean anonimato;
     private LocalDateTime fechaValoracion;
 
-    // Constructor vacío
+    // Constructor vacío de Valoraciones
     public Valoracion() {this.fechaValoracion = LocalDateTime.now();}
 
     // Constructor para añadir valoración
