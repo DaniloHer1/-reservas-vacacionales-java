@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="434.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.ReservaControler">
+   <children>
+      <TableView fx:id="tableView" layoutY="78.0" prefHeight="292.0" prefWidth="800.0">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="75.0" text="id reserva" />
+          <TableColumn fx:id="colID_cliente" prefWidth="75.0" text="id cliente" />
+            <TableColumn fx:id="colID_prop" prefWidth="90.0" text="id propiedad" />
+            <TableColumn fx:id="colFechaIni" prefWidth="82.0" text="fecha inicio" />
+            <TableColumn fx:id="colFechaFin" prefWidth="71.0" text="fecha fin" />
+            <TableColumn fx:id="colNumPersonas" prefWidth="90.0" text="num personas" />
+            <TableColumn fx:id="colEstado" prefWidth="93.0" text="estado" />
+            <TableColumn fx:id="colPrecio" prefWidth="77.0" text="precio" />
+            <TableColumn fx:id="colMotivo" prefWidth="146.0" text="motivo cancelación" />
+        </columns>
+      </TableView>
+      <Button layoutX="75.0" layoutY="378.0" mnemonicParsing="false" onAction="#aniadirReserva" text="Añadir" />
+      <Button layoutX="437.0" layoutY="378.0" mnemonicParsing="false" text="Eliminar" />
+      <Button layoutX="635.0" layoutY="378.0" mnemonicParsing="false" text="Actualizar" />
+      <Button layoutX="263.0" layoutY="378.0" mnemonicParsing="false" text="Modificar" />
+      <Label layoutX="263.0" layoutY="20.0" prefHeight="39.0" prefWidth="406.0" text="Gestión de reservas">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

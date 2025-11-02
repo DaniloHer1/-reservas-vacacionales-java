@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="467.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+   <children>
+      <TableView fx:id="tablaValoracion" layoutX="28.0" layoutY="134.0" prefHeight="200.0" prefWidth="610.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="75.0" text="ID RESERVA" />
+            <TableColumn prefWidth="75.0" text="PUNTUACIÓN" />
+            <TableColumn prefWidth="75.0" text="COMENTARIO" />
+            <TableColumn prefWidth="75.0" text="ANONIMATO" />
+            <TableColumn prefWidth="75.0" text="FECHA" />
+        </columns>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="139.0" layoutY="59.0" text="GESTIÓN DE VALORACIONES">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
+      <Button fx:id="btnAñadir" layoutX="98.0" layoutY="378.0" mnemonicParsing="false" text="Añadir" />
+      <Button fx:id="btnModificar" layoutX="194.0" layoutY="378.0" mnemonicParsing="false" text="Modificar" />
+      <Button fx:id="btnAñadir11" layoutX="314.0" layoutY="378.0" mnemonicParsing="false" text="Eliminar" />
+      <Button fx:id="btnActualizar" layoutX="435.0" layoutY="378.0" mnemonicParsing="false" text="Actualizar" />
+   </children>
 </AnchorPane>

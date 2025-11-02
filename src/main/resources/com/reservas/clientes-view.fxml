@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="649.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.ClienteController">
+   <children>
+      <TableView fx:id="tableClientes" layoutX="31.0" layoutY="116.0" prefHeight="399.0" prefWidth="788.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="116.0">
+        <columns>
+          <TableColumn fx:id="colIdCliente" editable="false" prefWidth="53.0" resizable="false" text="ID" />
+          <TableColumn fx:id="colNombre" editable="false" prefWidth="94.0" resizable="false" text="Nombre" />
+            <TableColumn fx:id="colApellidos" editable="false" prefWidth="109.0" resizable="false" text="Apellidos" />
+            <TableColumn fx:id="colEmail" editable="false" prefWidth="194.0" resizable="false" text="Email" />
+            <TableColumn fx:id="colTelefono" editable="false" prefWidth="126.0" resizable="false" text="Teléfono" />
+            <TableColumn fx:id="colPais" editable="false" prefWidth="81.0" resizable="false" text="País" />
+            <TableColumn fx:id="colFechaRegistro" editable="false" prefWidth="104.0" resizable="false" text="Fecha Registro" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+          <placeholder>
+              <Label text="No hay clientes para mostrar" />
+          </placeholder>
+          <tooltip>
+              <Tooltip text="Doble clic sobre una fila para ver/editar el cliente" />
+          </tooltip>
+      </TableView>
+      <Button layoutX="127.0" layoutY="564.0" mnemonicParsing="false" onAction="#guardarCliente" text="Añadir">
+          <tooltip>
+              <Tooltip text="Crear un nuevo cliente" />
+          </tooltip>
+      </Button>
+      <Button layoutX="261.0" layoutY="564.0" mnemonicParsing="false" onAction="#modificarCliente" text="Modificar">
+          <tooltip>
+              <Tooltip text="Editar el cliente seleccionado" />
+          </tooltip>
+      </Button>
+      <Button layoutX="418.0" layoutY="564.0" mnemonicParsing="false" onAction="#eliminarCliente" text="Eliminar">
+          <tooltip>
+              <Tooltip text="Eliminar el cliente seleccionado" />
+          </tooltip>
+      </Button>
+      <Button layoutX="50.0" layoutY="80.0" mnemonicParsing="false" onAction="#refrescarTabla" text="🔁" textFill="#3f9e8b">
+          <tooltip>
+              <Tooltip text="Cargar" />
+          </tooltip>
+          <font>
+              <Font size="11.0" />
+          </font>
+      </Button>
+      <TextField fx:id="txtBusquedaEmail" layoutX="583.0" layoutY="564.0" />
+      <Button layoutX="742.0" layoutY="564.0" mnemonicParsing="false" onAction="#buscarPorEmail" text="🔍">
+          <tooltip>
+              <Tooltip text="Buscar" />
+          </tooltip>
+       </Button>
+      <Label layoutX="583.0" layoutY="531.0" text="Búsqueda por email:" />
+      <Label layoutX="329.0" layoutY="37.0" text="Gestión de Clientes">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Label fx:id="lblTotalClientes" layoutX="692.0" layoutY="83.0" prefHeight="19.0" prefWidth="119.0" text="Total Clientes:">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+   </children>
 </AnchorPane>

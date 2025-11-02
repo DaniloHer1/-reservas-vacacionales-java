@@ -3,74 +3,43 @@ package com.reservas.controller;
 import com.reservas.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainController {
-
-    @FXML
-    private StackPane contentArea;
-
-    @FXML
-    private Button btnClientes;
-
-    @FXML
-    private Button btnPropiedades;
-
-    @FXML
-    private Button btnReservas;
-
-    @FXML
-    private Button btnPagos;
-
-    @FXML
-    private Button btnValoraciones;
-
     @FXML
     public void abrirVistaClientes() {
-        cargarVista("clientes-view.fxml", btnClientes);
+        cargarVista("clientes-view.fxml", "Gestión de clientes");
     }
-
     @FXML
     public void abrirVistaPropiedades() {
-        cargarVista("propiedades-view.fxml", btnPropiedades);
+        cargarVista("propiedades-view.fxml", "Gestión de propiedades");
     }
-
     @FXML
     public void abrirVistaReservas() {
-        cargarVista("reservas-view.fxml", btnReservas);
+        cargarVista("reservas-view.fxml", "Gestión de reservas");
     }
-
     @FXML
     public void abrirVistaPagos() {
-        cargarVista("pagos-view.fxml", btnPagos);
+        cargarVista("pagos-view.fxml", "Gestión de pagos");
     }
-
     @FXML
     public void abrirVistaValoraciones() {
-        cargarVista("valoraciones-view.fxml", btnValoraciones);
+        cargarVista("valoraciones-view.fxml", "Valoraciones");
     }
-
-
-    protected void cargarVista(String ruta, Button boton){
-
+    protected static void cargarVista(String ruta, String titulo) {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(ruta));
-        Scene scene = null;
+        Scene scene;
         try {
             scene = new Scene(fxmlLoader.load());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        Stage stage=new Stage();
+        Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setTitle(titulo);
         stage.show();
-
-
     }
 }
