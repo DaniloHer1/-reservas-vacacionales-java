@@ -9,12 +9,12 @@
    <children>
       <TableView fx:id="tablaValoracion" layoutX="29.0" layoutY="153.0" prefHeight="324.0" prefWidth="773.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="26.0">
         <columns>
-          <TableColumn fx:id="colIdVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID" />
-          <TableColumn fx:id="colReservaVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID RESERVA" />
-            <TableColumn fx:id="colPuntuacionVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="PUNTUACIÓN" />
-            <TableColumn fx:id="colCmetarioVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="COMENTARIO" />
-            <TableColumn fx:id="colAnonimatoVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ANONIMATO" />
-            <TableColumn fx:id="colFechaVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="FECHA" />
+          <TableColumn fx:id="colIdVal" prefWidth="75.0" style="-fx-text-fill: #366387;" text="ID" />
+          <TableColumn fx:id="colReservaVal" prefWidth="75.0" style="-fx-text-fill: #366387;" text="ID RESERVA" />
+            <TableColumn fx:id="colPuntuacionVal" prefWidth="75.0" style="-fx-text-fill: #366387;" text="PUNTUACIÓN" />
+            <TableColumn fx:id="colCmetarioVal" prefWidth="75.0" style="-fx-text-fill: #366387;" text="COMENTARIO" />
+            <TableColumn fx:id="colAnonimatoVal" prefWidth="75.0" style="-fx-text-fill: #366387;" text="ANONIMATO" />
+            <TableColumn fx:id="colFechaVal" prefWidth="75.0" style="-fx-text-fill: #366387;" text="FECHA" />
         </columns>
          <opaqueInsets>
             <Insets />

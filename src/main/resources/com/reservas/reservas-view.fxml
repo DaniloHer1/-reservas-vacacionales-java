@@ -8,15 +8,15 @@
    <children>
       <TableView fx:id="tableView" layoutX="29.0" layoutY="144.0" prefHeight="342.0" prefWidth="800.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0">
         <columns>
-          <TableColumn fx:id="colID" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID Reserva" />
-          <TableColumn fx:id="colID_cliente" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID Cliente" />
-            <TableColumn fx:id="colID_prop" prefWidth="90.0" style="-fx-background-color: #9dc6e3;" text="ID Propiedad" />
-            <TableColumn fx:id="colFechaIni" prefWidth="82.0" style="-fx-background-color: #9dc6e3;" text="Fecha Inicio" />
-            <TableColumn fx:id="colFechaFin" prefWidth="71.0" style="-fx-background-color: #9dc6e3;" text="Fecha Fin" />
-            <TableColumn fx:id="colNumPersonas" prefWidth="90.0" style="-fx-background-color: #9dc6e3;" text="Nº Personas" />
-            <TableColumn fx:id="colEstado" prefWidth="93.0" style="-fx-background-color: #9dc6e3;" text="Estado" />
-            <TableColumn fx:id="colPrecio" prefWidth="77.0" style="-fx-background-color: #9dc6e3;" text="Precio" />
-            <TableColumn fx:id="colMotivo" prefWidth="146.0" style="-fx-background-color: #9dc6e3;" text="Motivo Cancelación" />
+          <TableColumn fx:id="colID" prefWidth="75.0" style="-fx-text-fill: #366387;" text="ID Reserva" />
+          <TableColumn fx:id="colID_cliente" prefWidth="75.0" style="-fx-text-fill: #366387" text="ID Cliente" />
+            <TableColumn fx:id="colID_prop" prefWidth="90.0" style="-fx-text-fill: #366387;" text="ID Propiedad" />
+            <TableColumn fx:id="colFechaIni" prefWidth="82.0" style="-fx-text-fill: #366387;" text="Fecha Inicio" />
+            <TableColumn fx:id="colFechaFin" prefWidth="71.0" style="-fx-text-fill: #366387;" text="Fecha Fin" />
+            <TableColumn fx:id="colNumPersonas" prefWidth="90.0" style="-fx-text-fill: #366387;" text="Nº Personas" />
+            <TableColumn fx:id="colEstado" prefWidth="93.0" style="-fx-text-fill: #366387;" text="Estado" />
+            <TableColumn fx:id="colPrecio" prefWidth="77.0" style="-fx-text-fill: #366387;" text="Precio" />
+            <TableColumn fx:id="colMotivo" prefWidth="146.0" style="-fx-text-fill: #366387;" text="Motivo Cancelación" />
         </columns>
       </TableView>
       <Button layoutX="29.0" layoutY="514.0" mnemonicParsing="false" onAction="#aniadirReservaForm" prefHeight="24.0" prefWidth="98.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="29.0">

@@ -10,13 +10,13 @@
    <children>
       <TableView fx:id="tableClientes" layoutX="22.0" layoutY="164.0" prefHeight="348.0" prefWidth="787.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0">
         <columns>
-          <TableColumn fx:id="colIdCliente" editable="false" prefWidth="68.0" resizable="false" style="-fx-background-color: #9dc6e3;" text="ID" />
-          <TableColumn fx:id="colNombre" editable="false" prefWidth="79.0" resizable="false" style="-fx-background-color: #9dc6e3;" text="Nombre" />
-            <TableColumn fx:id="colApellidos" editable="false" prefWidth="115.0" resizable="false" style="-fx-background-color: #9dc6e3;" text="Apellidos" />
-            <TableColumn fx:id="colEmail" editable="false" prefWidth="201.0" resizable="false" style="-fx-background-color: #9dc6e3;" text="Email" />
-            <TableColumn fx:id="colTelefono" editable="false" prefWidth="111.0" resizable="false" style="-fx-background-color: #9dc6e3;" text="Teléfono" />
-            <TableColumn fx:id="colPais" editable="false" prefWidth="105.0" resizable="false" style="-fx-background-color: #9dc6e3;" text="País" />
-            <TableColumn fx:id="colFechaRegistro" editable="false" minWidth="0.0" prefWidth="108.0" resizable="false" style="-fx-background-color: #9dc6e3;" text="Fecha Registro" />
+          <TableColumn fx:id="colIdCliente" editable="false" prefWidth="68.0" resizable="false" style="-fx-text-fill: #366387;" text="ID" />
+          <TableColumn fx:id="colNombre" editable="false" prefWidth="79.0" resizable="false" style="-fx-text-fill: #366387;" text="Nombre" />
+            <TableColumn fx:id="colApellidos" editable="false" prefWidth="115.0" resizable="false" style="-fx-text-fill: #366387;" text="Apellidos" />
+            <TableColumn fx:id="colEmail" editable="false" prefWidth="201.0" resizable="false" style="-fx-text-fill: #366387;" text="Email" />
+            <TableColumn fx:id="colTelefono" editable="false" prefWidth="111.0" resizable="false" style="-fx-text-fill: #366387;" text="Teléfono" />
+            <TableColumn fx:id="colPais" editable="false" prefWidth="105.0" resizable="false" style="-fx-text-fill: #366387;" text="País" />
+            <TableColumn fx:id="colFechaRegistro" editable="false" minWidth="0.0" prefWidth="108.0" resizable="false" style="-fx-text-fill: #366387;" text="Fecha Registro" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
