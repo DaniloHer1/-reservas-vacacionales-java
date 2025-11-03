@@ -41,6 +41,10 @@ public class ClienteFormController{
 
     }
 
+    /**
+     * Cambiará la etiqueta del título según el modo en el que se encuentre, modo edición o modo añadir.
+     * @param titulo texto que se mostrará en la etiqueta del título del formulario.
+     */
     public void setTitulo(String titulo) {
 
         lblTitulo.setText(titulo);
@@ -48,7 +52,9 @@ public class ClienteFormController{
     }
 
     /**
-     * Guarda un nuevo cliente en la base de datos con validaciones.
+     * Guarda un nuevo cliente o actualiza uno existente en la base de datos, aplicando validaciones previas.
+     * Si la vista se encuentra en modo creación ({@code !modoEditar}), se valida que el correo no exista ya en la base de datos.
+     * En caso de estar en modo edición, se comprueba que el nuevo correo no pertenezca a otro cliente distinto.
      */
     @FXML
     private void guardarCliente() {
@@ -144,6 +150,10 @@ public class ClienteFormController{
         }
     }
 
+    /**
+     * Carga los datos de un cliente existente en los campos del formulario para su edición.
+     * @param cliente Objeto {@link Cliente} cuyos datos se mostrarán en el formulario.
+     */
     @FXML
     public void cargarCliente(Cliente cliente) {
 
@@ -178,7 +188,7 @@ public class ClienteFormController{
     }
 
     /**
-     * Cierra el formulario sin guardar.
+     * Cierra la ventana del formulario actual sin guardar los cambios realizados.
      */
     @FXML
     private void cerrarFormulario() {
@@ -187,6 +197,11 @@ public class ClienteFormController{
 
     }
 
+    /**
+     *  Cierra la ventana (escena) actual asociada al formulario de cliente.
+     *  Obtiene la ventana desde el componente {@code txtNombre} y ejecuta su método {@code close()},
+     *  finalizando el formulario.
+     */
     private void cerrarVentana() {
 
         Stage stage = (Stage) txtNombre.getScene().getWindow();
@@ -194,6 +209,13 @@ public class ClienteFormController{
 
     }
 
+    /**
+     * Muestra una alerta en la interfaz con el tipo, título y mensaje especificados.
+     *
+     * @param tipo  tipo de alerta a mostrar.
+     * @param titulo texto que aparecerá en la barra de título de la ventana de alerta.
+     * @param mensaje contenido principal del mensaje que se mostrará al usuario.
+     */
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
 
         Alert alert = new Alert(tipo);

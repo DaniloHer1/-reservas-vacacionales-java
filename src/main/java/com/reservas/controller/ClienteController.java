@@ -39,7 +39,7 @@ public class ClienteController {
     @FXML private TableColumn<Cliente, LocalDate> colFechaRegistro;
 
     @FXML private TextField txtBusquedaEmail;
-    @FXML public Label lblTotalClientes;
+    @FXML private Label lblTotalClientes;
 
     private final DateTimeFormatter FECHA_HORA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -91,6 +91,10 @@ public class ClienteController {
 
     }
 
+    /**
+     * Permite abrir la ventana {@code clientes-form-view.fxml}, gestionada por {@link ClienteController}
+     * haciendo doble click sobre la tupla del cliente que se quiere modificar.
+     */
     private void configurarDobleClickFila() {
 
         tableClientes.setRowFactory(tv -> {
@@ -101,7 +105,7 @@ public class ClienteController {
 
                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2 && !row.isEmpty()) {
 
-                    Cliente clienteSelecionado = row.getItem();
+                    Cliente clienteSeleccionado = row.getItem();
 
                     modificarCliente(new ActionEvent());
 
@@ -138,6 +142,11 @@ public class ClienteController {
 
     }
 
+    /**
+     * Maneja el evento generado al pulsar el botón Añadir en la vista principal.
+     *
+     * @param event evento de acción disparado al hacer clic en el botón Añadir.
+     */
     @FXML
     private void guardarCliente(ActionEvent event) {
 
@@ -165,6 +174,11 @@ public class ClienteController {
 
     }
 
+    /**
+     * Maneja el evento generado al pulsar el botón Modificar en la vista principal.
+     *
+     * @param event evento de acción disparado al hacer clic en el botón Modificar.
+     */
     @FXML
     private void modificarCliente(ActionEvent event) {
 
@@ -203,6 +217,11 @@ public class ClienteController {
 
     }
 
+    /**
+     * Maneja el evento generado al pulsar el botón Eliminar en la vista principañl.
+     *
+     * @param event evento de acción disparado al hacer clic en el botón Eliminar.
+     */
     @FXML
     private void eliminarCliente(ActionEvent event) {
 
@@ -252,6 +271,12 @@ public class ClienteController {
 
     }
 
+    /**
+     * Si se encuentra un cliente, la tabla se posiciona y selecciona en la fila correspondiente.
+     * En caso contrario, se muestra una alerta informativa.
+     *
+     * @param event evento de acción disparado al darle al botón de búsqueda que tiene como símbolo una lupa ( 🔍 ).
+     */
     @FXML
     private void buscarPorEmail(ActionEvent event) {
 
@@ -303,6 +328,11 @@ public class ClienteController {
 
     }
 
+    /**
+     * Actualiza la etiqueta de la interfaz con el número total de clientes cargados en la tabla.
+     * Obtiene el tamaño de la lista {@code listaClientes} y establece el texto del
+     * componente {@code lblTotalClientes} para mostrar el total actual al usuario.
+     */
     private void actualizarTotalClientes() {
 
         if (lblTotalClientes != null) {
@@ -313,6 +343,13 @@ public class ClienteController {
         }
     }
 
+    /**
+     * Muestra una alerta emergente en la interfaz con el tipo, título y mensaje especificados.
+     *
+     * @param tipo  tipo de alerta a mostrar.
+     * @param titulo texto que aparecerá en la barra de título de la alerta.
+     * @param mensaje contenido principal del mensaje a mostrar en el cuadro de diálogo.
+     */
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
 
         Alert alert = new Alert(tipo);
