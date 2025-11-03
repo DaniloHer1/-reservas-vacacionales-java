@@ -205,7 +205,7 @@ public class ClienteDAO {
     /**
      * Busca el identificador único de un cliente a partir de su dirección de {@code email}.
      *
-     * @param email
+     * @param email, atributo de carácter único con el que se realiza la búsqueda del usuario.
      * @return El valor de {@code id_cliente} si existe el registro, o {@code -1} si no se encontró.
      */
     public int buscarClientePorEmail (String email) {
@@ -237,6 +237,12 @@ public class ClienteDAO {
 
     }
 
+    /**
+     * Modifica un cliente existente en la base de datos.
+     *
+     * @param cliente Objeto {@link Cliente} con el email del cliente a modificar.
+     * @return {@code true} si la operación ha sido exitosa, {@code false} si se produjo un error.
+     */
     public boolean modificarClientePorId(Cliente cliente) {
 
         String query = """
@@ -255,6 +261,7 @@ public class ClienteDAO {
             ps.setInt(6, cliente.getIdCliente());
 
             int filas = ps.executeUpdate();
+
             return filas > 0;
 
         } catch (SQLException e) {
@@ -265,17 +272,35 @@ public class ClienteDAO {
         }
 
     }
+
+    /**
+     * Busca en la base de datos e inserta los identificadores de los clientes dentro de un ArrayList.
+     *
+     * @return lista de los id clientes
+     */
     public ArrayList<Integer> getIDClientes(){
+
         ArrayList<Integer> ids = new ArrayList<>();
+
         try (Connection con = DataBaseConnection.getInstance().conectarBD(); Statement st = con.createStatement()) {
+
             st.execute("select id_cliente from clientes;");
             ResultSet rs = st.getResultSet();
+
             while (rs.next()){
+
                ids.add(rs.getInt("id_cliente"));
+
             }
+
         } catch (SQLException e) {
+
+
             throw new RuntimeException(e);
+
         }
+
         return ids;
+
     }
 }
