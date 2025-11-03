@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class ReservaFormController {
     @FXML
+    private TextField idReserva;
+    @FXML
     private ComboBox<Integer> idCliente;
     @FXML
     private TextField idPropiedad;
@@ -42,6 +44,7 @@ public class ReservaFormController {
         estados.add(Reserva.EstadoReserva.CONFIRMADA);
         estados.add(Reserva.EstadoReserva.PENDIENTE);
         estadoCombo.setItems(FXCollections.observableArrayList(estados));
+        idReserva.setDisable(true);
     }
     public void setModoEditar(boolean modoEditar, Reserva reservaParaEditar) {
         this.modoEditar = modoEditar;
@@ -54,11 +57,12 @@ public class ReservaFormController {
             estadoCombo.setValue(reservaEditar.getEstadoReserva());
             precio.setText(String.valueOf(reservaEditar.getPrecio_total()));
             motivo.setText(reservaEditar.getMotivo_cancelacion());
+            idReserva.setText(String.valueOf(reservaEditar.getId_reserva()));
 
     }
     @FXML
     private void aniadirNuevaReserva(){
-        Reserva r = new Reserva(idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
+        Reserva r = new Reserva(Integer.parseInt(idReserva.getText()), idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
         ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
                 Double.parseDouble(precio.getText()) , motivo.getText());
         if (modoEditar){
@@ -66,6 +70,7 @@ public class ReservaFormController {
         }else {
             reservaDAO.aniadirReserva(r);
         }
+        this.dispose();
     }
     @FXML
     private void dispose(){

@@ -56,8 +56,8 @@ public class ReservaDAO {
     }
     public void modificarReserva(Reserva r){
         String sql = "update reservas set id_propiedad=?, fecha_inicio=?, fecha_fin=?," +
-                "num_personas=?, estado=?, precio_total=?, motivo_cancelacion=? where id_reserva=?;";
-        try (Connection con = DataBaseConnection.getInstance().conectarBD();PreparedStatement ps = con.prepareStatement(sql)){
+                "num_personas=?, estado=?, precio_total=?, motivo_cancelacion=?, id_cliente=? where id_reserva=?;";
+        try (Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(sql)){
             ps.setInt(1, r.getId_propiedad());
             ps.setDate(2, r.getFecha_inicio());
             ps.setDate(3, r.getFecha_fin());
@@ -65,8 +65,9 @@ public class ReservaDAO {
             ps.setString(5, r.getEstadoReserva().toString().toLowerCase());
             ps.setDouble(6, r.getPrecio_total());
             ps.setString(7, r.getMotivo_cancelacion());
-            ps.setInt(8, r.getId_reserva());
-            ps.execute();
+            ps.setInt(8, r.getId_cliente());
+            ps.setInt(9, r.getId_reserva());
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

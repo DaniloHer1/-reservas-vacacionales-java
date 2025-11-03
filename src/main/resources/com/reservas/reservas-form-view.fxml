@@ -59,5 +59,7 @@
             <Font name="JetBrains Mono ExtraBold" size="20.0" />
          </font>
       </Label>
+      <Label layoutX="42.0" layoutY="54.0" text="ID reserva" />
+      <TextField fx:id="idReserva" layoutX="157.0" layoutY="50.0" prefHeight="25.0" prefWidth="174.0" text="ID reserva" />
    </children>
 </AnchorPane>
