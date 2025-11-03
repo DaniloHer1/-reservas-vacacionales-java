@@ -4,29 +4,63 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="434.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.ReservaControler">
+<AnchorPane prefHeight="579.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.ReservaControler">
    <children>
-      <TableView fx:id="tableView" layoutY="78.0" prefHeight="292.0" prefWidth="800.0">
+      <TableView fx:id="tableView" layoutX="29.0" layoutY="144.0" prefHeight="342.0" prefWidth="800.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0">
         <columns>
-          <TableColumn fx:id="colID" prefWidth="75.0" text="id reserva" />
-          <TableColumn fx:id="colID_cliente" prefWidth="75.0" text="id cliente" />
-            <TableColumn fx:id="colID_prop" prefWidth="90.0" text="id propiedad" />
-            <TableColumn fx:id="colFechaIni" prefWidth="82.0" text="fecha inicio" />
-            <TableColumn fx:id="colFechaFin" prefWidth="71.0" text="fecha fin" />
-            <TableColumn fx:id="colNumPersonas" prefWidth="90.0" text="num personas" />
-            <TableColumn fx:id="colEstado" prefWidth="93.0" text="estado" />
-            <TableColumn fx:id="colPrecio" prefWidth="77.0" text="precio" />
-            <TableColumn fx:id="colMotivo" prefWidth="146.0" text="motivo cancelación" />
+          <TableColumn fx:id="colID" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID Reserva" />
+          <TableColumn fx:id="colID_cliente" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID Cliente" />
+            <TableColumn fx:id="colID_prop" prefWidth="90.0" style="-fx-background-color: #9dc6e3;" text="ID Propiedad" />
+            <TableColumn fx:id="colFechaIni" prefWidth="82.0" style="-fx-background-color: #9dc6e3;" text="Fecha Inicio" />
+            <TableColumn fx:id="colFechaFin" prefWidth="71.0" style="-fx-background-color: #9dc6e3;" text="Fecha Fin" />
+            <TableColumn fx:id="colNumPersonas" prefWidth="90.0" style="-fx-background-color: #9dc6e3;" text="Nº Personas" />
+            <TableColumn fx:id="colEstado" prefWidth="93.0" style="-fx-background-color: #9dc6e3;" text="Estado" />
+            <TableColumn fx:id="colPrecio" prefWidth="77.0" style="-fx-background-color: #9dc6e3;" text="Precio" />
+            <TableColumn fx:id="colMotivo" prefWidth="146.0" style="-fx-background-color: #9dc6e3;" text="Motivo Cancelación" />
         </columns>
       </TableView>
-      <Button layoutX="75.0" layoutY="378.0" mnemonicParsing="false" onAction="#aniadirReservaForm" text="Añadir" />
-      <Button layoutX="437.0" layoutY="378.0" mnemonicParsing="false" text="Eliminar" />
-      <Button layoutX="635.0" layoutY="378.0" mnemonicParsing="false" onAction="#initialize" text="Actualizar" />
-      <Button layoutX="263.0" layoutY="378.0" mnemonicParsing="false" onAction="#editarReservaForm" text="Modificar" />
-      <Label layoutX="263.0" layoutY="20.0" prefHeight="39.0" prefWidth="406.0" text="Gestión de reservas">
-         <font>
-            <Font size="27.0" />
-         </font>
+      <Button layoutX="29.0" layoutY="514.0" mnemonicParsing="false" onAction="#aniadirReservaForm" prefHeight="24.0" prefWidth="98.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="29.0">
+          <font>
+              <Font name="JetBrains Mono ExtraBold" size="11.0" />
+          </font>
+          <tooltip>
+              <Tooltip text="Añadir una nueva reserva" />
+          </tooltip>
+      </Button>
+      <Button layoutX="261.0" layoutY="514.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="98.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="41.0">
+          <font>
+              <Font name="JetBrains Mono ExtraBold" size="11.0" />
+          </font>
+          <tooltip>
+              <Tooltip text="Eliminar una reserva" />
+          </tooltip>
+      </Button>
+      <Button layoutX="723.0" layoutY="514.0" mnemonicParsing="false" onAction="#initialize" prefHeight="24.0" prefWidth="106.0" text="ACTUALIZAR 🔁" AnchorPane.bottomAnchor="41.0" AnchorPane.rightAnchor="28.0">
+           <font>
+               <Font name="JetBrains Mono ExtraBold" size="11.0" />
+           </font>
+           <tooltip>
+               <Tooltip text="Actualizar resevas" />
+           </tooltip>
+       </Button>
+       <Button layoutX="146.0" layoutY="514.0" mnemonicParsing="false" onAction="#editarReservaForm" prefHeight="24.0" prefWidth="98.0" text="MODIFICAR ✔" AnchorPane.bottomAnchor="41.0">
+           <font>
+               <Font name="JetBrains Mono ExtraBold" size="11.0" />
+           </font>
+           <tooltip>
+               <Tooltip text="Modificar una reserva" />
+           </tooltip>
+       </Button>
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="27.0" prefHeight="40.0" prefWidth="890.0" text="GESTIÓN DE RESERVAS" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+          <font>
+              <Font name="JetBrains Mono ExtraBold" size="30.0" />
+          </font>
       </Label>
+      <Button layoutX="801.0" layoutY="104.0" mnemonicParsing="false" text="🔍" AnchorPane.rightAnchor="28.0" />
+      <TextField layoutX="643.0" layoutY="104.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="104.0" />
+      <Label layoutX="527.0" layoutY="108.0" text="Búsqueda por ID:" AnchorPane.topAnchor="108.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
    </children>
 </AnchorPane>
