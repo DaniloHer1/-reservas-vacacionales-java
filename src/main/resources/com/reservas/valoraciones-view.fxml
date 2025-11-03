@@ -30,19 +30,35 @@
       <Button fx:id="btnAñadirVal" layoutX="28.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="551.0" AnchorPane.topAnchor="403.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
-         </font></Button>
+         </font>
+          <tooltip>
+              <Tooltip text="Añadir una nueva valoración"/>
+          </tooltip>
+      </Button>
       <Button fx:id="btnModificarVal" layoutX="136.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="MODIFICAR ✔" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="434.0" AnchorPane.topAnchor="403.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
-         </font></Button>
+         </font>
+          <tooltip>
+              <Tooltip text="Modificar una valoración"/>
+          </tooltip>
+      </Button>
       <Button fx:id="btnEliminarVal" layoutX="255.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="403.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
-         </font></Button>
+         </font>
+          <tooltip>
+              <Tooltip text="Eliminar una valoración"/>
+          </tooltip>
+      </Button>
       <Button fx:id="btnActualizarVal" layoutX="525.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="ACTUALIZAR 🔁" textAlignment="CENTER" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="525.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="403.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
-         </font></Button>
+         </font>
+          <tooltip>
+              <Tooltip text="Actualizar valoraciones"/>
+          </tooltip>
+      </Button>
       <Label layoutX="295.0" layoutY="89.0" prefHeight="17.0" prefWidth="150.0" text="Buscar por ID de reserva: " AnchorPane.bottomAnchor="366.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="89.0">
          <font>
             <Font name="System Bold" size="12.0" />
