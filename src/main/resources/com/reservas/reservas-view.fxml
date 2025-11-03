@@ -22,7 +22,7 @@
       <Button layoutX="75.0" layoutY="378.0" mnemonicParsing="false" onAction="#aniadirReservaForm" text="Añadir" />
       <Button layoutX="437.0" layoutY="378.0" mnemonicParsing="false" text="Eliminar" />
       <Button layoutX="635.0" layoutY="378.0" mnemonicParsing="false" onAction="#initialize" text="Actualizar" />
-      <Button layoutX="263.0" layoutY="378.0" mnemonicParsing="false" text="Modificar" />
+      <Button layoutX="263.0" layoutY="378.0" mnemonicParsing="false" onAction="#editarReservaForm" text="Modificar" />
       <Label layoutX="263.0" layoutY="20.0" prefHeight="39.0" prefWidth="406.0" text="Gestión de reservas">
          <font>
             <Font size="27.0" />
