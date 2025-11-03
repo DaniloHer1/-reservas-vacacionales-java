@@ -30,7 +30,9 @@ public class ReservaFormController {
     private TextArea motivo;
     @FXML
     private Button btnCancelar;
+    public Reserva reservaEditar;
     private final ReservaDAO reservaDAO = new ReservaDAO();
+    public boolean modoEditar;
     @FXML
     public void initialize(){
         ArrayList<Integer> ids = new ClienteDAO().getIDClientes();
@@ -41,18 +43,33 @@ public class ReservaFormController {
         estados.add(Reserva.EstadoReserva.PENDIENTE);
         estadoCombo.setItems(FXCollections.observableArrayList(estados));
     }
+    public void setModoEditar(boolean modoEditar, Reserva reservaParaEditar) {
+        this.modoEditar = modoEditar;
+        this.reservaEditar = reservaParaEditar;
+            idCliente.setValue(reservaEditar.getId_cliente());
+            idPropiedad.setText(String.valueOf(reservaEditar.getId_propiedad()));
+            fechaInicio.setValue(reservaEditar.getFecha_inicio().toLocalDate());
+            fechaFin.setValue(reservaEditar.getFecha_fin().toLocalDate());
+            numPersonas.setText(String.valueOf(reservaEditar.getNum_personas()));
+            estadoCombo.setValue(reservaEditar.getEstadoReserva());
+            precio.setText(String.valueOf(reservaEditar.getPrecio_total()));
+            motivo.setText(reservaEditar.getMotivo_cancelacion());
+
+    }
     @FXML
     private void aniadirNuevaReserva(){
         Reserva r = new Reserva(idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
         ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
                 Double.parseDouble(precio.getText()) , motivo.getText());
-        reservaDAO.aniadirReserva(r);
-
+        if (modoEditar){
+            reservaDAO.modificarReserva(r);
+        }else {
+            reservaDAO.aniadirReserva(r);
+        }
     }
     @FXML
     private void dispose(){
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
-
 }

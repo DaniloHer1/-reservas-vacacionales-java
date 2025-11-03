@@ -1,14 +1,21 @@
 package com.reservas.controller;
 
+import com.reservas.Main;
 import com.reservas.dao.ReservaDAO;
 import com.reservas.model.Reserva;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ReservaControler {
     ReservaDAO reservaDAO;
@@ -54,7 +61,35 @@ public class ReservaControler {
         colMotivo.setCellValueFactory(new PropertyValueFactory<>("motivo_cancelacion"));
     }
     public void aniadirReservaForm(){
-        MainController.cargarVista("reservas-form-view.fxml", "Añadir reserva");
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("reservas-form-view.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ReservaFormController formController = loader.getController();
+        formController.modoEditar = false;
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Añadir Reserva");
+        stage.show();
     }
+    public void editarReservaForm(){
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("reservas-form-view.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ReservaFormController formController = loader.getController();
+        formController.setModoEditar(true, tableView.getSelectionModel().getSelectedItem());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Editar Reserva");
+        stage.show();
+    }
+
 
 }
