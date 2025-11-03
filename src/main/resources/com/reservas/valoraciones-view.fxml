@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="467.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+<AnchorPane prefHeight="582.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.ValoracionController">
    <children>
-      <TableView fx:id="tablaValoracion" layoutX="28.0" layoutY="123.0" prefHeight="246.0" prefWidth="610.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="123.0">
+      <TableView fx:id="tablaValoracion" layoutX="29.0" layoutY="153.0" prefHeight="324.0" prefWidth="773.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="26.0">
         <columns>
           <TableColumn fx:id="colIdVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID" />
           <TableColumn fx:id="colReservaVal" prefWidth="75.0" style="-fx-background-color: #9dc6e3;" text="ID RESERVA" />
@@ -23,48 +23,48 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="45.0" prefWidth="657.0" text="GESTIÓN DE VALORACIONES" textFill="#85b6d4" AnchorPane.bottomAnchor="412.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="34.0" prefHeight="45.0" prefWidth="657.0" text="GESTIÓN DE VALORACIONES" textFill="#85b6d4" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="34.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="30.0" />
          </font></Label>
-      <Button fx:id="btnAñadirVal" layoutX="28.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="551.0" AnchorPane.topAnchor="403.0">
+      <Button fx:id="btnAñadirVal" layoutX="28.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="28.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
          </font>
           <tooltip>
-              <Tooltip text="Añadir una nueva valoración"/>
+              <Tooltip text="Añadir una nueva valoración" />
           </tooltip>
       </Button>
-      <Button fx:id="btnModificarVal" layoutX="136.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="MODIFICAR ✔" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="434.0" AnchorPane.topAnchor="403.0">
+      <Button fx:id="btnModificarVal" layoutX="136.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="MODIFICAR ✔" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="136.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
          </font>
           <tooltip>
-              <Tooltip text="Modificar una valoración"/>
+              <Tooltip text="Modificar una valoración" />
           </tooltip>
       </Button>
-      <Button fx:id="btnEliminarVal" layoutX="255.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="403.0">
+      <Button fx:id="btnEliminarVal" layoutX="255.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="255.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
          </font>
           <tooltip>
-              <Tooltip text="Eliminar una valoración"/>
+              <Tooltip text="Eliminar una valoración" />
           </tooltip>
       </Button>
-      <Button fx:id="btnActualizarVal" layoutX="525.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="ACTUALIZAR 🔁" textAlignment="CENTER" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="525.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="403.0">
+      <Button fx:id="btnActualizarVal" layoutX="525.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="ACTUALIZAR 🔁" textAlignment="CENTER" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="28.0">
          <font>
             <Font name="JetBrains Mono ExtraBold" size="11.0" />
          </font>
           <tooltip>
-              <Tooltip text="Actualizar valoraciones"/>
+              <Tooltip text="Actualizar valoraciones" />
           </tooltip>
       </Button>
-      <Label layoutX="295.0" layoutY="89.0" prefHeight="17.0" prefWidth="150.0" text="Buscar por ID de reserva: " AnchorPane.bottomAnchor="366.0" AnchorPane.leftAnchor="295.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="89.0">
+      <Label layoutX="455.0" layoutY="121.0" prefHeight="17.0" prefWidth="150.0" text="Buscar por ID de reserva: " AnchorPane.rightAnchor="223.0" AnchorPane.topAnchor="121.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBuscarVal" layoutX="445.0" layoutY="85.0" AnchorPane.bottomAnchor="362.0" AnchorPane.leftAnchor="445.0" AnchorPane.rightAnchor="71.0" AnchorPane.topAnchor="85.0" />
-      <Button fx:id="btnBuscarVal" layoutX="608.0" layoutY="85.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="🔍" AnchorPane.bottomAnchor="362.0" AnchorPane.leftAnchor="608.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="85.0" />
+      <TextField fx:id="txtBuscarVal" layoutX="614.0" layoutY="117.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="117.0" />
+      <Button fx:id="btnBuscarVal" layoutX="771.0" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" text="🔍" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0" />
    </children>
 </AnchorPane>
