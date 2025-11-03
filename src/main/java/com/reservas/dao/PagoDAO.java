@@ -234,25 +234,30 @@ public class PagoDAO {
 
         Pago pagoABorrar = buscarPagoPorId(pago.getId());
 
-        String sql = """
-                DELETE FROM pagos
-                WHERE id_pago = ?;
-                """;
-        try (PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
-            preparedStatement.setInt(1, pago.getId());
-            int filasAfectadas = preparedStatement.executeUpdate();
+        if (pagoABorrar == null) {
+            System.err.println("No se encontró el pago para eliminar");
+            return false;
+        }
 
-            if (filasAfectadas>0){
-                registrarEnHistorico(
-                        pago.getId(),
-                        "DELETE",
-                        pagoABorrar.getEstadoPago().name().toLowerCase(),
-                        null,
-                        pagoABorrar.getMonto(),
-                        null
-                );
+        try {
+
+            registrarEnHistorico(
+                    pago.getId(),
+                    "DELETE",
+                    pagoABorrar.getEstadoPago().name().toLowerCase(),
+                    null,
+                    pagoABorrar.getMonto(),
+                    null
+            );
+
+
+            String sql = "DELETE FROM pagos WHERE id_pago = ?";
+
+            try (PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
+                preparedStatement.setInt(1, pago.getId());
+                int filasAfectadas = preparedStatement.executeUpdate();
+                return filasAfectadas > 0;
             }
-            return filasAfectadas > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();

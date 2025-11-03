@@ -48,5 +48,6 @@
         <Label layoutX="434.0" layoutY="361.0" prefHeight="11.0" prefWidth="92.0" text="Búsqueda por ID:" />
         <TextField fx:id="txtBusquedaId" layoutX="434.0" layoutY="391.0" />
         <Button layoutX="592.0" layoutY="391.0" mnemonicParsing="false" onAction="#buscarPorID" text="🔍" />
+      <Label fx:id="lblTotalPagos" layoutX="539.0" layoutY="101.0" text="Total de Pagos:  " />
     </children>
 </AnchorPane>
