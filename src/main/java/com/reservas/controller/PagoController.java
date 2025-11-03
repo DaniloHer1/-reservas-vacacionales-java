@@ -48,6 +48,9 @@ public class PagoController {
     @FXML
     private TextField txtBusquedaId;
 
+    @FXML
+    private Label lblTotalPagos;
+
 
     private PagoDAO pagoDAO;
 
@@ -62,6 +65,7 @@ public class PagoController {
         cargarListaPagos();
         configurarDobleClickFila();
         mostrarTodosPagos();
+        actualizarTotalPagos();
     }
 
     /**
@@ -265,6 +269,21 @@ public class PagoController {
     public void mostrarTodosPagos() {
         txtBusquedaId.clear();
         cargarListaPagos();
+    }
+
+    /**
+     * Muestra en el Label el total de Pagos
+     */
+    private void actualizarTotalPagos() {
+
+        ObservableList<Pago> listaPagos = FXCollections.observableArrayList(pagoDAO.getPagosDisponibles());
+
+        if (lblTotalPagos != null) {
+
+            int total = listaPagos.size();
+            lblTotalPagos.setText("Total de Pagos: " + total);
+
+        }
     }
 
 }
