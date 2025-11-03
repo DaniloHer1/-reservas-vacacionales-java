@@ -74,7 +74,7 @@ public class PagoController {
                 new SimpleStringProperty(cellData.getValue().getFechaTexto())
         );
         colMonto.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getMonto())
+                new SimpleStringProperty(cellData.getValue().getMontoMostrar())
         );
 
         colMetodo.setCellValueFactory(new PropertyValueFactory<>("metodoPago"));

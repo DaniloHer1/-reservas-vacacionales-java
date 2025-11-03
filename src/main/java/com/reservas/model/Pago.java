@@ -116,8 +116,12 @@ public class Pago {
         this.metodoPago = metodoPago;
     }
 
-    public String getMonto() {
+    public String getMontoMostrar() {
         return monto+" €";
+    }
+
+    public double getMonto() {
+        return monto;
     }
 
     public void setMonto(double monto) {
