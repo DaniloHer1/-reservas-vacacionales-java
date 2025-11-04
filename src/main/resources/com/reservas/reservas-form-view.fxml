@@ -17,7 +17,7 @@
       <ComboBox fx:id="idCliente" layoutX="160.0" layoutY="80.0" prefHeight="25.0" prefWidth="174.0" promptText="ID Cliente" AnchorPane.rightAnchor="51.0" />
       <DatePicker fx:id="fechaInicio" layoutX="160.0" layoutY="180.0" promptText="Fecha inicio" AnchorPane.rightAnchor="51.0" />
       <DatePicker fx:id="fechaFin" layoutX="160.0" layoutY="230.0" promptText="Fecha fin" AnchorPane.rightAnchor="51.0" />
-      <TextField fx:id="idPropiedad" layoutX="160.0" layoutY="130.0" prefHeight="25.0" prefWidth="174.0" promptText="ID propiedad" AnchorPane.rightAnchor="51.0" />
+      <ComboBox fx:id="idPropiedad" layoutX="160.0" layoutY="130.0" prefHeight="25.0" prefWidth="174.0" promptText="ID propiedad" AnchorPane.rightAnchor="51.0" />
       <TextField fx:id="numPersonas" layoutX="160.0" layoutY="280.0" prefHeight="25.0" prefWidth="174.0" promptText="Número de personas" AnchorPane.rightAnchor="51.0" />
       <ComboBox fx:id="estadoCombo" layoutX="160.0" layoutY="330.0" prefHeight="25.0" prefWidth="174.0" promptText="ESTADO" AnchorPane.rightAnchor="51.0" />
       <TextField fx:id="precio" layoutX="160.0" layoutY="380.0" prefHeight="25.0" prefWidth="174.0" promptText="Precio total" AnchorPane.rightAnchor="51.0" />

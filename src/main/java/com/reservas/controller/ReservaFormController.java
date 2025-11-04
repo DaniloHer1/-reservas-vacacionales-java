@@ -1,6 +1,7 @@
 package com.reservas.controller;
 
 import com.reservas.dao.ClienteDAO;
+import com.reservas.dao.PropiedadDAO;
 import com.reservas.dao.ReservaDAO;
 import com.reservas.model.Reserva;
 import javafx.collections.FXCollections;
@@ -17,7 +18,7 @@ public class ReservaFormController {
     @FXML
     private ComboBox<Integer> idCliente;
     @FXML
-    private TextField idPropiedad;
+    private ComboBox<Integer> idPropiedad;
     @FXML
     private DatePicker fechaInicio;
     @FXML
@@ -38,7 +39,9 @@ public class ReservaFormController {
     @FXML
     public void initialize(){
         ArrayList<Integer> ids = new ClienteDAO().getIDClientes();
+        ArrayList<Integer> idsProp = new PropiedadDAO().getIDPropiedades();
         idCliente.setItems(FXCollections.observableArrayList(ids));
+        idPropiedad.setItems(FXCollections.observableArrayList(idsProp));
         ArrayList<Reserva.EstadoReserva> estados = new ArrayList<>();
         estados.add(Reserva.EstadoReserva.CANCELADA);
         estados.add(Reserva.EstadoReserva.CONFIRMADA);
@@ -51,7 +54,7 @@ public class ReservaFormController {
         this.modoEditar = modoEditar;
         this.reservaEditar = reservaParaEditar;
             idCliente.setValue(reservaEditar.getId_cliente());
-            idPropiedad.setText(String.valueOf(reservaEditar.getId_propiedad()));
+            idPropiedad.setValue(reservaEditar.getId_propiedad());
             fechaInicio.setValue(reservaEditar.getFecha_inicio().toLocalDate());
             fechaFin.setValue(reservaEditar.getFecha_fin().toLocalDate());
             numPersonas.setText(String.valueOf(reservaEditar.getNum_personas()));
@@ -106,7 +109,7 @@ public class ReservaFormController {
             return false;
         }
         if (modoEditar){
-            Reserva r = new Reserva(Integer.parseInt(idReserva.getText()), idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
+            Reserva r = new Reserva(Integer.parseInt(idReserva.getText()), idCliente.getValue(), idPropiedad.getValue(), Date.valueOf(fechaInicio.getValue())
                     ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
                     Double.parseDouble(precio.getText()) , motivo.getText());
            if(reservaDAO.modificarReserva(r)==1){
@@ -115,7 +118,7 @@ public class ReservaFormController {
                MainController.mostrarAlerta("Error", "La reserva no se pudo añadir, revisa los campos", Alert.AlertType.ERROR);
            }
         }else {
-            Reserva r = new Reserva(idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
+            Reserva r = new Reserva(idCliente.getValue(), idPropiedad.getValue(), Date.valueOf(fechaInicio.getValue())
                     ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
                     Double.parseDouble(precio.getText()) , motivo.getText());
             if(reservaDAO.aniadirReserva(r)==1){
