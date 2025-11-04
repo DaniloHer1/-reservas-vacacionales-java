@@ -75,7 +75,7 @@ public class ReservaFormController {
             Reserva r = new Reserva(idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
                     ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
                     Double.parseDouble(precio.getText()) , motivo.getText());
-            if(reservaDAO.aniadirReserva(r)){
+            if(reservaDAO.aniadirReserva(r)==1){
                 MainController.mostrarAlerta("Reserva añadida", "Reserva añadida correctamente", Alert.AlertType.INFORMATION);
             }else{
                 MainController.mostrarAlerta("Error", "La reserva no se pudo añadir, revisa los campos", Alert.AlertType.ERROR);

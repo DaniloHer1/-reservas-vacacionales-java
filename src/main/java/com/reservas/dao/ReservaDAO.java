@@ -36,7 +36,7 @@ public class ReservaDAO {
         }
         return reservas;
     }
-    public boolean aniadirReserva(Reserva r){
+    public int aniadirReserva(Reserva r){
         String sql = "insert into reservas (id_cliente, id_propiedad, fecha_inicio, fecha_fin," +
                 "num_personas, estado, precio_total, motivo_cancelacion) values" +
                 "(?, ?, ?, ?, ?, ?, ?, ?);";
@@ -49,7 +49,7 @@ public class ReservaDAO {
             ps.setString(6, r.getEstadoReserva().toString().toLowerCase());
             ps.setDouble(7, r.getPrecio_total());
             ps.setString(8, r.getMotivo_cancelacion());
-            return ps.execute();
+            return ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
