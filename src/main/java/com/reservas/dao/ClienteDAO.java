@@ -104,51 +104,31 @@ public class ClienteDAO {
     }
 
     /**
-     * Modifica los datos de un cliente existente en la base de datos.
+     * Modifica un cliente existente en la base de datos.
      *
-     * @param cliente Objeto {@link Cliente} con los datos actualizados.
-     * @return El objeto {@link Cliente} actualizado si la operación fue exitosa, o {@code null} si no se encontró el cliente.
+     * @param cliente Objeto {@link Cliente} con el email del cliente a modificar.
+     * @return {@code true} si la operación ha sido exitosa, {@code false} si se produjo un error.
      */
-    public Cliente modificarCliente(Cliente cliente) {
+    public boolean modificarClientePorId(Cliente cliente) {
 
         String query = """
-                       UPDATE clientes
+                    UPDATE clientes
                        SET nombre = ?, apellidos = ?, email = ?, telefono = ?, pais = ?
-                       WHERE id_cliente = ?;
-                       """;
+                     WHERE id_cliente = ?;
+                    """;
 
-        int idCliente =buscarClientePorEmail(cliente.getEmail());
-
-        if (idCliente == -1) {
-
-            System.out.println("No existe el cliente con el email: " + cliente.getEmail());
-
-            return null;
-
-        }
-
-        try(Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(query)) {
+        try (Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(query)) {
 
             ps.setString(1, cliente.getNombre());
             ps.setString(2, cliente.getApellido());
             ps.setString(3, cliente.getEmail());
             ps.setString(4, cliente.getTelefono());
             ps.setString(5, cliente.getPais());
-            ps.setInt(6, idCliente);
+            ps.setInt(6, cliente.getIdCliente());
 
             int filas = ps.executeUpdate();
 
-            if (filas > 0) {
-
-                System.out.println("El cliente " + cliente.getNombre() + " se ha actualizado exitosamente");
-                return cliente;
-
-            } else {
-
-                System.err.println("Error al actualizar el cliente: " + cliente.getEmail());
-                return null;
-
-            }
+            return filas > 0;
 
         } catch (SQLException e) {
 
@@ -234,42 +214,6 @@ public class ClienteDAO {
         }
 
         return -1;
-
-    }
-
-    /**
-     * Modifica un cliente existente en la base de datos.
-     *
-     * @param cliente Objeto {@link Cliente} con el email del cliente a modificar.
-     * @return {@code true} si la operación ha sido exitosa, {@code false} si se produjo un error.
-     */
-    public boolean modificarClientePorId(Cliente cliente) {
-
-        String query = """
-                    UPDATE clientes
-                       SET nombre = ?, apellidos = ?, email = ?, telefono = ?, pais = ?
-                     WHERE id_cliente = ?;
-                    """;
-
-        try (Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(query)) {
-
-            ps.setString(1, cliente.getNombre());
-            ps.setString(2, cliente.getApellido());
-            ps.setString(3, cliente.getEmail());
-            ps.setString(4, cliente.getTelefono());
-            ps.setString(5, cliente.getPais());
-            ps.setInt(6, cliente.getIdCliente());
-
-            int filas = ps.executeUpdate();
-
-            return filas > 0;
-
-        } catch (SQLException e) {
-
-            System.err.println("Error al modificar el cliente: " + e.getMessage());
-            throw new RuntimeException(e);
-
-        }
 
     }
 

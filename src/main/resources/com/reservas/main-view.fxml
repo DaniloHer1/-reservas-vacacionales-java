@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -22,14 +23,14 @@
                <children>
                   <SplitPane dividerPositions="0.43502051983584133" layoutX="127.0" layoutY="94.0" prefHeight="467.0" prefWidth="733.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="TOP" layoutX="72.0" layoutY="51.0" prefHeight="25.0" prefWidth="171.0" text="¡BIENVENIDO!" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="51.0">
+                              <Label alignment="CENTER" contentDisplay="TOP" layoutX="107.0" layoutY="56.0" prefHeight="25.0" prefWidth="171.0" text="¡BIENVENIDO!" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="56.0">
                                  <font>
                                     <Font name="JetBrains Mono ExtraBold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextArea editable="false" layoutX="29.0" layoutY="134.0" prefHeight="290.0" prefWidth="258.0" style="-fx-wrap-text: true;" text="Bienvenido al panel de administración del Sistema de Gestión de Reservas Vacacionales. Desde esta vista podrás supervisar y controlar todos los aspectos del negocio:&#10;&#10;- Gestionar reservas&#10;- Administrar propiedades&#10;- Registrar y consultar clientes&#10;- Procesar pagos&#10;- Revisar valoraciones de los huéspedes.&#10;&#10;Este entorno centralizado ofrece una visión completa y actualizada de la operación,permitiendo optimizar la gestión y mejorar la experiencia tanto del administrador como de los clientes." AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0">
+                              <TextArea editable="false" layoutX="29.0" layoutY="123.0" prefHeight="319.0" prefWidth="258.0" style="-fx-wrap-text: true;" text="&#10;Bienvenido al panel de administración del Sistema de Gestión de Reservas Vacacionales. Desde esta vista podrás supervisar y controlar todos los aspectos del negocio:&#10;&#10;- Gestionar reservas&#10;- Administrar propiedades&#10;- Registrar y consultar clientes&#10;- Procesar pagos&#10;- Revisar valoraciones de los huéspedes.&#10;&#10;Este entorno ofrece una visión completa y actualizada de la operación, permitiendo optimizar la gestión y mejorar la experiencia tanto del administrador como de los clientes.&#10;" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="28.0">
                                  <font>
                                     <Font name="Corbel" size="12.0" />
                                  </font>
@@ -37,10 +38,11 @@
                                     <Blend />
                                  </effect>
                               </TextArea>
+                              <ImageView fx:id="logoAnimado" fitHeight="60.0" fitWidth="69.0" layoutX="38.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="38.0" AnchorPane.topAnchor="38.0" />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Accordion layoutX="61.0" layoutY="158.0" prefHeight="465.0" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Accordion layoutX="61.0" layoutY="158.0" prefHeight="465.0" prefWidth="310.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <panes>
                                     <TitledPane text="CLIENTES">
                                       <content>

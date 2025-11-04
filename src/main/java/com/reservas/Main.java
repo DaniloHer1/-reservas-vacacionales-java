@@ -3,9 +3,11 @@ package com.reservas;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
     @Override
@@ -14,6 +16,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
 
         stage.setTitle("Gestión de Reservas");
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icono.png"))));
         stage.setScene(scene);
         stage.show();
     }
