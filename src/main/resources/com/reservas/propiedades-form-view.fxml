@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="520.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.PropiedadFormController">
+<AnchorPane prefHeight="623.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.PropiedadFormController">
 
     <children>
 
@@ -14,69 +14,69 @@
             </font>
         </Label>
 
-        <Label layoutX="45.0" layoutY="115.0" text="Nombre:">
+        <Label layoutX="40.0" layoutY="90.0" prefHeight="17.0" prefWidth="95.0" text="Nombre:" AnchorPane.leftAnchor="41.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextField fx:id="txtNombre" layoutX="149.0" layoutY="111.0" AnchorPane.rightAnchor="44.0" />
+        <TextField fx:id="txtNombre" layoutX="165.0" layoutY="86.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.rightAnchor="35.0" />
 
-        <Label layoutX="45.0" layoutY="155.0" text="Dirección:">
+        <Label layoutX="40.0" layoutY="140.0" prefHeight="17.0" prefWidth="95.0" text="Dirección:" AnchorPane.leftAnchor="41.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextField fx:id="txtDireccion" layoutX="149.0" layoutY="151.0" AnchorPane.rightAnchor="44.0" />
+        <TextField fx:id="txtDireccion" layoutX="165.0" layoutY="136.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.rightAnchor="35.0" />
 
-        <Label layoutX="45.0" layoutY="195.0" text="Ciudad:">
+        <Label layoutX="40.0" layoutY="190.0" prefHeight="17.0" prefWidth="95.0" text="Ciudad:" AnchorPane.leftAnchor="41.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextField fx:id="txtCiudad" layoutX="149.0" layoutY="191.0" AnchorPane.rightAnchor="44.0" />
+        <TextField fx:id="txtCiudad" layoutX="165.0" layoutY="186.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.rightAnchor="35.0" />
 
-        <Label layoutX="45.0" layoutY="235.0" text="País:">
+        <Label layoutX="40.0" layoutY="240.0" prefHeight="17.0" prefWidth="95.0" text="País:" AnchorPane.leftAnchor="41.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextField fx:id="txtPais" layoutX="149.0" layoutY="231.0" AnchorPane.rightAnchor="44.0" />
+        <TextField fx:id="txtPais" layoutX="165.0" layoutY="236.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.rightAnchor="35.0" />
 
-        <Label layoutX="45.0" layoutY="275.0" text="Precio/Noche:">
+        <Label layoutX="40.0" layoutY="290.0" prefHeight="17.0" prefWidth="95.0" text="Precio/Noche:" AnchorPane.leftAnchor="41.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextField fx:id="txtPrecioNoche" layoutX="149.0" layoutY="271.0" AnchorPane.rightAnchor="44.0" />
+        <TextField fx:id="txtPrecioNoche" layoutX="165.0" layoutY="286.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.rightAnchor="35.0" />
 
-        <Label layoutX="45.0" layoutY="315.0" text="Capacidad:">
+        <Label layoutX="40.0" layoutY="340.0" prefHeight="17.0" prefWidth="95.0" text="Capacidad:" AnchorPane.leftAnchor="41.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <Spinner fx:id="spnCapacidad" layoutX="182.0" layoutY="311.0" prefWidth="160.0" />
+        <Spinner fx:id="spnCapacidad" layoutX="165.0" layoutY="336.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.rightAnchor="35.0" />
 
-        <Label layoutX="41.0" layoutY="364.0" text="Descripción:">
+        <Label layoutX="41.0" layoutY="436.0" prefHeight="17.0" prefWidth="95.0" text="Descripción:" AnchorPane.leftAnchor="41.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <TextArea fx:id="txtDescripcion" layoutX="172.0" layoutY="351.0" prefHeight="60.0" prefWidth="180.0" wrapText="true" AnchorPane.rightAnchor="28.0" />
+        <TextArea fx:id="txtDescripcion" layoutX="37.0" layoutY="467.0" prefHeight="77.0" prefWidth="307.0" wrapText="true" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" />
 
-        <Label layoutX="45.0" layoutY="425.0" text="Estado:">
+        <Label layoutX="40.0" layoutY="390.0" prefHeight="17.0" prefWidth="95.0" text="Estado:" AnchorPane.leftAnchor="41.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <ComboBox fx:id="cmbEstado" layoutX="149.0" layoutY="421.0" prefWidth="160.0" AnchorPane.rightAnchor="44.0" />
+        <ComboBox fx:id="cmbEstado" layoutX="165.0" layoutY="386.0" prefHeight="25.0" prefWidth="180.0" AnchorPane.rightAnchor="35.0" />
 
-        <Button layoutX="70.0" layoutY="470.0" onAction="#guardarPropiedad" text="GUARDAR ✔" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="70.0">
+        <Button layoutX="88.0" layoutY="561.0" onAction="#guardarPropiedad" text="GUARDAR ✔" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="84.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
         </Button>
 
-        <Button layoutX="193.0" layoutY="470.0" onAction="#cancelar" text="CANCELAR ✖" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="64.0">
+        <Button layoutX="213.0" layoutY="561.0" onAction="#cancelar" text="CANCELAR ✖" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="84.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
