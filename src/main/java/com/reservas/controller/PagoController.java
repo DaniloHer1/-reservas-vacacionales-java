@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.sql.Connection;
 
 import static com.reservas.controller.MainController.cargarVista;
+import static com.reservas.controller.MainController.mostrarAlerta;
 
 public class PagoController {
 
@@ -162,17 +163,6 @@ public class PagoController {
     @FXML
     private void actualizarTablaPagos() {
         cargarListaPagos();
-    }
-
-    /**
-     * Muestra un mensaje de alerta genérico.
-     */
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
     }
 
     /**

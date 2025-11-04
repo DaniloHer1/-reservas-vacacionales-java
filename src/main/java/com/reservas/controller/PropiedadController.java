@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+import static com.reservas.controller.MainController.mostrarAlerta;
+
 /**
  * Controlador de la vista de gestión de propiedades.
  * Gestiona la interacción entre la interfaz JavaFX y la capa DAO.
@@ -184,13 +186,5 @@ public class PropiedadController {
     private void actualizarContador() {
         int total = (tblPropiedades.getItems() == null) ? 0 : tblPropiedades.getItems().size();
         lblTotalPropiedades.setText("Total Propiedades: " + total);
-    }
-
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
     }
 }

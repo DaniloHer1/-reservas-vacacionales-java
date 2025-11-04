@@ -70,16 +70,11 @@ public class ReservaFormController {
             MainController.mostrarAlerta("Error", "El ID Cliente no puede estar vacío.", Alert.AlertType.ERROR);
             return false;
         }
-        if (idPropiedad.getText() == null || idPropiedad.getText().isEmpty()){
+        if (idPropiedad.getValue() == null){
             MainController.mostrarAlerta("Error", "El ID propiedad no puede estar vacío.", Alert.AlertType.ERROR);
             return false;
         }
-        try{
-            Integer.parseInt(idPropiedad.getText());
-        }catch (NumberFormatException e){
-            MainController.mostrarAlerta("Error", "El ID propiedad debe ser un número.", Alert.AlertType.ERROR);
-            return false;
-        }
+
         if (fechaInicio.getValue() == null){
             MainController.mostrarAlerta("Error", "La fecha no puede estar vacía.", Alert.AlertType.ERROR);
             return false;
