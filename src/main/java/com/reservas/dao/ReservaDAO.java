@@ -36,7 +36,7 @@ public class ReservaDAO {
         }
         return reservas;
     }
-    public void aniadirReserva(Reserva r){
+    public boolean aniadirReserva(Reserva r){
         String sql = "insert into reservas (id_cliente, id_propiedad, fecha_inicio, fecha_fin," +
                 "num_personas, estado, precio_total, motivo_cancelacion) values" +
                 "(?, ?, ?, ?, ?, ?, ?, ?);";
@@ -49,12 +49,12 @@ public class ReservaDAO {
             ps.setString(6, r.getEstadoReserva().toString().toLowerCase());
             ps.setDouble(7, r.getPrecio_total());
             ps.setString(8, r.getMotivo_cancelacion());
-            ps.execute();
+            return ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public void modificarReserva(Reserva r){
+    public int modificarReserva(Reserva r){
         String sql = "update reservas set id_propiedad=?, fecha_inicio=?, fecha_fin=?," +
                 "num_personas=?, estado=?, precio_total=?, motivo_cancelacion=?, id_cliente=? where id_reserva=?;";
         try (Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(sql)){
@@ -67,7 +67,16 @@ public class ReservaDAO {
             ps.setString(7, r.getMotivo_cancelacion());
             ps.setInt(8, r.getId_cliente());
             ps.setInt(9, r.getId_reserva());
-            ps.executeUpdate();
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public int eliminarReserva(Reserva r){
+        String sql = "delete from reservas where id_reserva=?;";
+        try (Connection con = DataBaseConnection.getInstance().conectarBD(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setInt(1, r.getId_reserva());
+           return ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

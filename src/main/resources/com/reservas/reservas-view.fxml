@@ -27,7 +27,7 @@
               <Tooltip text="Añadir una nueva reserva" />
           </tooltip>
       </Button>
-      <Button layoutX="261.0" layoutY="514.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="98.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="41.0">
+      <Button layoutX="261.0" layoutY="514.0" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="24.0" prefWidth="98.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="41.0">
           <font>
               <Font name="JetBrains Mono ExtraBold" size="11.0" />
           </font>

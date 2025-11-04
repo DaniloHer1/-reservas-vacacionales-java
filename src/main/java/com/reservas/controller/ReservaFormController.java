@@ -62,13 +62,24 @@ public class ReservaFormController {
     }
     @FXML
     private void aniadirNuevaReserva(){
-        Reserva r = new Reserva(Integer.parseInt(idReserva.getText()), idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
-        ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
-                Double.parseDouble(precio.getText()) , motivo.getText());
         if (modoEditar){
-            reservaDAO.modificarReserva(r);
+            Reserva r = new Reserva(Integer.parseInt(idReserva.getText()), idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
+                    ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
+                    Double.parseDouble(precio.getText()) , motivo.getText());
+           if(reservaDAO.modificarReserva(r)==1){
+               MainController.mostrarAlerta("Reserva añadida", "Reserva añadida correctamente", Alert.AlertType.INFORMATION);
+           }else{
+               MainController.mostrarAlerta("Error", "La reserva no se pudo añadir, revisa los campos", Alert.AlertType.ERROR);
+           }
         }else {
-            reservaDAO.aniadirReserva(r);
+            Reserva r = new Reserva(idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
+                    ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
+                    Double.parseDouble(precio.getText()) , motivo.getText());
+            if(reservaDAO.aniadirReserva(r)){
+                MainController.mostrarAlerta("Reserva añadida", "Reserva añadida correctamente", Alert.AlertType.INFORMATION);
+            }else{
+                MainController.mostrarAlerta("Error", "La reserva no se pudo añadir, revisa los campos", Alert.AlertType.ERROR);
+            }
         }
         this.dispose();
     }

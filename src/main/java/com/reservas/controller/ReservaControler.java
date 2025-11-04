@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -75,20 +76,35 @@ public class ReservaControler {
         stage.setTitle("Añadir Reserva");
         stage.show();
     }
-    public void editarReservaForm(){
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("reservas-form-view.fxml"));
-        Scene scene;
-        try {
-            scene = new Scene(loader.load());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public void eliminarReserva(){
+        if((tableView.getSelectionModel().getSelectedItem()) == null){
+            MainController.mostrarAlerta("Selecciona una reserva", "Por favor, selecciona una reserva para eliminarla", Alert.AlertType.WARNING);
+        }else{
+            if (reservaDAO.eliminarReserva(tableView.getSelectionModel().getSelectedItem())==1){
+                MainController.mostrarAlerta("Reserva eliminada", "Reserva eliminada correctamente", Alert.AlertType.INFORMATION);
+            }else {
+                MainController.mostrarAlerta("Error", "La reserva seleccionada no existe. Por favor, actualiza la tabla.", Alert.AlertType.ERROR);
+            }
         }
-        ReservaFormController formController = loader.getController();
-        formController.setModoEditar(true, tableView.getSelectionModel().getSelectedItem());
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Editar Reserva");
-        stage.show();
+    }
+    public void editarReservaForm(){
+        if (tableView.getSelectionModel().getSelectedItem() == null){
+            MainController.mostrarAlerta("Selecciona una reserva", "Por favor, selecciona una reserva para modificarla.", Alert.AlertType.WARNING);
+        }else {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("reservas-form-view.fxml"));
+            Scene scene;
+            try {
+                scene = new Scene(loader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            ReservaFormController formController = loader.getController();
+            formController.setModoEditar(true, tableView.getSelectionModel().getSelectedItem());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Editar Reserva");
+            stage.show();
+        }
     }
 
 
