@@ -17,9 +17,9 @@ public class Valoracion {
     private LocalDateTime fechaValoracion;
 
     // Constructor vacío de Valoraciones
-    public Valoracion() {this.fechaValoracion = LocalDateTime.now();}
+    public Valoracion() {}
 
-    // Constructor para añadir valoración
+    // Constructor para añadir valoración con todos los parámetros
     public Valoracion(int id, int reseva, int puntuacion, String comentario, boolean anonimato, LocalDateTime fechaValoracion) {
         this.id = id;
         this.reseva = reseva;
@@ -27,6 +27,14 @@ public class Valoracion {
         this.comentario = comentario;
         this.anonimato = anonimato;
         this.fechaValoracion = fechaValoracion;
+    }
+
+    // Constructor para las listas
+    public Valoracion(int reseva, int puntuacion, String comentario, boolean anonimato) {
+        this.reseva = reseva;
+        this.puntuacion = puntuacion;
+        this.comentario = comentario;
+        this.anonimato = anonimato;
     }
 
     // Constructor para modificar valoración
