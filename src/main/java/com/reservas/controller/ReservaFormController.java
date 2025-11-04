@@ -44,6 +44,7 @@ public class ReservaFormController {
         estados.add(Reserva.EstadoReserva.CONFIRMADA);
         estados.add(Reserva.EstadoReserva.PENDIENTE);
         estadoCombo.setItems(FXCollections.observableArrayList(estados));
+        estadoCombo.getSelectionModel().select(2);
         idReserva.setDisable(true);
     }
     public void setModoEditar(boolean modoEditar, Reserva reservaParaEditar) {
@@ -61,7 +62,49 @@ public class ReservaFormController {
 
     }
     @FXML
-    private void aniadirNuevaReserva(){
+    private boolean aniadirNuevaReserva(){
+        if (idCliente.getValue() == null){
+            MainController.mostrarAlerta("Error", "El ID Cliente no puede estar vacío.", Alert.AlertType.ERROR);
+            return false;
+        }
+        if (idPropiedad.getText() == null || idPropiedad.getText().isEmpty()){
+            MainController.mostrarAlerta("Error", "El ID propiedad no puede estar vacío.", Alert.AlertType.ERROR);
+            return false;
+        }
+        try{
+            Integer.parseInt(idPropiedad.getText());
+        }catch (NumberFormatException e){
+            MainController.mostrarAlerta("Error", "El ID propiedad debe ser un número.", Alert.AlertType.ERROR);
+            return false;
+        }
+        if (fechaInicio.getValue() == null){
+            MainController.mostrarAlerta("Error", "La fecha no puede estar vacía.", Alert.AlertType.ERROR);
+            return false;
+        }
+        if (fechaFin.getValue() == null){
+            MainController.mostrarAlerta("Error", "La fecha no puede estar vacía.", Alert.AlertType.ERROR);
+            return false;
+        }
+        if (numPersonas.getText() == null || numPersonas.getText().isEmpty()){
+            MainController.mostrarAlerta("Error", "El número de personas no puede estar vacío.", Alert.AlertType.ERROR);
+            return false;
+        }
+        try{
+            Integer.parseInt(numPersonas.getText());
+        }catch (NumberFormatException e){
+            MainController.mostrarAlerta("Error", "El número de personas debe ser un número.", Alert.AlertType.ERROR);
+            return false;
+        }
+        if (precio.getText() == null || precio.getText().isEmpty()){
+            MainController.mostrarAlerta("Error", "El precio no puede estar vacío.", Alert.AlertType.ERROR);
+            return false;
+        }
+        try{
+            Double.parseDouble(precio.getText());
+        }catch (NumberFormatException e){
+            MainController.mostrarAlerta("Error", "El precio debe ser un número.", Alert.AlertType.ERROR);
+            return false;
+        }
         if (modoEditar){
             Reserva r = new Reserva(Integer.parseInt(idReserva.getText()), idCliente.getValue(), Integer.parseInt(idPropiedad.getText()), Date.valueOf(fechaInicio.getValue())
                     ,Date.valueOf(fechaFin.getValue()), Integer.parseInt(numPersonas.getText()), estadoCombo.getValue(),
@@ -82,6 +125,7 @@ public class ReservaFormController {
             }
         }
         this.dispose();
+        return true;
     }
     @FXML
     private void dispose(){
