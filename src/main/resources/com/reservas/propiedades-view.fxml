@@ -16,15 +16,15 @@
                    prefHeight="348.0" prefWidth="820.0"
                    AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="49.0">
             <columns>
-                <TableColumn fx:id="colIdPropiedad" prefWidth="60.0" text="ID" />
-                <TableColumn fx:id="colNombre" prefWidth="110.0" text="Nombre" />
-                <TableColumn fx:id="colDireccion" prefWidth="150.0" text="Dirección" />
-                <TableColumn fx:id="colCiudad" prefWidth="90.0" text="Ciudad" />
-                <TableColumn fx:id="colPais" prefWidth="80.0" text="País" />
-                <TableColumn fx:id="colPrecioNoche" prefWidth="100.0" text="Precio/Noche" />
-                <TableColumn fx:id="colDescripcion" prefWidth="160.0" text="Descripción" />
-                <TableColumn fx:id="colCapacidad" prefWidth="76.0" text="Capacidad" />
-                <TableColumn fx:id="colEstado" prefWidth="100.0" text="Estado" />
+                <TableColumn fx:id="colIdPropiedad" prefWidth="60.0" text="ID" style="-fx-text-fill: #366387;" />
+                <TableColumn fx:id="colNombre" prefWidth="110.0" text="Nombre" style="-fx-text-fill: #366387;" />
+                <TableColumn fx:id="colDireccion" prefWidth="150.0" text="Dirección" style="-fx-text-fill: #366387;" />
+                <TableColumn fx:id="colCiudad" prefWidth="90.0" text="Ciudad" style="-fx-text-fill: #366387;" />
+                <TableColumn fx:id="colPais" prefWidth="80.0" text="País" style="-fx-text-fill: #366387;" />
+                <TableColumn fx:id="colPrecioNoche" prefWidth="100.0" text="Precio/Noche" style="-fx-text-fill: #366387;" />
+                <TableColumn fx:id="colDescripcion" prefWidth="160.0" text="Descripción" style="-fx-text-fill: #366387;" />
+                <TableColumn fx:id="colCapacidad" prefWidth="76.0" text="Capacidad" style="-fx-text-fill: #366387;"/>
+                <TableColumn fx:id="colEstado" prefWidth="100.0" text="Estado" style="-fx-text-fill: #366387;"/>
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
