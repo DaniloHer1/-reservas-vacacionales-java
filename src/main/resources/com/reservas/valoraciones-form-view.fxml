@@ -4,48 +4,54 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="511.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.ValoracionesFormView">
-   <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="30.0" prefHeight="27.0" prefWidth="282.0" text="GESTIÓN DE VALORACIONES" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.bottomAnchor="456.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0">
-         <font>
-            <Font name="JetBrains Mono ExtraBold" size="20.0" />
-         </font></Label>
-      <Label layoutX="46.0" layoutY="119.0" prefHeight="17.0" prefWidth="73.0" text="ID Reserva: " AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="119.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <Label layoutX="46.0" layoutY="168.0" prefHeight="17.0" prefWidth="73.0" text="Puntuación: " AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="168.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <Label layoutX="46.0" layoutY="217.0" text="Comentario: " AnchorPane.bottomAnchor="277.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="217.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <Label layoutX="46.0" layoutY="313.0" prefHeight="17.0" prefWidth="73.0" text="Anonimato: " AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="313.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <Label layoutX="46.0" layoutY="361.0" prefHeight="17.0" prefWidth="73.0" text="Fecha: " AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="361.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <Button fx:id="btnGuardarValF" layoutX="93.0" layoutY="441.0" mnemonicParsing="false" text="GUARDAR ✔" textFill="#000001" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="441.0">
-         <font>
-            <Font name="JetBrains Mono ExtraBold" size="11.0" />
-         </font></Button>
-      <Button fx:id="btnCancelarValF" layoutX="196.0" layoutY="441.0" mnemonicParsing="false" text="CANCELAR ✖" textFill="#000001" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="441.0">
-         <font>
-            <Font name="JetBrains Mono ExtraBold" size="11.0" />
-         </font></Button>
-      <TextField fx:id="txtReservaValF" layoutX="132.0" layoutY="115.0" prefHeight="25.0" prefWidth="184.0" AnchorPane.bottomAnchor="371.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="115.0" />
-      <RadioButton fx:id="rbtn1Val" layoutX="132.0" layoutY="168.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="28.0" text="1" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="202.0" AnchorPane.topAnchor="168.0" />
-      <RadioButton fx:id="rbtn2Val" layoutX="170.0" layoutY="168.0" mnemonicParsing="false" text="2" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="168.0" />
-      <RadioButton fx:id="rbtn5Val" layoutX="289.0" layoutY="168.0" mnemonicParsing="false" text="5" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="168.0" />
-      <RadioButton fx:id="rbtn4Val" layoutX="250.0" layoutY="168.0" mnemonicParsing="false" text="4" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="84.0" AnchorPane.topAnchor="168.0" />
-      <RadioButton fx:id="rbtn3Val" layoutX="210.0" layoutY="168.0" mnemonicParsing="false" text="3" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="168.0" />
-      <TextArea fx:id="txtComentarioValF" layoutX="132.0" layoutY="214.0" prefHeight="83.0" prefWidth="184.0" promptText="Comentario..." AnchorPane.bottomAnchor="214.0" AnchorPane.leftAnchor="132.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="214.0" />
-      <CheckBox fx:id="checkAnonimato" layoutX="134.0" layoutY="313.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="184.0" text="Marcar para que sea anónimo" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="313.0" />
-      <DatePicker fx:id="fechaValF" layoutX="134.0" layoutY="357.0" prefHeight="25.0" prefWidth="184.0" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="357.0" />
-   </children>
+<AnchorPane prefHeight="507.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.ValoracionFormController">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="30.0" prefHeight="27.0" prefWidth="282.0" text="GESTIÓN DE VALORACIONES" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0">
+            <font>
+                <Font name="JetBrains Mono ExtraBold" size="20.0" />
+            </font></Label>
+        <Label layoutX="42.0" layoutY="143.0" prefHeight="17.0" prefWidth="73.0" text="ID Reserva: " AnchorPane.leftAnchor="42.0">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label layoutX="42.0" layoutY="192.0" prefHeight="17.0" prefWidth="73.0" text="Puntuación: " AnchorPane.leftAnchor="42.0">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label layoutX="42.0" layoutY="238.0" text="Comentario: " AnchorPane.leftAnchor="42.0">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label layoutX="42.0" layoutY="337.0" prefHeight="17.0" prefWidth="73.0" text="Anonimato: " AnchorPane.leftAnchor="42.0">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label layoutX="42.0" layoutY="385.0" prefHeight="17.0" prefWidth="73.0" text="Fecha: " AnchorPane.leftAnchor="42.0">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Button fx:id="btnGuardarValF" layoutX="76.0" layoutY="465.0" mnemonicParsing="false" text="GUARDAR ✔" textFill="#000001" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="76.0">
+            <font>
+                <Font name="JetBrains Mono ExtraBold" size="11.0" />
+            </font></Button>
+        <Button fx:id="btnCancelarValF" layoutX="198.0" layoutY="465.0" mnemonicParsing="false" text="CANCELAR ✖" textFill="#000001" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="76.0">
+            <font>
+                <Font name="JetBrains Mono ExtraBold" size="11.0" />
+            </font></Button>
+        <TextField fx:id="txtReservaValF" layoutX="134.0" layoutY="139.0" prefHeight="25.0" prefWidth="184.0" AnchorPane.rightAnchor="44.0" />
+        <RadioButton fx:id="rbtn1Val" layoutX="134.0" layoutY="192.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="28.0" text="1" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="200.0" />
+        <RadioButton fx:id="rbtn2Val" layoutX="172.0" layoutY="192.0" mnemonicParsing="false" text="2" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="162.0" />
+        <RadioButton fx:id="rbtn5Val" layoutX="291.0" layoutY="192.0" mnemonicParsing="false" text="5" AnchorPane.leftAnchor="291.0" AnchorPane.rightAnchor="43.0" />
+        <RadioButton fx:id="rbtn4Val" layoutX="252.0" layoutY="192.0" mnemonicParsing="false" text="4" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="82.0" />
+        <RadioButton fx:id="rbtn3Val" layoutX="212.0" layoutY="192.0" mnemonicParsing="false" text="3" AnchorPane.leftAnchor="212.0" AnchorPane.rightAnchor="122.0" />
+        <TextArea fx:id="txtComentarioValF" layoutX="134.0" layoutY="238.0" prefHeight="83.0" prefWidth="184.0" promptText="Comentario..." AnchorPane.rightAnchor="44.0" />
+        <CheckBox fx:id="checkAnonimato" layoutX="136.0" layoutY="337.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="184.0" text="Marcar para que sea anónimo" AnchorPane.rightAnchor="42.0" />
+        <DatePicker fx:id="fechaValF" layoutX="136.0" layoutY="381.0" prefHeight="25.0" prefWidth="184.0" AnchorPane.rightAnchor="42.0" />
+        <TextField fx:id="txtIdValoracion" editable="false" layoutX="134.0" layoutY="90.0" prefHeight="25.0" prefWidth="184.0" AnchorPane.rightAnchor="44.0" />
+        <Label layoutX="42.0" layoutY="94.0" prefHeight="17.0" prefWidth="85.0" text="ID Valoración: " AnchorPane.leftAnchor="42.0">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

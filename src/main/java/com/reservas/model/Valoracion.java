@@ -3,66 +3,80 @@ package com.reservas.model;
 import java.time.LocalDateTime;
 
 /**
+ * Modelo de datos para una Valoración
+ * Representa una reseña o calificación asociada a una reserva.
+ *
  * @author
- * Sofia Abid
+ * Sofía Abid
  */
 public class Valoracion {
 
-    // Variables de la clase Valoación
     private int id;
-    private int reseva;
+    private int reserva;
     private int puntuacion;
     private String comentario;
     private boolean anonimato;
     private LocalDateTime fechaValoracion;
 
-    // Constructor vacío de Valoraciones
+    // Constructor vacío
     public Valoracion() {}
 
-    // Constructor para añadir valoración con todos los parámetros
-    public Valoracion(int id, int reseva, int puntuacion, String comentario, boolean anonimato, LocalDateTime fechaValoracion) {
+    // Constructor completo
+    public Valoracion(int id, int reserva, int puntuacion, String comentario, boolean anonimato, LocalDateTime fechaValoracion) {
         this.id = id;
-        this.reseva = reseva;
+        this.reserva = reserva;
         this.puntuacion = puntuacion;
         this.comentario = comentario;
         this.anonimato = anonimato;
         this.fechaValoracion = fechaValoracion;
     }
 
-    // Constructor para las listas
-    public Valoracion(int reseva, int puntuacion, String comentario, boolean anonimato) {
-        this.reseva = reseva;
+    // Constructor para crear nueva valoración
+    public Valoracion(int reserva, int puntuacion, String comentario, boolean anonimato) {
+        this.reserva = reserva;
         this.puntuacion = puntuacion;
         this.comentario = comentario;
         this.anonimato = anonimato;
     }
 
-    // Constructor para modificar valoración
-    public Valoracion(int id, int reseva, int puntuacion, String comentario, boolean anonimato) {
+    // Constructor para actualizar una valoración existente
+    public Valoracion(int id, int reserva, int puntuacion, String comentario, boolean anonimato) {
         this.id = id;
-        this.reseva = reseva;
+        this.reserva = reserva;
         this.puntuacion = puntuacion;
         this.comentario = comentario;
         this.anonimato = anonimato;
     }
 
-    // Getters y setters
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    // --- Getters y Setters ---
 
-    public int getReseva() {return reseva;}
-    public void setReseva(int reseva) {this.reseva = reseva;}
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public int getPuntuacion() {return puntuacion;}
-    public void setPuntuacion(int puntuacion) {this.puntuacion = puntuacion;}
+    public int getReserva() { return reserva; }
+    public void setReserva(int reserva) { this.reserva = reserva; }
 
-    public String getComentario() {return comentario;}
-    public void setComentario(String comentario) {this.comentario = comentario;}
+    public int getPuntuacion() { return puntuacion; }
+    public void setPuntuacion(int puntuacion) { this.puntuacion = puntuacion; }
 
-    public boolean isAnonimato() {return anonimato;}
-    public void setAnonimato(boolean anonimato) {this.anonimato = anonimato;}
+    public String getComentario() { return comentario; }
+    public void setComentario(String comentario) { this.comentario = comentario; }
 
-    public LocalDateTime getFechaValoracion() {return fechaValoracion;}
-    public void setFechaValoracion(LocalDateTime fechaValoracion) {this.fechaValoracion = fechaValoracion;}
+    public boolean isAnonimato() { return anonimato; }
+    public void setAnonimato(boolean anonimato) { this.anonimato = anonimato; }
 
+    public LocalDateTime getFechaValoracion() { return fechaValoracion; }
+    public void setFechaValoracion(LocalDateTime fechaValoracion) { this.fechaValoracion = fechaValoracion; }
+
+    @Override
+    public String toString() {
+        return "Valoracion{" +
+                "id=" + id +
+                ", reserva=" + reserva +
+                ", puntuacion=" + puntuacion +
+                ", comentario='" + comentario + '\'' +
+                ", anonimato=" + anonimato +
+                ", fechaValoracion=" + fechaValoracion +
+                '}';
+    }
 }
