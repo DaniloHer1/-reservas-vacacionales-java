@@ -23,6 +23,13 @@ import java.sql.Connection;
 import static com.reservas.controller.MainController.cargarVista;
 import static com.reservas.controller.MainController.mostrarAlerta;
 
+/**
+ * Controlador de la vista de gestión de pagos
+ * Gestión la interacción entre la interfaz JavaFX y la capa DAO
+ *
+ * @author Daniel Hernando
+ * @since 31/10/2025
+ */
 public class PagoController {
 
     @FXML
@@ -55,13 +62,15 @@ public class PagoController {
 
     private PagoDAO pagoDAO;
 
+    /**
+     * Inicialización de la vista y carga de datos de los pagos
+     */
     @FXML
     public void initialize() {
-        // Conecto con la base de datos y preparo el DAO
+
         Connection connection = DataBaseConnection.getInstance().conectarBD();
         pagoDAO = new PagoDAO(connection);
 
-        // Configuro las columnas y cargo los pagos en la tabla
         configurarColumnasTabla();
         cargarListaPagos();
         configurarDobleClickFila();
@@ -70,7 +79,7 @@ public class PagoController {
     }
 
     /**
-     * Configura las columnas de la tabla de pagos.
+     * Configuración de las columnas de la tabla para enlazarlas con las propiedades del modelo Pago
      */
     private void configurarColumnasTabla() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -87,7 +96,8 @@ public class PagoController {
     }
 
     /**
-     * Carga los pagos desde la base de datos y los muestra en la tabla.
+     * Método encargado de cargar los pagos desde la base de datos para mostrarlos
+     * en la tabla.
      */
     public void cargarListaPagos() {
         pagoDAO.mostrarTodosPagos();
@@ -98,7 +108,8 @@ public class PagoController {
     }
 
     /**
-     * Abre el formulario para añadir un nuevo pago.
+     * Método que permite abrir la ventana {@code pagos-form-view.fxml}, gestionada por
+     * {@link PagoController} para crear un nuevo pago.
      */
     @FXML
     public void abrirFormularioNuevoPago() {
@@ -107,7 +118,7 @@ public class PagoController {
             Scene scene = new Scene(fxmlLoader.load());
 
             Stage stage = new Stage();
-            stage.setTitle("Añadir Pago");
+            stage.setTitle("AÑADIR PAGO");
             stage.setScene(scene);
             stage.show();
 
@@ -117,7 +128,8 @@ public class PagoController {
     }
 
     /**
-     * Abre el formulario de edición con los datos del pago seleccionado.
+     * Comprobación de selección de un pago para posteriormente llamar al método
+     * abrirFormularioEdicion() al que se le pasa el objeto Pago seleccionado.
      */
     @FXML
     public void abrirFormularioEditarPago() {
@@ -132,14 +144,43 @@ public class PagoController {
     }
 
     /**
-     * Elimina el pago seleccionado después de confirmar la acción.
+     * Método encargado de abrir la ventana {@code pagos-form-view.fxml}, gestionada por
+     * {@link PagoController} para modificar un pago seleccionado.
+     *
+     * @param pago
+     */
+    private void abrirFormularioEdicion(Pago pago) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("pagos-form-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            PagoFormController pagoFormController = fxmlLoader.getController();
+            pagoFormController.cargarPagoParaEditar(pago, null);
+
+            Stage stage = new Stage();
+            stage.setTitle("EDITAR PAGO");
+            stage.setScene(scene);
+            stage.show();
+
+            // Opcional: recargar la tabla cuando se cierre la ventana
+            stage.setOnHidden(e -> cargarListaPagos());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se ha podido abrir el formulario de edición", Alert.AlertType.ERROR);
+        }
+    }
+
+    /**
+     * Eliminación del pago seleccionado después de confirmar la acción.
+     * Comprobación de selección de un pago.
      */
     @FXML
     public void eliminarPagoSeleccionado() {
         Pago pagoSeleccionado = table.getSelectionModel().getSelectedItem();
 
         if (pagoSeleccionado == null) {
-            mostrarAlerta("Error", "Debes seleccionar un pago para eliminarlo.", Alert.AlertType.ERROR);
+            mostrarAlerta("Error", "Debes seleccionar un pago para poder eliminarlo.", Alert.AlertType.ERROR);
             return;
         }
 
@@ -150,24 +191,29 @@ public class PagoController {
             cargarListaPagos();
 
             if (eliminado) {
-                mostrarAlerta("Éxito", "El pago " + pagoSeleccionado.getId() + " fue eliminado correctamente.", Alert.AlertType.INFORMATION);
+                mostrarAlerta("Éxito", "El pago " + pagoSeleccionado.getId() + " ha sido eliminado correctamente.", Alert.AlertType.INFORMATION);
             } else {
-                mostrarAlerta("Error", "No se pudo eliminar el pago.", Alert.AlertType.ERROR);
+                mostrarAlerta("Error", "No se ha podido eliminar el pago.", Alert.AlertType.ERROR);
             }
         }
     }
 
     /**
-     * Refresca los datos de la tabla de pagos.
+     * Método que recarga los datos en la tabla de pagos.
      */
     @FXML
     private void actualizarTablaPagos() {
+
         cargarListaPagos();
+
     }
 
     /**
-     * Muestra un diálogo de confirmación para eliminar un pago.
-     * @return true si el usuario confirma, false en caso contrario.
+     * Método que se encarga de mostrar un diálogo de confirmación para eliminar un pago.
+     * @return true si el usuario confirma la eliminación, false en caso contrario.
+     *
+     * @param titulo texto que aparecerá en la barra de título de la alerta.
+     * @param mensaje contenido principal del mensaje a mostrar en el cuadro de diálogo.
      */
     private boolean mostrarConfirmacionBorrado(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -177,6 +223,10 @@ public class PagoController {
         return alert.showAndWait().filter(respuesta -> respuesta == ButtonType.OK).isPresent();
     }
 
+    /**
+     * Método que permite abrir la ventana {@code pagos-form-view.fxml}, gestionada por {@link PagoController}
+     * haciendo doble click sobre la tupla del cliente que se quiere modificar.
+     */
     private void configurarDobleClickFila() {
         table.setRowFactory(tv -> {
             TableRow<Pago> row = new TableRow<>();
@@ -195,33 +245,9 @@ public class PagoController {
             return row;
         });
     }
-    /**
-     * Abre el formulario de edición para un pago específico
-     */
-    private void abrirFormularioEdicion(Pago pago) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("pagos-form-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-
-            PagoFormController pagoFormController = fxmlLoader.getController();
-            pagoFormController.cargarPagoParaEditar(pago, null);
-
-            Stage stage = new Stage();
-            stage.setTitle("Editar Pago");
-            stage.setScene(scene);
-            stage.show();
-
-            // Opcional: recargar la tabla cuando se cierre la ventana
-            stage.setOnHidden(e -> cargarListaPagos());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            mostrarAlerta("Error", "No se pudo abrir el formulario de edición", Alert.AlertType.ERROR);
-        }
-    }
 
     /**
-     * Busca un pago por ID y muestra solo ese resultado en la tabla
+     * Método para buscar un pago por ID y muestra únicamente ese resultado en la tabla
      */
     @FXML
     public void buscarPorID(){
@@ -243,17 +269,17 @@ public class PagoController {
                 ObservableList<Pago> resultado=FXCollections.observableArrayList(pagoEncontrado);
                 table.setItems(resultado);
             }else{
-                mostrarAlerta("Sin Resultado","No se encontro ningun pago con el Id:  " +idTexto, Alert.AlertType.INFORMATION);
+                mostrarAlerta("Sin Resultado","No se ha encontrado ningún pago con el ID:  " +idTexto, Alert.AlertType.INFORMATION);
                 table.setItems(FXCollections.observableArrayList());
             }
 
         }catch (Exception e){
-            mostrarAlerta("ERROR","El Id debe ser un numero", Alert.AlertType.ERROR);
+            mostrarAlerta("ERROR","El ID debe ser un número", Alert.AlertType.ERROR);
         }
 
     }
     /**
-     * Muestra todos los pagos en la tabla
+     * Método encargado de mostrar todos los pagos en la tabla de pagos
      */
     @FXML
     public void mostrarTodosPagos() {
@@ -262,7 +288,7 @@ public class PagoController {
     }
 
     /**
-     * Muestra en el Label el total de Pagos
+     * Actualización del Label que muestra el total de pagos
      */
     private void actualizarTotalPagos() {
 

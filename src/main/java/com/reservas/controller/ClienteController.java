@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * Controlador de la vista de gestión de clientes
- * Gestiona la interacción entre la interfaz JavaFX y la capa DAO
+ * Gestión de la interacción entre la interfaz JavaFX y la capa DAO
  *
  * @author Jaime Pérez
  * @since 31/10/2025
@@ -47,7 +47,7 @@ public class ClienteController {
     private final ObservableList<Cliente> listaClientes = FXCollections.observableArrayList();
 
     /**
-     * Inicializa la vista y carga los datos de los clientes
+     * Inicialización de la vista y carga de los datos de los clientes
      */
     @FXML
     public void initialize() {
@@ -59,7 +59,8 @@ public class ClienteController {
     }
 
     /**
-     * Configura las columnas de la tabla para enlazarlas con las propiedades del modelo Cliente
+     * Configuración de las columnas de la tabla para enlazarlas con las propiedades del
+     * modelo Cliente
      */
     public void configurarColumnas() {
 
@@ -92,8 +93,9 @@ public class ClienteController {
     }
 
     /**
-     * Permite abrir la ventana {@code clientes-form-view.fxml}, gestionada por {@link ClienteController}
-     * haciendo doble click sobre la tupla del cliente que se quiere modificar.
+     * Método el cual permite abrir la ventana {@code clientes-form-view.fxml},
+     * gestionada por {@link ClienteController} haciendo doble click sobre la tupla del
+     * cliente que se quiere modificar.
      */
     private void configurarDobleClickFila() {
 
@@ -120,7 +122,7 @@ public class ClienteController {
     }
 
     /**
-     * Carga todos los clientes desde la base de datos en la tabla.
+     * Método para cargar todos los clientes desde la base de datos en la tabla.
      */
     public void cargarClientes() {
 
@@ -133,7 +135,8 @@ public class ClienteController {
     }
 
     /**
-     * Refresca la tabla con los datos actuales de la base de datos.
+     * Método que se encarga de refrescar la tabla con los datos actuales de la base de
+     * datos.
      */
     @FXML
     private void refrescarTabla(ActionEvent event) {
@@ -143,7 +146,7 @@ public class ClienteController {
     }
 
     /**
-     * Maneja el evento generado al pulsar el botón Añadir en la vista principal.
+     * Manejo del evento generado al pulsar el botón Añadir en la vista principal.
      *
      * @param event evento de acción disparado al hacer clic en el botón Añadir.
      */
@@ -168,14 +171,15 @@ public class ClienteController {
         } catch (IOException e) {
 
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "No se pudo abrir el formulario de cliente.").show();
+            new Alert(Alert.AlertType.ERROR, "No se ha podido abrir el formulario de cliente.").show();
 
         }
 
     }
 
     /**
-     * Maneja el evento generado al pulsar el botón Modificar en la vista principal.
+     * Manejo del evento generado al pulsar el botón Modificar en la vista principal comprobando
+     * la selección del cliente a modificar.
      *
      * @param event evento de acción disparado al hacer clic en el botón Modificar.
      */
@@ -211,14 +215,15 @@ public class ClienteController {
         } catch (IOException e) {
 
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "No se pudo abrir el formulario de cliente.").show();
+            new Alert(Alert.AlertType.ERROR, "No se ha podido abrir el formulario de cliente.").show();
 
         }
 
     }
 
     /**
-     * Maneja el evento generado al pulsar el botón Eliminar en la vista principañl.
+     * Manejo del evento generado al pulsar el botón Eliminar en la vista principal comprobando
+     * la selección del cliente a modificar.
      *
      * @param event evento de acción disparado al hacer clic en el botón Eliminar.
      */
@@ -272,6 +277,7 @@ public class ClienteController {
     }
 
     /**
+     * Método encargado de la búsqueda de un cliente.
      * Si se encuentra un cliente, la tabla se posiciona y selecciona en la fila correspondiente.
      * En caso contrario, se muestra una alerta informativa.
      *
@@ -284,8 +290,7 @@ public class ClienteController {
 
         if (email.isEmpty()) {
 
-            new Alert(Alert.AlertType.WARNING, "Introduce un email.").show();
-
+            new Alert(Alert.AlertType.WARNING, "Introduzca un email.").show();
             return;
 
         }
@@ -294,8 +299,7 @@ public class ClienteController {
 
         if (id == -1) {
 
-            new Alert(Alert.AlertType.INFORMATION,"No se encontró ningún cliente con el email: " + email).show();
-
+            new Alert(Alert.AlertType.INFORMATION,"No se ha encontrado ningún cliente con el email: " + email).show();
             return;
 
         }
@@ -311,7 +315,6 @@ public class ClienteController {
                 break;
 
             }
-
         }
 
         if (index >= 0) {
@@ -322,14 +325,15 @@ public class ClienteController {
 
         } else {
 
-            new Alert(Alert.AlertType.INFORMATION,"El cliente existe en la base de datos,\n" + "pero no está en la lista visible. Pulsa «Refrescar» si quieres cargarlo.").show();
+            new Alert(Alert.AlertType.INFORMATION,"El cliente existe en la base de datos,\n" + "pero no está en la lista visible. " +
+                    "Pulsa «Refrescar» si quieres cargarlo.").show();
 
         }
 
     }
 
     /**
-     * Actualiza la etiqueta de la interfaz con el número total de clientes cargados en la tabla.
+     * Actualización de la etiqueta de la interfaz con el número total de clientes cargados en la tabla.
      * Obtiene el tamaño de la lista {@code listaClientes} y establece el texto del
      * componente {@code lblTotalClientes} para mostrar el total actual al usuario.
      */
@@ -344,7 +348,7 @@ public class ClienteController {
     }
 
     /**
-     * Muestra una alerta emergente en la interfaz con el tipo, título y mensaje especificados.
+     * Método que muestra una alerta emergente en la interfaz con el tipo, título y mensaje especificados.
      *
      * @param tipo  tipo de alerta a mostrar.
      * @param titulo texto que aparecerá en la barra de título de la alerta.
