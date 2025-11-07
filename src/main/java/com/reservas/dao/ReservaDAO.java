@@ -16,19 +16,10 @@ public class ReservaDAO {
         String sql = "select id_reserva, id_cliente, id_propiedad, fecha_inicio," +
                 " fecha_fin, num_personas, estado, precio_total, motivo_cancelacion from reservas";
         try (Connection con = DataBaseConnection.getInstance().conectarBD(); Statement statement = con.createStatement()){
-            statement.execute(sql);
+            statement.executeQuery(sql);
             ResultSet rs = statement.getResultSet();
             while (rs.next()){
-                Reserva reserva = new Reserva();
-                reserva.setId_reserva(rs.getInt("id_reserva"));
-                reserva.setId_cliente(rs.getInt("id_cliente"));
-                reserva.setId_propiedad(rs.getInt("id_propiedad"));
-                reserva.setFecha_inicio(rs.getDate("fecha_inicio"));
-                reserva.setFecha_fin(rs.getDate("fecha_fin"));
-                reserva.setNum_personas(rs.getInt("num_personas"));
-                reserva.setEstado(Reserva.EstadoReserva.valueOf(rs.getString("estado").toUpperCase().trim()));
-                reserva.setPrecio_total(rs.getDouble("precio_total"));
-                reserva.setMotivo_cancelacion(rs.getString("motivo_cancelacion"));
+                Reserva reserva = getReservaFromResultSet(rs);
                 reservas.add(reserva);
             }
         } catch (SQLException e) {
@@ -80,5 +71,35 @@ public class ReservaDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public Reserva buscarReservaID(int id){
+        try(Connection con = DataBaseConnection.getInstance().conectarBD()){
+            String sql = "select * from reservas where id_reserva=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.executeQuery();
+            ResultSet rs = pst.getResultSet();
+            if (rs.next()){
+                return getReservaFromResultSet(rs);
+            }else {
+                return null;
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Reserva getReservaFromResultSet(ResultSet rs) throws SQLException {
+        Reserva r = new Reserva();
+        r.setId_reserva(rs.getInt("id_reserva"));
+        r.setId_cliente(rs.getInt("id_cliente"));
+        r.setId_propiedad(rs.getInt("id_propiedad"));
+        r.setFecha_inicio(rs.getDate("fecha_inicio"));
+        r.setFecha_fin(rs.getDate("fecha_fin"));
+        r.setNum_personas(rs.getInt("num_personas"));
+        r.setEstado(Reserva.EstadoReserva.valueOf(rs.getString("estado").toUpperCase().trim()));
+        r.setPrecio_total(rs.getDouble("precio_total"));
+        r.setMotivo_cancelacion(rs.getString("motivo_cancelacion"));
+        return r;
     }
 }

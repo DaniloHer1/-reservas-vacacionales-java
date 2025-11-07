@@ -8,46 +8,49 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ReservaControler {
-    ReservaDAO reservaDAO;
+    private ReservaDAO reservaDAO;
     @FXML
-    TableView<Reserva> tableView;
+    private TableView<Reserva> tableView;
     @FXML
-    TableColumn<Reserva, Integer> colID;
+    private TextField txtFieldBuscar;
     @FXML
-    TableColumn<Reserva, Integer> colID_cliente;
+    private TableColumn<Reserva, Integer> colID;
     @FXML
-    TableColumn<Reserva, Integer> colID_prop;
+    private TableColumn<Reserva, Integer> colID_cliente;
     @FXML
-    TableColumn<Reserva, String> colFechaIni;
+    private TableColumn<Reserva, Integer> colID_prop;
     @FXML
-    TableColumn<Reserva, String> colFechaFin;
+    private TableColumn<Reserva, String> colFechaIni;
     @FXML
-    TableColumn<Reserva, Integer> colNumPersonas;
+    private TableColumn<Reserva, String> colFechaFin;
     @FXML
-    TableColumn<Reserva, Reserva.EstadoReserva> colEstado;
+    private TableColumn<Reserva, Integer> colNumPersonas;
     @FXML
-    TableColumn<Reserva, Double> colPrecio;
+    private TableColumn<Reserva, Reserva.EstadoReserva> colEstado;
     @FXML
-    TableColumn<Reserva, String> colMotivo;
-    ObservableList<Reserva> reservas;
+    private TableColumn<Reserva, Double> colPrecio;
     @FXML
-    public void initialize(){
+    private TableColumn<Reserva, String> colMotivo;
+    @FXML
+    private Label totalLabel;
+
+    @FXML
+    public void initialize() {
         reservaDAO = new ReservaDAO();
-        reservas = FXCollections.observableArrayList(reservaDAO.getReservas());
+        ObservableList<Reserva> reservas = FXCollections.observableArrayList(reservaDAO.getReservas());
         configurarColumnas();
         tableView.setItems(reservas);
+        totalLabel.setText(totalLabel.getText() + reservas.size());
     }
+
     private void configurarColumnas() {
         colID.setCellValueFactory(new PropertyValueFactory<>("id_reserva"));
         colID_cliente.setCellValueFactory(new PropertyValueFactory<>("id_cliente"));
@@ -61,7 +64,8 @@ public class ReservaControler {
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio_total"));
         colMotivo.setCellValueFactory(new PropertyValueFactory<>("motivo_cancelacion"));
     }
-    public void aniadirReservaForm(){
+
+    public void aniadirReservaForm() {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("reservas-form-view.fxml"));
         Scene scene;
         try {
@@ -71,26 +75,30 @@ public class ReservaControler {
         }
         ReservaFormController formController = loader.getController();
         formController.modoEditar = false;
+        formController.reservaControler = this;
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Añadir Reserva");
         stage.show();
     }
-    public void eliminarReserva(){
-        if((tableView.getSelectionModel().getSelectedItem()) == null){
+
+    public void eliminarReserva() {
+        if ((tableView.getSelectionModel().getSelectedItem()) == null) {
             MainController.mostrarAlerta("Selecciona una reserva", "Por favor, selecciona una reserva para eliminarla", Alert.AlertType.WARNING);
-        }else{
-            if (reservaDAO.eliminarReserva(tableView.getSelectionModel().getSelectedItem())==1){
+        } else {
+            if (reservaDAO.eliminarReserva(tableView.getSelectionModel().getSelectedItem()) == 1) {
                 MainController.mostrarAlerta("Reserva eliminada", "Reserva eliminada correctamente", Alert.AlertType.INFORMATION);
-            }else {
+                initialize();
+            } else {
                 MainController.mostrarAlerta("Error", "La reserva seleccionada no existe. Por favor, actualiza la tabla.", Alert.AlertType.ERROR);
             }
         }
     }
-    public void editarReservaForm(){
-        if (tableView.getSelectionModel().getSelectedItem() == null){
+
+    public void editarReservaForm() {
+        if (tableView.getSelectionModel().getSelectedItem() == null) {
             MainController.mostrarAlerta("Selecciona una reserva", "Por favor, selecciona una reserva para modificarla.", Alert.AlertType.WARNING);
-        }else {
+        } else {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("reservas-form-view.fxml"));
             Scene scene;
             try {
@@ -100,6 +108,7 @@ public class ReservaControler {
             }
             ReservaFormController formController = loader.getController();
             formController.setModoEditar(true, tableView.getSelectionModel().getSelectedItem());
+            formController.reservaControler = this;
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Editar Reserva");
@@ -107,5 +116,25 @@ public class ReservaControler {
         }
     }
 
-
+    public void buscarIDReserva() {
+        String texto = txtFieldBuscar.getText();
+        if (texto == null || texto.isBlank()) {
+            initialize();
+        } else {
+            Reserva r = new Reserva();
+            try {
+                r = reservaDAO.buscarReservaID(Integer.parseInt(texto));
+            } catch (NumberFormatException e) {
+                MainController.mostrarAlerta("Error", "Por favor, introduce un número", Alert.AlertType.ERROR);
+                txtFieldBuscar.clear();
+            }
+            if (r == null) {
+                MainController.mostrarAlerta("Error", "No se encontaron reservas con ese ID.", Alert.AlertType.ERROR);
+                txtFieldBuscar.clear();
+            } else {
+                ObservableList<Reserva> observableList = FXCollections.observableArrayList(r);
+                tableView.setItems(observableList);
+            }
+        }
+    }
 }
