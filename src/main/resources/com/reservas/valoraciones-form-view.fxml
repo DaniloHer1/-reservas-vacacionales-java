@@ -33,11 +33,19 @@
         <Button fx:id="btnGuardarValF" layoutX="76.0" layoutY="465.0" mnemonicParsing="false" text="GUARDAR ✔" textFill="#000001" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="76.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
-            </font></Button>
+            </font>
+            <tooltip>
+                <Tooltip text="Guardar la valoración" />
+            </tooltip>
+        </Button>
         <Button fx:id="btnCancelarValF" layoutX="198.0" layoutY="465.0" mnemonicParsing="false" text="CANCELAR ✖" textFill="#000001" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="76.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
-            </font></Button>
+            </font>
+            <tooltip>
+                <Tooltip text="Cancelar y salir" />
+            </tooltip>
+        </Button>
         <TextField fx:id="txtReservaValF" layoutX="134.0" layoutY="139.0" prefHeight="25.0" prefWidth="184.0" AnchorPane.rightAnchor="44.0" />
         <RadioButton fx:id="rbtn1Val" layoutX="134.0" layoutY="192.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="28.0" text="1" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="200.0" />
         <RadioButton fx:id="rbtn2Val" layoutX="172.0" layoutY="192.0" mnemonicParsing="false" text="2" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="162.0" />

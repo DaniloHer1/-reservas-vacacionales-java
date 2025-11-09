@@ -6,131 +6,100 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="623.0" prefWidth="918.0"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.reservas.controller.PropiedadController">
+<AnchorPane prefHeight="610.0" prefWidth="918.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.PropiedadController">
 
     <children>
-        <TableView fx:id="tblPropiedades" layoutX="49.0" layoutY="167.0"
-                   prefHeight="348.0" prefWidth="820.0"
-                   AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="49.0">
+        <TableView fx:id="tblPropiedades" layoutX="49.0" layoutY="167.0" prefHeight="348.0" prefWidth="820.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="49.0">
             <columns>
-                <TableColumn fx:id="colIdPropiedad" prefWidth="60.0" text="ID" style="-fx-text-fill: #366387;" />
-                <TableColumn fx:id="colNombre" prefWidth="110.0" text="Nombre" style="-fx-text-fill: #366387;" />
-                <TableColumn fx:id="colDireccion" prefWidth="150.0" text="Dirección" style="-fx-text-fill: #366387;" />
-                <TableColumn fx:id="colCiudad" prefWidth="90.0" text="Ciudad" style="-fx-text-fill: #366387;" />
-                <TableColumn fx:id="colPais" prefWidth="80.0" text="País" style="-fx-text-fill: #366387;" />
-                <TableColumn fx:id="colPrecioNoche" prefWidth="100.0" text="Precio/Noche" style="-fx-text-fill: #366387;" />
-                <TableColumn fx:id="colDescripcion" prefWidth="160.0" text="Descripción" style="-fx-text-fill: #366387;" />
-                <TableColumn fx:id="colCapacidad" prefWidth="76.0" text="Capacidad" style="-fx-text-fill: #366387;"/>
-                <TableColumn fx:id="colEstado" prefWidth="100.0" text="Estado" style="-fx-text-fill: #366387;"/>
+                <TableColumn fx:id="colIdPropiedad" prefWidth="60.0" style="-fx-text-fill: #366387;" text="ID" />
+                <TableColumn fx:id="colNombre" prefWidth="110.0" style="-fx-text-fill: #366387;" text="Nombre" />
+                <TableColumn fx:id="colDireccion" prefWidth="150.0" style="-fx-text-fill: #366387;" text="Dirección" />
+                <TableColumn fx:id="colCiudad" prefWidth="90.0" style="-fx-text-fill: #366387;" text="Ciudad" />
+                <TableColumn fx:id="colPais" prefWidth="80.0" style="-fx-text-fill: #366387;" text="País" />
+                <TableColumn fx:id="colPrecioNoche" prefWidth="100.0" style="-fx-text-fill: #366387;" text="Precio/Noche" />
+                <TableColumn fx:id="colDescripcion" prefWidth="160.0" style="-fx-text-fill: #366387;" text="Descripción" />
+                <TableColumn fx:id="colCapacidad" prefWidth="76.0" style="-fx-text-fill: #366387;" text="Capacidad" />
+                <TableColumn fx:id="colEstado" prefWidth="100.0" style="-fx-text-fill: #366387;" text="Estado" />
             </columns>
             <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
             <placeholder>
-                <Label text="No hay propiedades para mostrar"/>
+                <Label text="No hay propiedades para mostrar" />
             </placeholder>
             <tooltip>
-                <Tooltip text="Doble clic sobre una fila para ver/editar la propiedad"/>
+                <Tooltip text="Doble clic sobre una fila para ver/editar la propiedad" />
             </tooltip>
             <effect>
-                <Blend/>
+                <Blend />
             </effect>
         </TableView>
 
-        <Button fx:id="btnAgregar" layoutX="22.0" layoutY="550.0"
-                onAction="#agregarPropiedad" text="AÑADIR ➕"
-                prefHeight="24.0" prefWidth="91.0"
-                AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="22.0">
+        <Button fx:id="btnAgregar" layoutX="49.0" layoutY="550.0" onAction="#agregarPropiedad" prefHeight="24.0" prefWidth="91.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="49.0">
             <font>
-                <Font name="JetBrains Mono ExtraBold" size="11.0"/>
+                <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
             <tooltip>
-                <Tooltip text="Crear una nueva propiedad"/>
+                <Tooltip text="Crear una nueva propiedad" />
             </tooltip>
         </Button>
 
-        <Button fx:id="btnModificar" layoutX="129.0" layoutY="550.0"
-                onAction="#modificarPropiedad" text="MODIFICAR ✔"
-                prefHeight="24.0" prefWidth="105.0"
-                AnchorPane.bottomAnchor="36.0">
+        <Button fx:id="btnModificar" layoutX="162.0" layoutY="550.0" onAction="#modificarPropiedad" prefHeight="24.0" prefWidth="105.0" text="MODIFICAR ✔" AnchorPane.bottomAnchor="36.0">
             <font>
-                <Font name="JetBrains Mono ExtraBold" size="11.0"/>
+                <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
             <tooltip>
-                <Tooltip text="Editar la propiedad seleccionada"/>
+                <Tooltip text="Editar la propiedad seleccionada" />
             </tooltip>
         </Button>
 
-        <Button fx:id="btnEliminar" layoutX="250.0" layoutY="550.0"
-                onAction="#eliminarPropiedad" text="ELIMINAR ✖"
-                prefHeight="24.0" prefWidth="105.0"
-                AnchorPane.bottomAnchor="36.0">
+        <Button fx:id="btnEliminar" layoutX="291.0" layoutY="550.0" onAction="#eliminarPropiedad" prefHeight="24.0" prefWidth="105.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="36.0">
             <font>
-                <Font name="JetBrains Mono ExtraBold" size="11.0"/>
+                <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
             <tooltip>
-                <Tooltip text="Eliminar la propiedad seleccionada"/>
+                <Tooltip text="Eliminar la propiedad seleccionada" />
             </tooltip>
         </Button>
 
-        <Button fx:id="btnActualizar" layoutX="711.0" layoutY="550.0"
-                onAction="#actualizarTabla" text="ACTUALIZAR 🔁"
-                prefHeight="24.0" prefWidth="119.0"
-                AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="22.0">
+        <Button fx:id="btnActualizar" layoutX="750.0" layoutY="550.0" onAction="#actualizarTabla" prefHeight="24.0" prefWidth="119.0" text="ACTUALIZAR 🔁" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="49.0">
             <tooltip>
-                <Tooltip text="Recargar propiedades"/>
+                <Tooltip text="Recargar propiedades" />
             </tooltip>
             <font>
-                <Font name="JetBrains Mono ExtraBold" size="11.0"/>
+                <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
         </Button>
 
-        <TextField fx:id="txtBusquedaId" layoutX="623.0" layoutY="122.0"
-                   AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="122.0"/>
+        <TextField fx:id="txtBusquedaId" layoutX="670.0" layoutY="122.0" AnchorPane.topAnchor="122.0" />
 
-        <Button fx:id="btnBuscar" layoutX="784.0" layoutY="122.0"
-                onAction="#buscarPorID" text="🔍"
-                prefHeight="24.0" prefWidth="40.0"
-                AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="122.0">
+        <Button fx:id="btnBuscar" layoutX="829.0" layoutY="123.0" onAction="#buscarPorID" prefHeight="24.0" prefWidth="40.0" text="🔍" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="123.0">
             <font>
-                <Font name="JetBrains Mono ExtraBold" size="11.0"/>
+                <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
             <tooltip>
-                <Tooltip text="Buscar por ID"/>
+                <Tooltip text="Buscar por ID" />
             </tooltip>
         </Button>
 
-        <Label layoutX="512.0" layoutY="125.0"
-               prefHeight="19.0" prefWidth="105.0"
-               text="Búsqueda por ID:" AnchorPane.topAnchor="125.0">
+        <Label layoutX="545.0" layoutY="125.0" prefHeight="19.0" prefWidth="105.0" text="Búsqueda por ID:" AnchorPane.topAnchor="125.0">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
 
-        <Label fx:id="lblTitulo" alignment="CENTER"
-               layoutX="185.0" layoutY="36.0"
-               prefHeight="71.0" prefWidth="462.0"
-               text="GESTIÓN DE PROPIEDADES"
-               textAlignment="CENTER" textFill="#85b6d4"
-               AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="36.0">
+        <Label fx:id="lblTitulo" alignment="CENTER" layoutX="185.0" layoutY="36.0" prefHeight="71.0" prefWidth="462.0" text="GESTIÓN DE PROPIEDADES" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="36.0">
             <font>
-                <Font name="JetBrains Mono ExtraBold" size="30.0"/>
+                <Font name="JetBrains Mono ExtraBold" size="30.0" />
             </font>
         </Label>
 
-        <Label fx:id="lblTotalPropiedades"
-               layoutX="22.0" layoutY="124.0"
-               prefHeight="19.0" prefWidth="180.0"
-               text="Total Propiedades:" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="124.0">
+        <Label fx:id="lblTotalPropiedades" layoutX="49.0" layoutY="125.0" prefHeight="19.0" prefWidth="180.0" text="Total Propiedades:" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="125.0">
             <font>
-                <Font name="System Bold" size="12.0"/>
+                <Font name="System Bold" size="12.0" />
             </font>
         </Label>
     </children>

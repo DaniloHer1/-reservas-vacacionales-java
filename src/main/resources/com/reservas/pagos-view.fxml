@@ -25,6 +25,9 @@
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
+            <tooltip>
+                <Tooltip text="Añadir pago" />
+            </tooltip>
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
@@ -35,6 +38,9 @@
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
+            <tooltip>
+                <Tooltip text="Eliminar pago seleccionado" />
+            </tooltip>
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
@@ -42,6 +48,9 @@
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
+            <tooltip>
+                <Tooltip text="Actualizar tabla de pagos" />
+            </tooltip>
         </Button>
         <Label alignment="CENTER" layoutX="1.0" layoutY="40.0" prefHeight="40.0" prefWidth="803.0" text="GESTIÓN DE PAGOS" textAlignment="CENTER" textFill="#85b6d4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
             <font>
@@ -54,6 +63,9 @@
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
+            <tooltip>
+                <Tooltip text="Modificar un pago" />
+            </tooltip>
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
@@ -62,7 +74,11 @@
             <Font name="System Bold" size="12.0" />
          </font></Label>
         <TextField fx:id="txtBusquedaId" layoutX="574.0" layoutY="115.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="115.0" />
-        <Button layoutX="732.0" layoutY="115.0" mnemonicParsing="false" onAction="#buscarPorID" text="🔍" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="115.0" />
+        <Button layoutX="732.0" layoutY="115.0" mnemonicParsing="false" onAction="#buscarPorID" text="🔍" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="115.0" >
+            <tooltip>
+                <Tooltip text="Buscar" />
+            </tooltip>
+        </Button>
       <Label fx:id="lblTotalPagos" layoutX="44.0" layoutY="119.0" text="Total de Pagos:  " AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="119.0">
          <font>
             <Font name="System Bold" size="12.0" />

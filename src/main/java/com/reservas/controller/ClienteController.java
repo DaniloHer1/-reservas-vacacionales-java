@@ -20,8 +20,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * Controlador de la vista de gestión de clientes
- * Gestión de la interacción entre la interfaz JavaFX y la capa DAO
+ * <h1>Controlador de Clientes</h1>
+ * Controlador principal encargado de gestionar la vista de <b>Clientes</b> dentro del sistema de reservas.<br>
+ * Se encarga de coordinar la comunicación entre la interfaz JavaFX y la capa de datos {@link ClienteDAO},
+ * permitiendo administrar las operaciones CRUD sobre los clientes registrados.
+ *
+ * <h2>Funciones principales:</h2>
+ * <ul>
+ *     <li>Cargar y mostrar los clientes en la tabla.</li>
+ *     <li>Buscar clientes por su ID.</li>
+ *     <li>Crear, editar o eliminar clientes existentes.</li>
+ *     <li>Refrescar los datos desde la base de datos.</li>
+ * </ul>
  *
  * @author Jaime Pérez
  * @since 31/10/2025
@@ -47,7 +57,8 @@ public class ClienteController {
     private final ObservableList<Cliente> listaClientes = FXCollections.observableArrayList();
 
     /**
-     * Inicialización de la vista y carga de los datos de los clientes
+     * Inicializa la vista de clientes, configurando las columnas,
+     * los eventos de interacción y la carga inicial de los datos desde la base de datos.
      */
     @FXML
     public void initialize() {
@@ -59,8 +70,8 @@ public class ClienteController {
     }
 
     /**
-     * Configuración de las columnas de la tabla para enlazarlas con las propiedades del
-     * modelo Cliente
+     * Configura las columnas de la tabla, vinculándolas con las propiedades del
+     * modelo {@link Cliente}.
      */
     public void configurarColumnas() {
 
@@ -71,20 +82,18 @@ public class ClienteController {
         colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         colPais.setCellValueFactory(new PropertyValueFactory<>("pais"));
         colFechaRegistro.setCellValueFactory(new PropertyValueFactory<>("fechaRegistro"));
+
         colFechaRegistro.setCellFactory(col -> new TableCell<Cliente, LocalDate>() {
 
             protected void updateItem(LocalDate item, boolean empty) {
 
                 super.updateItem(item, empty);
+
                 if (empty || item == null) {
 
-                    setText(null);
+                     setText(null);
 
-                } else {
-
-                    setText(item.format(FECHA_HORA));
-
-                }
+                } else { setText(item.format(FECHA_HORA)); }
 
             }
 
@@ -93,9 +102,11 @@ public class ClienteController {
     }
 
     /**
-     * Método el cual permite abrir la ventana {@code clientes-form-view.fxml},
-     * gestionada por {@link ClienteController} haciendo doble click sobre la tupla del
-     * cliente que se quiere modificar.
+     * Configura el evento de doble clic sobre una fila para abrir el formulario de edición
+     * del cliente seleccionado.
+     * <p>
+     * {@code clientes-form-view.fxml},gestionada por {@link ClienteController}
+     * </p>
      */
     private void configurarDobleClickFila() {
 
@@ -108,7 +119,6 @@ public class ClienteController {
                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2 && !row.isEmpty()) {
 
                     Cliente clienteSeleccionado = row.getItem();
-
                     modificarCliente(new ActionEvent());
 
                 }
@@ -122,7 +132,7 @@ public class ClienteController {
     }
 
     /**
-     * Método para cargar todos los clientes desde la base de datos en la tabla.
+     * Carga todos los clientes desde la base de datos en la tabla.
      */
     public void cargarClientes() {
 
@@ -135,8 +145,9 @@ public class ClienteController {
     }
 
     /**
-     * Método que se encarga de refrescar la tabla con los datos actuales de la base de
-     * datos.
+     * Refresca la tabla con los datos actuales de la base de datos.
+     *
+     * @param event evento disparado al hacer clic en el botón "ACTUALIZAR 🔁".
      */
     @FXML
     private void refrescarTabla(ActionEvent event) {
@@ -148,7 +159,7 @@ public class ClienteController {
     /**
      * Manejo del evento generado al pulsar el botón Añadir en la vista principal.
      *
-     * @param event evento de acción disparado al hacer clic en el botón Añadir.
+     * @param event evento de acción disparado al hacer clic en el botón "AÑADIR ➕".
      */
     @FXML
     private void guardarCliente(ActionEvent event) {
@@ -181,7 +192,7 @@ public class ClienteController {
      * Manejo del evento generado al pulsar el botón Modificar en la vista principal comprobando
      * la selección del cliente a modificar.
      *
-     * @param event evento de acción disparado al hacer clic en el botón Modificar.
+     * @param event evento de acción disparado al hacer clic en el botón "MODIFICAR ✔".
      */
     @FXML
     private void modificarCliente(ActionEvent event) {
@@ -225,7 +236,7 @@ public class ClienteController {
      * Manejo del evento generado al pulsar el botón Eliminar en la vista principal comprobando
      * la selección del cliente a modificar.
      *
-     * @param event evento de acción disparado al hacer clic en el botón Eliminar.
+     * @param event evento de acción disparado al hacer clic en el botón "ELIMINAR ✖".
      */
     @FXML
     private void eliminarCliente(ActionEvent event) {
@@ -281,7 +292,7 @@ public class ClienteController {
      * Si se encuentra un cliente, la tabla se posiciona y selecciona en la fila correspondiente.
      * En caso contrario, se muestra una alerta informativa.
      *
-     * @param event evento de acción disparado al darle al botón de búsqueda que tiene como símbolo una lupa ( 🔍 ).
+     * @param event evento generado al pulsar el botón de búsqueda (🔍).
      */
     @FXML
     private void buscarPorEmail(ActionEvent event) {
@@ -311,7 +322,6 @@ public class ClienteController {
             if (listaClientes.get(i).getIdCliente() == id) {
 
                 index = i;
-
                 break;
 
             }
@@ -326,14 +336,14 @@ public class ClienteController {
         } else {
 
             new Alert(Alert.AlertType.INFORMATION,"El cliente existe en la base de datos,\n" + "pero no está en la lista visible. " +
-                    "Pulsa «Refrescar» si quieres cargarlo.").show();
+                    "Pulsa «ACTUALIZAR» si quieres cargarlo.").show();
 
         }
 
     }
 
     /**
-     * Actualización de la etiqueta de la interfaz con el número total de clientes cargados en la tabla.
+     * Actualiza la etiqueta con el número total de clientes cargados.
      * Obtiene el tamaño de la lista {@code listaClientes} y establece el texto del
      * componente {@code lblTotalClientes} para mostrar el total actual al usuario.
      */
@@ -348,11 +358,11 @@ public class ClienteController {
     }
 
     /**
-     * Método que muestra una alerta emergente en la interfaz con el tipo, título y mensaje especificados.
+     * Muestra una alerta en pantalla con el tipo, título y mensaje especificados.
      *
-     * @param tipo  tipo de alerta a mostrar.
-     * @param titulo texto que aparecerá en la barra de título de la alerta.
-     * @param mensaje contenido principal del mensaje a mostrar en el cuadro de diálogo.
+     * @param tipo tipo de alerta (información, error, advertencia, etc.).
+     * @param titulo texto del título de la alerta.
+     * @param mensaje mensaje principal del cuadro de diálogo.
      */
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
 

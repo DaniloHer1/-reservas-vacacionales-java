@@ -56,7 +56,11 @@
               <Font name="JetBrains Mono ExtraBold" size="30.0" />
           </font>
       </Label>
-      <Button layoutX="801.0" layoutY="104.0" mnemonicParsing="false" onAction="#buscarIDReserva" text="🔍" AnchorPane.rightAnchor="28.0" />
+       <Button layoutX="801.0" layoutY="104.0" mnemonicParsing="false" onAction="#buscarIDReserva" text="🔍" AnchorPane.rightAnchor="28.0">
+           <tooltip>
+               <Tooltip text="Buscar" />
+           </tooltip>
+       </Button>
       <TextField fx:id="txtFieldBuscar" layoutX="643.0" layoutY="104.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="104.0" />
       <Label layoutX="527.0" layoutY="108.0" text="Búsqueda por ID:" AnchorPane.topAnchor="108.0">
          <font>

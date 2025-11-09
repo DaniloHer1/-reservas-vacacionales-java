@@ -1,14 +1,28 @@
 package com.reservas.model;
 
 import java.sql.Date;
+
 /**
- * Clase que representa una reserva de un cliente.
+ * <h1>Modelo de Reserva</h1>
+ *
+ * Representa una solicitud de alojamiento realizada por un cliente en el sistema.
+ * <p>
+ * Contiene información sobre la propiedad reservada, fechas de estadía, número de personas,
+ * estado de la reserva, precio total y motivo de cancelación si aplica.
+ * </p>
+ *
+ * <h2>Características principales:</h2>
+ * <ul>
+ *     <li>Asocia cada reserva a un cliente y una propiedad mediante sus identificadores.</li>
+ *     <li>Permite gestionar el estado de la reserva (confirmada, pendiente, cancelada).</li>
+ *     <li>Incluye métodos para obtener las fechas en formato legible.</li>
+ * </ul>
  *
  * @author Pablo Armas
  * @since 01/11/2025
  */
-
 public class Reserva {
+
     private int id_reserva;
     private int id_cliente;
     private int id_propiedad;
@@ -18,23 +32,46 @@ public class Reserva {
     private double precio_total;
     private String motivo_cancelacion;
     private EstadoReserva estadoReserva;
+
+    /**
+     * Clase ENUM
+     * Representa los posibles estados de una reserva dentro del sistema.
+     */
     public enum EstadoReserva {
+
         CONFIRMADA("confirmada"),
 
         PENDIENTE("pendiente"),
 
         CANCELADA("cancelada");
+
         private final String descripcion;
+
         EstadoReserva(String descripcion){
             this.descripcion = descripcion;
         }
         public String getDescripcion(){
             return descripcion;
         }
+
     }
 
-    public Reserva(int id_reserva, int id_cliente, int id_propiedad, Date fecha_inicio,
-                   Date fecha_fin, int num_personas, EstadoReserva estadoReserva, double precio_total, String motivo_cancelacion) {
+    /**
+     * Constructor completo para crear una instancia de reserva con todos los datos.
+     *
+     * @param id_reserva identificador único de la reserva.
+     * @param id_cliente identificador del cliente que realiza la reserva.
+     * @param id_propiedad identificador de la propiedad reservada.
+     * @param fecha_inicio fecha de inicio de la estadía.
+     * @param fecha_fin fecha de finalización de la estadía.
+     * @param num_personas número de personas que ocuparán la propiedad.
+     * @param estadoReserva estado actual de la reserva.
+     * @param precio_total precio total calculado para la estadía.
+     * @param motivo_cancelacion motivo de cancelación si aplica.
+     */
+    public Reserva(int id_reserva, int id_cliente, int id_propiedad, Date fecha_inicio, Date fecha_fin, int num_personas,
+                   EstadoReserva estadoReserva, double precio_total, String motivo_cancelacion) {
+
         this.id_reserva = id_reserva;
         this.id_cliente = id_cliente;
         this.id_propiedad = id_propiedad;
@@ -44,9 +81,24 @@ public class Reserva {
         this.estadoReserva = estadoReserva;
         this.precio_total = precio_total;
         this.motivo_cancelacion = motivo_cancelacion;
+
     }
-    public Reserva(int id_cliente, int id_propiedad, Date fecha_inicio,
-                   Date fecha_fin, int num_personas, EstadoReserva estadoReserva, double precio_total, String motivo_cancelacion) {
+
+    /**
+     * Constructor para registrar una nueva reserva sin ID asignado.
+     *
+     * @param id_cliente identificador del cliente.
+     * @param id_propiedad identificador de la propiedad.
+     * @param fecha_inicio fecha de inicio.
+     * @param fecha_fin fecha de fin.
+     * @param num_personas número de huéspedes.
+     * @param estadoReserva estado inicial de la reserva.
+     * @param precio_total precio total calculado.
+     * @param motivo_cancelacion motivo de cancelación si aplica.
+     */
+    public Reserva(int id_cliente, int id_propiedad, Date fecha_inicio, Date fecha_fin, int num_personas, EstadoReserva estadoReserva,
+                   double precio_total, String motivo_cancelacion) {
+
         this.id_cliente = id_cliente;
         this.id_propiedad = id_propiedad;
         this.fecha_inicio = fecha_inicio;
@@ -55,15 +107,25 @@ public class Reserva {
         this.estadoReserva = estadoReserva;
         this.precio_total = precio_total;
         this.motivo_cancelacion = motivo_cancelacion;
+
     }
-    public Reserva(){
-    }
+
+    /**
+     * Constructor por defecto.
+     */
+    public Reserva(){ }
+
+    /**
+     * Getters y setters
+     */
     public String getFechaIniString(){
         return fecha_inicio.toString();
     }
+
     public String getFechaFinString(){
         return fecha_fin.toString();
     }
+
     public int getId_reserva() {
         return id_reserva;
     }

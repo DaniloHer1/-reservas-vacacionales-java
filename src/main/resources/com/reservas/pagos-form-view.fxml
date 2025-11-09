@@ -52,11 +52,19 @@
         <Button fx:id="btnGuardar" layoutX="76.0" layoutY="444.0" mnemonicParsing="false" onAction="#guardarPago" prefHeight="24.0" prefWidth="85.0" text="GUARDAR ✔" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="76.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
-            </font></Button>
+            </font>
+            <tooltip>
+                <Tooltip text="Guardar el pago" />
+            </tooltip>
+        </Button>
         <Button fx:id="btnCancelar" layoutX="182.0" layoutY="444.0" mnemonicParsing="false" onAction="#cerrarVentana" text="CANCELAR ✖" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="87.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
-            </font></Button>
+            </font>
+            <tooltip>
+                <Tooltip text="Cancelar y salir" />
+            </tooltip>
+        </Button>
         <Label layoutX="52.0" layoutY="402.0" prefHeight="17.0" prefWidth="63.0" text="Referencia:" AnchorPane.leftAnchor="55.0">
          <font>
             <Font name="System Bold" size="12.0" />

@@ -18,7 +18,11 @@
         <!-- Campo de búsqueda -->
         <Label layoutX="455.0" layoutY="121.0" text="Buscar por ID de reserva:" />
         <TextField fx:id="txtBusquedaReserva" layoutX="614.0" layoutY="117.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="117.0" />
-        <Button fx:id="btnBuscarVal" layoutX="771.0" layoutY="117.0" onAction="#buscarPorIDReserva" text="🔍" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0" />
+        <Button fx:id="btnBuscarVal" layoutX="771.0" layoutY="117.0" onAction="#buscarPorIDReserva" text="🔍" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0" >
+            <tooltip>
+                <Tooltip text="Buscar" />
+            </tooltip>
+        </Button>
 
         <!-- Tabla de valoraciones -->
         <TableView fx:id="tablaValoraciones" layoutX="29.0" layoutY="153.0" prefHeight="324.0" prefWidth="773.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="153.0">
@@ -37,7 +41,7 @@
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
             <tooltip>
-                <Tooltip text="Modificar una valoración" />
+                <Tooltip text="Actualizar valoraciones" />
             </tooltip>
          </Button>
 
@@ -46,7 +50,7 @@
                  <Font name="JetBrains Mono ExtraBold" size="11.0" />
              </font>
              <tooltip>
-                 <Tooltip text="Modificar una valoración" />
+                 <Tooltip text="Eliminar una valoración" />
              </tooltip>
          </Button>
 
@@ -64,7 +68,7 @@
                  <Font name="JetBrains Mono ExtraBold" size="11.0" />
              </font>
              <tooltip>
-                 <Tooltip text="Modificar una valoración" />
+                 <Tooltip text="Añadir una valoración" />
              </tooltip>
          </Button>
     </children>

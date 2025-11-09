@@ -9,11 +9,19 @@
       <Button layoutX="97.0" layoutY="584.0" mnemonicParsing="false" onAction="#aniadirNuevaReserva" prefHeight="24.0" prefWidth="85.0" text="GUARDAR ✔" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="95.0">
           <font>
               <Font name="JetBrains Mono ExtraBold" size="11.0" />
-          </font></Button>
+          </font>
+         <tooltip>
+            <Tooltip text="Guardar la reserva" />
+         </tooltip>
+      </Button>
       <Button fx:id="btnCancelar" layoutX="202.0" layoutY="584.0" mnemonicParsing="false" onAction="#dispose" text="CANCELAR ✖" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="95.0">
           <font>
               <Font name="JetBrains Mono ExtraBold" size="11.0" />
-          </font></Button>
+          </font>
+         <tooltip>
+            <Tooltip text="Cancelar y salir" />
+         </tooltip>
+      </Button>
       <ComboBox fx:id="idCliente" layoutX="158.0" layoutY="119.0" prefHeight="25.0" prefWidth="174.0" promptText="ID Cliente" AnchorPane.rightAnchor="50.0" />
       <DatePicker fx:id="fechaInicio" layoutX="158.0" layoutY="219.0" promptText="Fecha inicio" AnchorPane.rightAnchor="50.0" />
       <DatePicker fx:id="fechaFin" layoutX="158.0" layoutY="269.0" promptText="Fecha fin" AnchorPane.rightAnchor="50.0" />

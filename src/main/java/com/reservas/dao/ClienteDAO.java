@@ -2,15 +2,28 @@ package com.reservas.dao;
 
 import com.reservas.config.DataBaseConnection;
 import com.reservas.model.Cliente;
-import com.reservas.model.Reserva;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase que gestiona las operaciones CRUD sobre la tabla clientes.
- * La identificación de registros se realiza mediante consultas basadas en el campo {@code email}, que es único.
+ * <h1>Clase DAO para la gestión de clientes</h1>
+ *
+ * Esta clase gestiona todas las operaciones CRUD sobre la tabla <b>clientes</b> de la base de datos.
+ * <p>
+ * La identificación de registros se realiza mediante el campo único {@code email}, lo que garantiza la integridad de los datos.
+ * </p>
+ *
+ * <h2>Responsabilidades principales:</h2>
+ * <ul>
+ *     <li>Insertar nuevos clientes.</li>
+ *     <li>Leer todos los registros de clientes.</li>
+ *     <li>Actualizar datos de un cliente existente.</li>
+ *     <li>Eliminar registros por identificador.</li>
+ *     <li>Buscar clientes mediante su correo electrónico.</li>
+ *     <li>Obtener una lista de todos los ID de clientes existentes.</li>
+ * </ul>
  *
  * @author Jaime Pérez
  * @since 30/10/2025
@@ -21,7 +34,7 @@ public class ClienteDAO {
      * Inserta un cliente en la base de datos.
      *
      * @param cliente Objet {@link Cliente} con los datos a registrar.
-     * @return {@code true} si la operación ha sido exitosa, {@code false} si se produjo un error.
+     * @return {@code true} si la operación ha sido exitosa, {@code false} si se ha producido un error.
      */
     public boolean agregarCliente(Cliente cliente) {
 
@@ -55,7 +68,7 @@ public class ClienteDAO {
      * Obtiene todos los clientes registrados en la base de datos.
      *
      * @return Lista de objetos {@link Cliente} obtenidos desde la tabla {@code clientes}.
-     *         Si no existen registros, se devuelve una lista vacía.
+     * Si no existen registros, se devuelve una lista vacía.
      */
     public List<Cliente> leerClientes() {
 
@@ -220,7 +233,7 @@ public class ClienteDAO {
     /**
      * Busca en la base de datos e inserta los identificadores de los clientes dentro de un ArrayList.
      *
-     * @return lista de los id clientes
+     * @return ArrayList de enteros que representan los valores de {@code id_cliente}.
      */
     public ArrayList<Integer> getIDClientes(){
 

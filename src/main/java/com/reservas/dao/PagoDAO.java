@@ -1,6 +1,6 @@
 package com.reservas.dao;
 
-import com.reservas.config.*;
+//import com.reservas.config.*;
 import com.reservas.model.Pago;
 import javafx.scene.control.TextField;
 
@@ -9,6 +9,28 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>Clase DAO para la gestión de pagos</h1>
+ *
+ * Esta clase administra todas las operaciones de acceso a datos (CRUD) relacionadas con la entidad {@link Pago}.
+ * <p>
+ * Además de las funciones básicas, gestiona la integración con un <b>procedimiento almacenado</b>
+ * que registra automáticamente un historial de acciones (inserción, actualización o eliminación)
+ * en la tabla <b>historico_pagos</b>.
+ * </p>
+ *
+ * <h2>Responsabilidades principales:</h2>
+ * <ul>
+ *     <li>Insertar nuevos pagos.</li>
+ *     <li>Actualizar métodos o estados de pago.</li>
+ *     <li>Eliminar pagos con registro automático en histórico.</li>
+ *     <li>Obtener la lista de pagos existentes y los IDs de reservas.</li>
+ *     <li>Generar referencias de transacción incrementales (TXN001, TXN002...).</li>
+ * </ul>
+ *
+ * @author Daniel Hernando
+ * @since 03/11/2025
+ */
 public class PagoDAO {
 
     // Procedure creado para introducir datos en la tabla historico_pagos
@@ -44,54 +66,69 @@ public class PagoDAO {
         $$;
      */
 
-    // Conexión a la base de datos
     private Connection conexion;
 
-    // Listas en memoria para guardar los pagos y los IDs de reservas disponibles
     private List<Pago> PagosDisponibles = new ArrayList<>();
     private List<Integer> listaReservasID = new ArrayList<>();
 
-    // Constructor: recibe una conexión activa
+    /**
+     * Crea un nuevo objeto DAO con una conexión activa.
+     *
+     * @param conexion conexión establecida con la base de datos.
+     */
     public PagoDAO(Connection conexion) {
+
         this.conexion = conexion;
+
     }
 
     /**
-     * Carga todos los IDs de reservas existentes en la base de datos.
-     * Se usa para llenar el ComboBox de reservas en el formulario de pagos.
+     * Carga todos los identificadores de reservas disponibles en la base de datos.
+     * <p>Se utiliza para llenar el {@code ComboBox} en el formulario de creación de pagos.</p>
      */
     public void mostrarTodosIdReservas() {
+
         listaReservasID.clear();
+
         try {
+
             Statement stm = conexion.createStatement();
             String sql = "SELECT id_reserva FROM reservas";
             ResultSet result = stm.executeQuery(sql);
 
             while (result.next()) {
+
                 listaReservasID.add(result.getInt("id_reserva"));
+
             }
 
             stm.close();
+
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
     }
 
     /**
-     * Carga el monto total de una reserva específica y lo coloca en el TextField recibido.
-     * Esto se usa cuando el usuario selecciona una reserva para generar un pago.
+     * Carga el monto total asociado a una reserva específica.
+     *
+     * @param reservaId identificador de la reserva.
+     * @param txtMonto campo de texto donde se colocará el valor formateado.
      */
     public void cargarMontoDeReserva(int reservaId, TextField txtMonto) {
         try {
+
             String sql = "SELECT precio_total FROM reservas WHERE id_reserva = ?";
             PreparedStatement pstmt = conexion.prepareStatement(sql);
             pstmt.setInt(1, reservaId);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
+
                 double monto = rs.getDouble("precio_total");
                 txtMonto.setText(String.format("%.2f", monto));
-                txtMonto.setEditable(false); // Evita que el usuario modifique el monto
+                txtMonto.setEditable(false);
+
             }
 
         } catch (SQLException e) {
@@ -100,8 +137,14 @@ public class PagoDAO {
     }
 
     /**
-     * Inserta un nuevo pago en la base de datos.
-     * Devuelve true si la inserción fue exitosa.
+     * Inserta un nuevo registro de pago en la base de datos.
+     * <p>
+     * Tras insertar el pago, se registra la operación en el histórico de pagos
+     * mediante la llamada al procedimiento almacenado <b>registrar_historial_pago</b>.
+     * </p>
+     *
+     * @param pago objeto {@link Pago} con los datos a registrar.
+     * @return {@code true} si la inserción fue exitosa, {@code false} en caso contrario.
      */
     public boolean insertarPago(Pago pago) {
 
@@ -110,7 +153,6 @@ public class PagoDAO {
                 VALUES(?,?,?,?,?,?)
                 """;
 
-        // RETURN_GENERATED_KEYS sirve para recuperar el ID autoincremental del pago insertado
         try (PreparedStatement preparedStatement = conexion.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setInt(1, pago.getReserva());
@@ -122,11 +164,10 @@ public class PagoDAO {
 
             int filasAfectadas = preparedStatement.executeUpdate();
 
-
-
-            // Si se insertó correctamente, obtengo el ID generado
             if (filasAfectadas > 0) {
+
                 ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
                 if (generatedKeys.next()) {
 
                     int idGenerado = generatedKeys.getInt(1);
@@ -140,19 +181,28 @@ public class PagoDAO {
                             null,
                             pago.getMonto()
                     );
+
                 }
+
                 return true;
             }
+
             return false;
+
         } catch (SQLException e) {
+
             e.printStackTrace();
             return false;
+
         }
     }
 
     /**
-     * Actualiza los datos de un pago existente.
-     * Solo permite modificar el método, estado, los demas campos vienen de otras tablas, o son innmutables
+     * Actualiza el método o estado de un pago existente.
+     * <p>Los demás campos (reserva, monto, fecha) no son modificables.</p>
+     *
+     * @param pago objeto {@link Pago} con los nuevos datos a aplicar.
+     * @return {@code true} si la actualización fue exitosa.
      */
     public boolean actualizarPago(Pago pago) {
 
@@ -166,13 +216,17 @@ public class PagoDAO {
         """;
 
         try (PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
+
             preparedStatement.setString(1, pago.getMetodoPago().name().toLowerCase());
             preparedStatement.setString(2, pago.getEstadoPago().name().toLowerCase());
             preparedStatement.setInt(3, pago.getId());
 
             int filasAfectadas = preparedStatement.executeUpdate();
+
             if (filasAfectadas>0){
+
                 registrarEnHistorico(
+
                         pago.getId(),
                         "UPDATE",
                         pagoAnterior.getEstadoPago().name().toLowerCase(),
@@ -180,21 +234,26 @@ public class PagoDAO {
                         pagoAnterior.getMonto() != 0 ?
                                 pagoAnterior.getMonto() : null,
                          pago.getMonto()
+
                 );
             }
+
             return filasAfectadas > 0;
 
         } catch (SQLException e) {
+
             e.printStackTrace();
             return false;
+
         }
     }
 
     /**
-     * Obtiene todos los pagos registrados en la base de datos.
-     * Carga los resultados en la lista PagosDisponibles.
+     * Obtiene todos los registros de pagos almacenados en la base de datos.
+     * Los resultados se guardan internamente en {@code pagosDisponibles}.
      */
     public void mostrarTodosPagos() {
+
         PagosDisponibles.clear();
 
         try (Statement statement = conexion.createStatement()) {
@@ -203,6 +262,7 @@ public class PagoDAO {
             ResultSet result = statement.executeQuery(sql);
 
             while (result.next()) {
+
                 Pago pago = new Pago();
 
                 pago.setId(result.getInt("id_pago"));
@@ -219,6 +279,7 @@ public class PagoDAO {
                 pago.setReferenciaTransaccion(result.getString("referencia_transaccion"));
 
                 PagosDisponibles.add(pago);
+
             }
 
         } catch (SQLException ex) {
@@ -227,8 +288,10 @@ public class PagoDAO {
     }
 
     /**
-     * Elimina un pago de la base de datos por su ID.
-     * Devuelve true si el pago fue eliminado correctamente.
+     * Elimina un pago de la base de datos y registra la operación en el histórico.
+     *
+     * @param pago objeto {@link Pago} que se desea eliminar.
+     * @return {@code true} si la eliminación fue exitosa.
      */
     public boolean borrarPago(Pago pago) {
 
@@ -250,60 +313,70 @@ public class PagoDAO {
                     null
             );
 
-
             String sql = "DELETE FROM pagos WHERE id_pago = ?";
 
             try (PreparedStatement preparedStatement = conexion.prepareStatement(sql)) {
+
                 preparedStatement.setInt(1, pago.getId());
                 int filasAfectadas = preparedStatement.executeUpdate();
                 return filasAfectadas > 0;
+
             }
 
         } catch (SQLException e) {
+
             e.printStackTrace();
             return false;
+
         }
     }
 
     /**
      * Genera una nueva referencia de transacción incremental.
-     * Ejemplo: si la última fue TXN003, devuelve TXN004.
+     *
+     * @return Cadena alfanumérica con el formato {@code TXN###}.
      */
     public String generarSiguienteReferencia() {
+
         try {
+
             String sql = """
             SELECT referencia_transaccion 
             FROM pagos 
             ORDER BY id_pago DESC LIMIT 1
             """;
+
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
+
                 String ultimaReferencia = rs.getString("referencia_transaccion");
 
-                // Elimino el prefijo "TXN" y obtengo el número
                 String numeroStr = ultimaReferencia.replace("TXN", "");
                 int numero = Integer.parseInt(numeroStr);
 
                 numero++;
 
-                return String.format("TXN%03d", numero); //  formateo con ceros a la izquierda
+                return String.format("TXN%03d", numero);
+
             }
+
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
         }
 
-        // Si no hay registros aún, empieza en TXN001
         return "TXN001";
     }
 
     /**
-     * Busca un pago por su ID y devuelve el objeto completo.
-     * @param idPago ID del pago a buscar
-     * @return El objeto Pago si existe, null si no se encuentra
+     * Busca y devuelve un objeto {@link Pago} según su identificador único.
+     *
+     * @param idPago identificador del pago.
+     * @return el objeto encontrado, o {@code null} si no existe.
      */
     public Pago buscarPagoPorId(int idPago) {
+
         String sql = """
                     SELECT * 
                     FROM pagos 
@@ -311,10 +384,12 @@ public class PagoDAO {
                     """;
 
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
             ps.setInt(1, idPago);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+
                 Pago pago = new Pago();
                 pago.setId(rs.getInt("id_pago"));
                 pago.setReserva(rs.getInt("id_reserva"));
@@ -329,25 +404,29 @@ public class PagoDAO {
 
                 pago.setReferenciaTransaccion(rs.getString("referencia_transaccion"));
                 return pago;
+
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
     /**
-     * Registra un cambio en el histórico de pagos llamando al procedure de la BD
+     * Llama al procedimiento almacenado {@code registrar_historial_pago} para registrar cambios sobre un pago.
+     *
+     * @param accion
+     * @param estadoAnterior
+     * @param idPago
+     * @param estadoNuevo
+     * @param montoAnterior
+     * @param montoNuevo
      */
-    private void registrarEnHistorico(
-            int idPago,
-            String accion,
-            String estadoAnterior,
-            String estadoNuevo,
-            Double montoAnterior,
-            Double montoNuevo
-    ) {
+    private void registrarEnHistorico(int idPago, String accion, String estadoAnterior, String estadoNuevo,
+            Double montoAnterior, Double montoNuevo) {
+
         String sql = "CALL registrar_historial_pago(?, ?, ?, ?, ?, ?)";
 
         try (CallableStatement callableStatement = conexion.prepareCall(sql)) {
@@ -355,27 +434,30 @@ public class PagoDAO {
             callableStatement.setInt(1, idPago);
             callableStatement.setString(2, accion);
 
-            // Los parámetros opcionales pueden ser NULL
             if (estadoAnterior != null) {
                 callableStatement.setString(3, estadoAnterior);
+
             } else {
                 callableStatement.setNull(3, Types.VARCHAR);
             }
 
             if (estadoNuevo != null) {
                 callableStatement.setString(4, estadoNuevo);
+
             } else {
                 callableStatement.setNull(4, Types.VARCHAR);
             }
 
             if (montoAnterior != null) {
                 callableStatement.setBigDecimal(5, BigDecimal.valueOf(montoAnterior));
+
             } else {
                 callableStatement.setNull(5, Types.NUMERIC);
             }
 
             if (montoNuevo != null) {
                 callableStatement.setBigDecimal(6, BigDecimal.valueOf(montoNuevo));
+
             } else {
                 callableStatement.setNull(6, Types.NUMERIC);
             }
@@ -383,16 +465,19 @@ public class PagoDAO {
             callableStatement.execute();
 
         } catch (SQLException e) {
+
             System.err.println("Error al registrar en histórico: " + e.getMessage());
             e.printStackTrace();
+
         }
     }
 
-    // Getters
+    /** @return lista de IDs de reservas disponibles. */
     public List<Integer> getListaReservasID() {
         return listaReservasID;
     }
 
+    /** @return lista de pagos cargados desde la base de datos. */
     public List<Pago> getPagosDisponibles() {
         return PagosDisponibles;
     }

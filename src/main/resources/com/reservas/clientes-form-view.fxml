@@ -47,10 +47,18 @@
       <Button layoutX="70.0" layoutY="370.0" onAction="#guardarCliente" text="GUARDAR ✔" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="70.0">
           <font>
               <Font name="JetBrains Mono ExtraBold" size="11.0" />
-          </font></Button>
+          </font>
+          <tooltip>
+              <Tooltip text="Guardar el cliente" />
+          </tooltip>
+      </Button>
       <Button layoutX="193.0" layoutY="370.0" onAction="#cerrarFormulario" text="CANCELAR ✖" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="64.0">
           <font>
               <Font name="JetBrains Mono ExtraBold" size="11.0" />
-          </font></Button>
+          </font>
+          <tooltip>
+              <Tooltip text="Cancelar y salir" />
+          </tooltip>
+      </Button>
    </children>
 </AnchorPane>

@@ -74,12 +74,18 @@
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
+            <tooltip>
+                <Tooltip text="Guardar la valoración" />
+            </tooltip>
         </Button>
 
         <Button layoutX="213.0" layoutY="561.0" onAction="#cancelar" text="CANCELAR ✖" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="84.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
+            <tooltip>
+                <Tooltip text="Cancelar y salir" />
+            </tooltip>
         </Button>
 
     </children>
