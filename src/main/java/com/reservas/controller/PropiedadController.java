@@ -51,12 +51,6 @@ public class PropiedadController {
     @FXML private TableColumn<Propiedad, String> colDescripcion;
     @FXML private TableColumn<Propiedad, String> colEstado;
 
-    @FXML private Button btnAgregar;
-    @FXML private Button btnModificar;
-    @FXML private Button btnEliminar;
-    @FXML private Button btnActualizar;
-    @FXML private Button btnBuscar;
-
     @FXML private TextField txtBusquedaId;
     @FXML private Label lblTotalPropiedades;
 
