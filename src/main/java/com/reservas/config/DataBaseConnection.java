@@ -1,17 +1,20 @@
 package com.reservas.config;
 
+import com.reservas.dao.ClienteDAO;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
+ * <h1>Configuración de la conexión a la base de datos.</h1>
+ *
  * Clase Singleton para la gestión de la conexión a la base de datos.
  * Garantiza que solo exista una única instancia activa de conexión durante el ciclo de vida de la aplicación.
  *
  * @author Daniel Hernando
  * @author Jaime Pérez
- * @since 30/10/2025
+ * @since 31/10/2025
  */
 public class DataBaseConnection {
 
@@ -21,6 +24,9 @@ public class DataBaseConnection {
     private final String user;
     private final String password;
 
+    /**
+     * Conexión a la base de datos en Supabase
+     */
     private DataBaseConnection() {
 
         try {
@@ -81,7 +87,6 @@ public class DataBaseConnection {
             if (connection == null || connection.isClosed()) {
 
                 connection = DriverManager.getConnection(url, user, password);
-
                 System.out.println(" Conexión establecida exitosamente");
 
             }

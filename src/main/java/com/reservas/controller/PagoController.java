@@ -22,7 +22,7 @@ import static com.reservas.controller.MainController.mostrarAlerta;
 
 
 /**
- * Controlador de la vista de gestión de pagos.
+ * <h1>Controlador de la vista de gestión de pagos.</h1>
  * <p>
  * Gestiona la interacción entre la interfaz JavaFX y la capa DAO para realizar operaciones
  * de lectura, búsqueda, creación, edición y eliminación de registros de pagos.
