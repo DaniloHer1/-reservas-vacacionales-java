@@ -36,21 +36,33 @@ public class ReservaControler {
 
     private ReservaDAO reservaDAO;
 
-    @FXML private TableView<Reserva> tableView;
+    @FXML
+    private TableView<Reserva> tableView;
 
-    @FXML private TextField txtFieldBuscar;
+    @FXML
+    private TextField txtFieldBuscar;
 
-    @FXML private TableColumn<Reserva, Integer> colID;
-    @FXML private TableColumn<Reserva, Integer> colID_cliente;
-    @FXML private TableColumn<Reserva, Integer> colID_prop;
-    @FXML private TableColumn<Reserva, String> colFechaIni;
-    @FXML private TableColumn<Reserva, String> colFechaFin;
-    @FXML private TableColumn<Reserva, Integer> colNumPersonas;
-    @FXML private TableColumn<Reserva, Reserva.EstadoReserva> colEstado;
-    @FXML private TableColumn<Reserva, Double> colPrecio;
-    @FXML private TableColumn<Reserva, String> colMotivo;
+    @FXML
+    private TableColumn<Reserva, Integer> colID;
+    @FXML
+    private TableColumn<Reserva, Integer> colID_cliente;
+    @FXML
+    private TableColumn<Reserva, Integer> colID_prop;
+    @FXML
+    private TableColumn<Reserva, String> colFechaIni;
+    @FXML
+    private TableColumn<Reserva, String> colFechaFin;
+    @FXML
+    private TableColumn<Reserva, Integer> colNumPersonas;
+    @FXML
+    private TableColumn<Reserva, Reserva.EstadoReserva> colEstado;
+    @FXML
+    private TableColumn<Reserva, Double> colPrecio;
+    @FXML
+    private TableColumn<Reserva, String> colMotivo;
 
-    @FXML private Label totalLabel;
+    @FXML
+    private Label totalLabel;
 
     /**
      * Inicializa la vista de reservas configurando las columnas,
@@ -196,31 +208,30 @@ public class ReservaControler {
         if (texto == null || texto.isBlank()) {
 
             initialize();
+            return;
+        }
+        Reserva r;
+        try {
+
+            r = reservaDAO.buscarReservaID(Integer.parseInt(texto));
+
+        } catch (NumberFormatException e) {
+
+            MainController.mostrarAlerta("Error", "Por favor, introduce un número", Alert.AlertType.ERROR);
+            txtFieldBuscar.clear();
+            return;
+        }
+
+        if (r == null) {
+
+            MainController.mostrarAlerta("Error", "No se encontaron reservas con ese ID.", Alert.AlertType.ERROR);
+            txtFieldBuscar.clear();
 
         } else {
-            Reserva r = new Reserva();
 
-            try {
+            ObservableList<Reserva> observableList = FXCollections.observableArrayList(r);
+            tableView.setItems(observableList);
 
-                r = reservaDAO.buscarReservaID(Integer.parseInt(texto));
-
-            } catch (NumberFormatException e) {
-
-                MainController.mostrarAlerta("Error", "Por favor, introduce un número", Alert.AlertType.ERROR);
-                txtFieldBuscar.clear();
-            }
-
-            if (r == null) {
-
-                MainController.mostrarAlerta("Error", "No se encontaron reservas con ese ID.", Alert.AlertType.ERROR);
-                txtFieldBuscar.clear();
-
-            } else {
-
-                ObservableList<Reserva> observableList = FXCollections.observableArrayList(r);
-                tableView.setItems(observableList);
-
-            }
         }
     }
 }
