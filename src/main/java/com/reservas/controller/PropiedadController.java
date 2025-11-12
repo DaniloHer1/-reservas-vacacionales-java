@@ -11,11 +11,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import static com.reservas.controller.MainController.mostrarAlerta;
 
@@ -217,8 +219,9 @@ public class PropiedadController {
             controlador.setPropiedadController(this);
 
             Stage stage = new Stage();
-            stage.setTitle(propiedad == null ? "AÑADIR PROPIEDAD" : "MODIFICAR PROPIEDAD");
             stage.setScene(new Scene(root));
+            stage.setTitle("Gestión Propiedades");
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
             stage.show();
 
         } catch (IOException e) {

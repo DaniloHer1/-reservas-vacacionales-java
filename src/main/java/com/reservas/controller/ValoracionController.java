@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
@@ -20,6 +21,7 @@ import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <h1>Controlador de Valoraciones</h1>
@@ -209,6 +211,8 @@ public class ValoracionController {
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setTitle("Gestión Valoraciones");
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
             stage.showAndWait();
 
             cargarValoraciones();

@@ -45,7 +45,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load());
 
         stage.setTitle("Gestión de Reservas");
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icono.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
         stage.setScene(scene);
         stage.show();
 

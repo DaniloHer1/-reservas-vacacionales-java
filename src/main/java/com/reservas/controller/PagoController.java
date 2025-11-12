@@ -12,11 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Objects;
 
 import static com.reservas.controller.MainController.mostrarAlerta;
 
@@ -120,8 +122,9 @@ public class PagoController {
             Scene scene = new Scene(fxmlLoader.load());
 
             Stage stage = new Stage();
-            stage.setTitle("AÑADIR PAGO");
             stage.setScene(scene);
+            stage.setTitle("Gestión Pagos");
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
             stage.show();
 
         } catch (IOException e) {
@@ -163,8 +166,9 @@ public class PagoController {
             pagoFormController.cargarPagoParaEditar(pago, null);
 
             Stage stage = new Stage();
-            stage.setTitle("EDITAR PAGO");
             stage.setScene(scene);
+            stage.setTitle("Gestión Pagos");
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
             stage.show();
 
             // Opcional: recargar la tabla cuando se cierre la ventana

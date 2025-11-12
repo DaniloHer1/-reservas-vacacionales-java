@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * <h1>Controlador principal del sistema de reservas</h1>
@@ -84,6 +86,7 @@ public class MainController {
 
             scene = new Scene(fxmlLoader.load());
 
+
         } catch (IOException e) {
 
             throw new RuntimeException(e);
@@ -92,6 +95,7 @@ public class MainController {
 
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.getIcons().add(new Image(Objects.requireNonNull(MainController.class.getResourceAsStream("/images/IconoPrincipal.png"))));
         stage.setTitle(titulo);
         stage.show();
 

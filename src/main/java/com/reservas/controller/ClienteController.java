@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <h1>Controlador de Clientes</h1>
@@ -173,8 +175,9 @@ public class ClienteController {
             controller.setTitulo("Nuevo Cliente");
 
             Stage stage = new Stage();
-            stage.setTitle("Nuevo Cliente");
             stage.setScene(new Scene(root));
+            stage.setTitle("Gestión Clientes");
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
             stage.showAndWait();
 
             cargarClientes();
@@ -217,7 +220,8 @@ public class ClienteController {
             controller.cargarCliente(clienteSeleccionado);
 
             Stage stage = new Stage();
-            stage.setTitle("Modificar Cliente");
+            stage.setTitle("Gestión Clientes");
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
