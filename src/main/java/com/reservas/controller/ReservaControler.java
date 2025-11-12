@@ -11,9 +11,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * <h1>Controlador de Reservas</h1>
@@ -126,7 +128,8 @@ public class ReservaControler {
 
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("AÑADIR RESERVA");
+        stage.setTitle("Gestión Reservas");
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
         stage.show();
 
     }
@@ -188,7 +191,8 @@ public class ReservaControler {
 
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("EDITAR RESERVA");
+            stage.setTitle("Gestión Reservas");
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/IconoPrincipal.png"))));
             stage.show();
         }
     }
