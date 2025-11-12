@@ -1,12 +1,15 @@
 package com.reservas.controller;
 
 import com.reservas.Main;
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -30,6 +33,8 @@ import java.util.Objects;
  * @since 31/10/2025
  */
 public class MainController {
+
+    @FXML private ImageView logoAnimado;
 
     /**
      * Abre la vista de gestión de clientes.
@@ -71,6 +76,7 @@ public class MainController {
         cargarVista("valoraciones-view.fxml", "Valoraciones");
     }
 
+
     /**
      * Carga una vista FXML específica y la muestra en una nueva ventana.
      *
@@ -99,6 +105,32 @@ public class MainController {
         stage.setTitle(titulo);
         stage.show();
 
+    }
+
+    /**
+     * Carga la imagen en la pantalla inicial
+     */
+    @FXML
+    private void cargarLogo() {
+        try {
+
+            Image logo = new Image(getClass().getResourceAsStream("/images/iconoInicio.png"));
+            logoAnimado.setImage(logo);
+
+            RotateTransition rotacion = new RotateTransition(Duration.seconds(4), logoAnimado);
+            rotacion.setByAngle(360);
+            rotacion.setCycleCount(RotateTransition.INDEFINITE);
+            rotacion.setAutoReverse(false);
+            rotacion.play();
+
+        } catch (Exception e) {
+            System.err.println("Error al cargar el logo: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void initialize() {
+        cargarLogo();
     }
 
     /**
