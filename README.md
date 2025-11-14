@@ -1,4 +1,4 @@
-# 🏨 Sistema de Gestión de Reservas
+# 🏚️ Sistema de Gestión de Reservas 🏚️
 
 Sistema completo de gestión de reservas hoteleras desarrollado en Java con interfaz gráfica JavaFX y base de datos PostgreSQL en Supabase.
 
