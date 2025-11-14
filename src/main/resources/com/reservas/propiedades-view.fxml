@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="610.0" prefWidth="918.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservas.controller.PropiedadController">
 
     <children>
-        <TableView fx:id="tblPropiedades" layoutX="49.0" layoutY="167.0" prefHeight="348.0" prefWidth="820.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="49.0">
+        <TableView fx:id="tblPropiedades" layoutX="31.0" layoutY="157.0" prefHeight="375.0" prefWidth="860.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="27.0">
             <columns>
                 <TableColumn fx:id="colIdPropiedad" prefWidth="60.0" style="-fx-text-fill: #366387;" text="ID" />
                 <TableColumn fx:id="colNombre" prefWidth="110.0" style="-fx-text-fill: #366387;" text="Nombre" />
@@ -38,7 +38,7 @@
             </effect>
         </TableView>
 
-        <Button fx:id="btnAgregar" layoutX="49.0" layoutY="550.0" onAction="#agregarPropiedad" prefHeight="24.0" prefWidth="91.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="49.0">
+        <Button fx:id="btnAgregar" layoutX="31.0" layoutY="550.0" onAction="#agregarPropiedad" prefHeight="24.0" prefWidth="91.0" text="AÑADIR ➕" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="31.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
@@ -47,7 +47,7 @@
             </tooltip>
         </Button>
 
-        <Button fx:id="btnModificar" layoutX="162.0" layoutY="550.0" onAction="#modificarPropiedad" prefHeight="24.0" prefWidth="105.0" text="MODIFICAR ✔" AnchorPane.bottomAnchor="36.0">
+        <Button fx:id="btnModificar" layoutX="139.0" layoutY="550.0" onAction="#modificarPropiedad" prefHeight="24.0" prefWidth="105.0" text="MODIFICAR ✔" AnchorPane.bottomAnchor="36.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
@@ -56,7 +56,7 @@
             </tooltip>
         </Button>
 
-        <Button fx:id="btnEliminar" layoutX="291.0" layoutY="550.0" onAction="#eliminarPropiedad" prefHeight="24.0" prefWidth="105.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="36.0">
+        <Button fx:id="btnEliminar" layoutX="263.0" layoutY="550.0" onAction="#eliminarPropiedad" prefHeight="24.0" prefWidth="105.0" text="ELIMINAR ✖" AnchorPane.bottomAnchor="36.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
@@ -65,7 +65,7 @@
             </tooltip>
         </Button>
 
-        <Button fx:id="btnActualizar" layoutX="750.0" layoutY="550.0" onAction="#actualizarTabla" prefHeight="24.0" prefWidth="119.0" text="ACTUALIZAR 🔁" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="49.0">
+        <Button fx:id="btnActualizar" layoutX="772.0" layoutY="550.0" onAction="#actualizarTabla" prefHeight="24.0" prefWidth="119.0" text="ACTUALIZAR 🔁" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="27.0">
             <tooltip>
                 <Tooltip text="Recargar propiedades" />
             </tooltip>
@@ -74,9 +74,9 @@
             </font>
         </Button>
 
-        <TextField fx:id="txtBusquedaId" layoutX="670.0" layoutY="122.0" AnchorPane.topAnchor="122.0" />
+        <TextField fx:id="txtBusquedaId" layoutX="691.0" layoutY="122.0" AnchorPane.topAnchor="122.0" />
 
-        <Button fx:id="btnBuscar" layoutX="829.0" layoutY="123.0" onAction="#buscarPorID" prefHeight="24.0" prefWidth="40.0" text="🔍" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="123.0">
+        <Button fx:id="btnBuscar" layoutX="851.0" layoutY="123.0" onAction="#buscarPorID" prefHeight="24.0" prefWidth="40.0" text="🔍" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="123.0">
             <font>
                 <Font name="JetBrains Mono ExtraBold" size="11.0" />
             </font>
@@ -85,7 +85,7 @@
             </tooltip>
         </Button>
 
-        <Label layoutX="545.0" layoutY="125.0" prefHeight="19.0" prefWidth="105.0" text="Búsqueda por ID:" AnchorPane.topAnchor="125.0">
+        <Label layoutX="575.0" layoutY="125.0" prefHeight="19.0" prefWidth="105.0" text="Búsqueda por ID:" AnchorPane.topAnchor="125.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -97,7 +97,7 @@
             </font>
         </Label>
 
-        <Label fx:id="lblTotalPropiedades" layoutX="49.0" layoutY="125.0" prefHeight="19.0" prefWidth="180.0" text="Total Propiedades:" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="125.0">
+        <Label fx:id="lblTotalPropiedades" layoutX="32.0" layoutY="125.0" prefHeight="19.0" prefWidth="180.0" text="Total Propiedades:" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="125.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

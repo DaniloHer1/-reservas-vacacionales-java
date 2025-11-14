@@ -13,7 +13,7 @@ import java.util.List;
  * Esta clase administra todas las operaciones de acceso a datos (CRUD) relacionadas con la entidad {@link Propiedad}.
  * <p>
  * Permite registrar, modificar, eliminar y consultar propiedades en la base de datos. Las búsquedas
- * pueden realizarse tanto por <b>nombre</b> (considerado único) como por <b>ID</b>.
+ * pueden darse por <b>ID</b>.
  * </p>
  *
  * <h2>Responsabilidades principales:</h2>

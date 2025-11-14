@@ -10,8 +10,10 @@ import java.util.List;
  * <h1>Clase DAO para la gestión de valoraciones</h1>
  *
  * Esta clase se encarga de manejar las operaciones CRUD sobre la tabla {@code valoraciones}.
+ * Utiliza el modelo {@link Valoracion}
  * <p>
- * Utiliza el modelo {@link Valoracion} y se comunica con la base de datos mediante JDBC.
+ * Permite registrar, modificar, eliminar y consultar valoraciones, además de obtener información específica
+ * mediante identificadores.
  * </p>
  *
  * <h2>Responsabilidades principales:</h2>

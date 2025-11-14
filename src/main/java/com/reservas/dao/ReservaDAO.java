@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Esta clase se encarga de manejar las operaciones de acceso a datos (CRUD) sobre la tabla {@code reservas}.
  * <p>
  * Permite registrar, modificar, eliminar y consultar reservas, además de obtener información específica
- * mediante identificadores. Utiliza {@link DataBaseConnection} para establecer la conexión con la base de datos.
+ * mediante identificadores.
  * </p>
  *
  * <h2>Responsabilidades principales:</h2>

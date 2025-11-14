@@ -10,7 +10,9 @@ import java.sql.SQLException;
  * <h1>Configuración de la conexión a la base de datos.</h1>
  *
  * Clase Singleton para la gestión de la conexión a la base de datos.
+ * <p>
  * Garantiza que solo exista una única instancia activa de conexión durante el ciclo de vida de la aplicación.
+ * </p>
  *
  * @author Daniel Hernando
  * @author Jaime Pérez

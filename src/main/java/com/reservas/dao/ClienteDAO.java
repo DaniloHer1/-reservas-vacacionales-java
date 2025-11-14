@@ -12,7 +12,8 @@ import java.util.List;
  *
  * Esta clase gestiona todas las operaciones CRUD sobre la tabla <b>clientes</b> de la base de datos.
  * <p>
- * La identificación de registros se realiza mediante el campo único {@code email}, lo que garantiza la integridad de los datos.
+ * La identificación de registros se realiza mediante el campo único {@code email}, lo que garantiza
+ * la integridad de los datos.
  * </p>
  *
  * <h2>Responsabilidades principales:</h2>

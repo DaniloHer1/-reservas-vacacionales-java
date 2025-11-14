@@ -1,6 +1,7 @@
 package com.reservas.dao;
 
 //import com.reservas.config.*;
+import com.reservas.config.DataBaseConnection;
 import com.reservas.model.Pago;
 import javafx.scene.control.TextField;
 
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * Esta clase administra todas las operaciones de acceso a datos (CRUD) relacionadas con la entidad {@link Pago}.
  * <p>
- * Además de las funciones básicas, gestiona la integración con un <b>procedimiento almacenado</b>
+ * Además de las funciones básicas, gestiona la integración con un procedimiento almacenado
  * que registra automáticamente un historial de acciones (inserción, actualización o eliminación)
  * en la tabla <b>historico_pagos</b>.
  * </p>
