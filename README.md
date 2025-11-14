@@ -118,17 +118,6 @@ mvn javafx:run
 **Fecha de inicio**: Octubre 2025  
 **Última actualización**: Noviembre 2025
 
-## 📄 Licencia
-
-Este proyecto fue desarrollado con fines educativos.
-
-## 🤝 Contribuciones
-
-Este es un proyecto académico. Para sugerencias o mejoras, contactar con los autores.
-
-## 📞 Soporte
-
-Para problemas técnicos o consultas sobre el proyecto, contactar con el equipo de desarrollo.
 
 ---
 
