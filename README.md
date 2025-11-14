@@ -37,12 +37,14 @@ src/main/java/com/reservas/
 │   ├── Cliente.java              # Modelo de cliente
 │   ├── Propiedad.java            # Modelo de propiedad
 │   ├── Reserva.java              # Modelo de reserva
-│   └── Pago.java                 # Modelo de pago
+│   ├── Pago.java                 # Modelo de pagos
+│   └── Valoracion.java           # Modelo de valoración
 ├── dao/
 │   ├── ClienteDAO.java           # Operaciones CRUD de clientes
 │   ├── PropiedadDAO.java         # Operaciones CRUD de propiedades
 │   ├── ReservaDAO.java           # Operaciones CRUD de reservas
-│   └── PagoDAO.java              # Operaciones CRUD de pagos
+│   ├── PagoDAO.java              # Operaciones CRUD de pagos
+│   └── ValoracionDAO.java        # Operaciones CRUD de valoraciones
 └── controller/
     └── [Controladores FXML]
 ```
@@ -90,6 +92,7 @@ mvn javafx:run
 - **propiedades**: Propiedades disponibles (nombre, dirección, precio/noche, capacidad)
 - **reservas**: Reservas realizadas (cliente, propiedad, fechas, estado, precio)
 - **pagos**: Transacciones de pago (reserva, monto, método, estado)
+- **valoraciones**: Valoraciones registradas (reserva, puntuación, comentario, fecha, anonimato)
 - **historico_pagos**: Registro automático de cambios en pagos
 
 
@@ -107,10 +110,11 @@ mvn javafx:run
 
 ## 👥 Autores
 
-- **Daniel Hernando** - Aplicación principal, modelo Pago, DAO de Pagos
-- **Jaime Pérez** - Configuración BD, DAO de Clientes
-- **Pablo Armas** - DAO de Reservas
-- **Diego Regueira** - DAO de Propiedades
+- **Daniel Hernando** - DAO de Pagos, aplicación principal y conexión BD
+- **Jaime Pérez** - DAO de Clientes, configuración y conexión con BD
+- **Pablo Armas** - DAO de Reservas, configuración BD 
+- **Diego Regueira** - DAO de Propiedades, desarrollo de la Base de Datos
+- **Sofía Abid** - DAO de Valoraciones, diseño de aplicación
 
 ## 📅 Versión
 
@@ -119,6 +123,6 @@ mvn javafx:run
 **Última actualización**: Noviembre 2025
 
 
----
+----------
 
 **Nota**: Asegúrate de configurar correctamente las variables de entorno en el archivo `.env` antes de ejecutar la aplicación.
