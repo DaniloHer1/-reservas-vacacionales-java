@@ -113,14 +113,14 @@ mvn javafx:run
 - **Daniel Hernando** - DAO de Pagos, aplicación principal y conexión BD
 - **Jaime Pérez** - DAO de Clientes, configuración y conexión con BD
 - **Pablo Armas** - DAO de Reservas, configuración BD 
-- **Diego Regueira** - DAO de Propiedades, desarrollo de la Base de Datos
+- **Diego Regueira** - DAO de Propiedades, desarrollo de la BD
 - **Sofía Abid** - DAO de Valoraciones, diseño de aplicación
 
 ## 📅 Versión
 
 **Versión actual**: 1.0  
-**Fecha de inicio**: Octubre 2025  
-**Última actualización**: Noviembre 2025
+**Fecha de inicio**: 27 Octubre 2025  
+**Última actualización**: 17 Noviembre 2025
 
 
 ----------
