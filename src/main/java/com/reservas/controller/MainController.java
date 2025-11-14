@@ -118,9 +118,9 @@ public class MainController {
             logoAnimado.setImage(logo);
 
             RotateTransition rotacion = new RotateTransition(Duration.seconds(4), logoAnimado);
-            rotacion.setByAngle(360);
+            rotacion.setByAngle(30);
             rotacion.setCycleCount(RotateTransition.INDEFINITE);
-            rotacion.setAutoReverse(false);
+            rotacion.setAutoReverse(true);
             rotacion.play();
 
         } catch (Exception e) {
