@@ -6,6 +6,9 @@ Sistema completo de gestión de reservas hoteleras desarrollado en Java con inte
 
 Aplicación de escritorio que permite gestionar de forma integral reservas, propiedades, clientes y pagos para un negocio de alojamiento. El sistema cuenta con una arquitectura MVC bien definida y una interfaz gráfica intuitiva.
 
+## 🎸 Apartado Para Daniel
+- **Link de GOOGLE DIRVE**: https://drive.google.com/drive/folders/1V_ev8sfWjTb9AjUAd_GR49BOD7cBRqyA?usp=sharing  
+
 ## ✨ Características principales
 
 - **Gestión de Clientes**: Registro, actualización y eliminación de clientes
