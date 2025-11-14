@@ -1,5 +1,135 @@
-# Gestion de Reservas Vacacionales
-- IMPORTANTE el .env con la siguiente estructura:
-- SUPABASE_DB_URL=jdbc:postgresql://aws-1-eu-west-1.pooler.supabase.com:5432/postgres?sslmode=require
-- SUPABASE_DB_USER=postgres.astlzexfiuugcyyiruyp
-- SUPABASE_DB_PASSWORD=
+# 🏨 Sistema de Gestión de Reservas
+
+Sistema completo de gestión de reservas hoteleras desarrollado en Java con interfaz gráfica JavaFX y base de datos PostgreSQL en Supabase.
+
+## 📋 Descripción
+
+Aplicación de escritorio que permite gestionar de forma integral reservas, propiedades, clientes y pagos para un negocio de alojamiento. El sistema cuenta con una arquitectura MVC bien definida y una interfaz gráfica intuitiva.
+
+## ✨ Características principales
+
+- **Gestión de Clientes**: Registro, actualización y eliminación de clientes
+- **Gestión de Propiedades**: Administración completa de propiedades disponibles para reserva
+- **Sistema de Reservas**: Control de reservas con fechas, número de personas y estados
+- **Gestión de Pagos**: Registro de transacciones con múltiples métodos de pago
+- **Historial de Pagos**: Registro automático mediante procedimientos almacenados
+- **Interfaz Gráfica**: Diseño intuitivo desarrollado con JavaFX y FXML
+- **Conexión a Base de Datos**: Integración con PostgreSQL mediante Supabase
+
+## 🛠️ Tecnologías utilizadas
+
+- **Java 17+**
+- **JavaFX** - Interfaz gráfica
+- **PostgreSQL** - Base de datos
+- **Supabase** - Hosting de base de datos
+- **dotenv-java** - Gestión de variables de entorno
+- **JDBC** - Conectividad con base de datos
+- **Maven** - Gestión de dependencias
+
+## 📦 Estructura del proyecto
+
+```
+src/main/java/com/reservas/
+├── Main.java                     # Punto de entrada de la aplicación
+├── config/
+│   └── DataBaseConnection.java   # Configuración Singleton de conexión BD
+├── model/
+│   ├── Cliente.java              # Modelo de cliente
+│   ├── Propiedad.java            # Modelo de propiedad
+│   ├── Reserva.java              # Modelo de reserva
+│   └── Pago.java                 # Modelo de pago
+├── dao/
+│   ├── ClienteDAO.java           # Operaciones CRUD de clientes
+│   ├── PropiedadDAO.java         # Operaciones CRUD de propiedades
+│   ├── ReservaDAO.java           # Operaciones CRUD de reservas
+│   └── PagoDAO.java              # Operaciones CRUD de pagos
+└── controller/
+    └── [Controladores FXML]
+```
+
+## 🚀 Instalación
+
+### Prerrequisitos
+
+- Java JDK 17 o superior
+- Maven
+- Cuenta en Supabase (o servidor PostgreSQL)
+
+### Pasos de instalación
+
+1. **Clonar el repositorio**
+```bash
+git clone <url-del-repositorio>
+cd gestion-reservas
+```
+
+2. **Configurar variables de entorno**
+
+Crear un archivo `.env` en la raíz del proyecto:
+```env
+SUPABASE_DB_URL=jdbc:postgresql://<host>:<puerto>/<nombre_bd>
+SUPABASE_DB_USER=<usuario>
+SUPABASE_DB_PASSWORD=<contraseña>
+```
+
+3. **Instalar dependencias**
+```bash
+mvn clean install
+```
+
+4. **Ejecutar la aplicación**
+```bash
+mvn javafx:run
+```
+
+## 🗄️ Configuración de la Base de Datos
+
+### Tablas principales
+
+- **clientes**: Información de clientes (nombre, email, teléfono, país)
+- **propiedades**: Propiedades disponibles (nombre, dirección, precio/noche, capacidad)
+- **reservas**: Reservas realizadas (cliente, propiedad, fechas, estado, precio)
+- **pagos**: Transacciones de pago (reserva, monto, método, estado)
+- **historico_pagos**: Registro automático de cambios en pagos
+
+
+## 📖 Uso
+
+1. **Iniciar la aplicación**: Al ejecutar, se mostrará la ventana principal con el título "Gestión de Reservas"
+
+2. **Gestionar Clientes**: Agregar, modificar o eliminar información de clientes
+
+3. **Administrar Propiedades**: Registrar nuevas propiedades con toda su información (ubicación, capacidad, precio)
+
+4. **Crear Reservas**: Asociar clientes con propiedades y establecer fechas de reserva
+
+5. **Procesar Pagos**: Registrar pagos con diferentes métodos (tarjeta, efectivo, transferencia, PayPal, Stripe)
+
+## 👥 Autores
+
+- **Daniel Hernando** - Aplicación principal, modelo Pago, DAO de Pagos
+- **Jaime Pérez** - Configuración BD, DAO de Clientes
+- **Pablo Armas** - DAO de Reservas
+- **Diego Regueira** - DAO de Propiedades
+
+## 📅 Versión
+
+**Versión actual**: 1.0  
+**Fecha de inicio**: Octubre 2025  
+**Última actualización**: Noviembre 2025
+
+## 📄 Licencia
+
+Este proyecto fue desarrollado con fines educativos.
+
+## 🤝 Contribuciones
+
+Este es un proyecto académico. Para sugerencias o mejoras, contactar con los autores.
+
+## 📞 Soporte
+
+Para problemas técnicos o consultas sobre el proyecto, contactar con el equipo de desarrollo.
+
+---
+
+**Nota**: Asegúrate de configurar correctamente las variables de entorno en el archivo `.env` antes de ejecutar la aplicación.
