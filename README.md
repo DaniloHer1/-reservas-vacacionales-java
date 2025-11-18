@@ -113,12 +113,11 @@ mvn javafx:run
 5. **Procesar Pagos**: Registrar pagos con diferentes métodos (tarjeta, efectivo, transferencia, PayPal, Stripe)
 
 ## 👥 Autores
-
-- **Daniel Hernando** - DAO de Pagos, aplicación principal y conexión BD
-- **Jaime Pérez** - DAO de Clientes, configuración y conexión con BD
-- **Pablo Armas** - DAO de Reservas, configuración BD 
-- **Diego Regueira** - DAO de Propiedades, desarrollo de la BD
-- **Sofía Abid** - DAO de Valoraciones, diseño de aplicación
+- **[Daniel Hernando](https://github.com/DaniloHer1)** - DAO de Pagos, aplicación principal y conexión BD
+- **[Jaime Pérez](https://github.com/xaimeprb)** - DAO de Clientes, configuración y conexión con BD
+- **[Pablo Armas](https://github.com/pabloar55)** - DAO de Reservas, configuración BD
+- **[Diego Regueira](https://github.com/reguue2)** - DAO de Propiedades, desarrollo de la BD
+- **[Sofía Abid](https://github.com/sofiacfgsdam)** - DAO de Valoraciones, diseño de aplicación
 
 ## 📅 Versión
 
